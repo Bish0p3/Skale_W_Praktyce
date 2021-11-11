@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Skale_W_Praktyce.MainPage"
+             
+             >
+
+    <!-- TITLE -->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Button ImageSource="menu.png" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" WidthRequest="30"/>
+            <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="LightGray" Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <!-- BACKGROUND -->
+            <Image Grid.Row="0" Source="bg.jpg" Aspect="Fill" Grid.RowSpan="2" Opacity=".4"/>
+
+            
+            <!-- MAIN CONTENT -->
+            <Grid Grid.Row="0" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Frame BackgroundColor="#A8E7E9" Grid.Column="1" Grid.Row="1" CornerRadius="15">
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Label Text="Witaj, co chcesz zrobić?" HorizontalOptions="Center" FontSize="20" TextColor="Black" Margin="20"/>
+                        <Button HeightRequest="100" Text="Stwórz lub wybierz profil pacjenta" Margin="10" Clicked="createBrowseButton_Clicked"/>
+                        <Rectangle Fill="Black" HeightRequest="3" Margin="10"/>
+                        <Button HeightRequest="100" Text="Przeglądaj skale" Margin="10" Clicked="browseScalesButton_Clicked"/>
+                    </StackLayout>
+                </Frame>
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

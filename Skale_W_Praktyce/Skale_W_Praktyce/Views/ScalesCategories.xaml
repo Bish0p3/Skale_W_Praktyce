@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Skale_W_Praktyce.Views.ScalesCategories">
+
+
+    <!-- TITLE -->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="Kategorie Skal" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        
+
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="9*"/>
+            </Grid.RowDefinitions>
+
+            <!-- BACKGROUND -->
+            <Image Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="bg.jpg" Opacity=".4"/>
+
+
+            <SearchBar Grid.Row="0" Placeholder="Wyszukaj..."
+               TextTransform="Lowercase"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+               FontAttributes="Italic" />
+            <Frame Grid.Row="1" BorderColor="Black" Padding="0" Margin="20" BackgroundColor="Transparent" Grid.RowSpan="2">
+            <Grid Padding="0" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.ColumnSpan="2" Text="Wybierz kategorie:" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Center" Margin="15"/>
+                
+                <FlexLayout Grid.Column="0" Padding="0" Margin="0" AlignContent="Center" AlignItems="Center" JustifyContent="SpaceEvenly" Wrap="Wrap" Direction="Column">
+                    <StackLayout Margin="0" Padding="0">
+                        <Button ImageSource="ic_healing.png" BackgroundColor="red" WidthRequest="50" HeightRequest="50"/>
+                        <Label Text="essa" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Margin="0" Padding="0">
+                        <Button ImageSource="ic_healing.png" BackgroundColor="Green" WidthRequest="50" HeightRequest="50"/>
+                        <Label Text="essa" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="0" Padding="0">
+                        <Button ImageSource="ic_healing.png" BackgroundColor="Blue" WidthRequest="50" HeightRequest="50"/>
+                        <Label Text="essa" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </FlexLayout>
+                
+                <FlexLayout Grid.Column="1" Padding="0" Margin="0" AlignContent="Center" AlignItems="Center" JustifyContent="SpaceEvenly" Wrap="Wrap" Direction="Column">
+                    <StackLayout Margin="0" Padding="0">
+                        <Button ImageSource="ic_healing.png" BackgroundColor="red" WidthRequest="50" HeightRequest="50"/>
+                        <Label Text="essa" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Margin="0" Padding="0">
+                        <Button ImageSource="ic_healing.png" BackgroundColor="Green" WidthRequest="50" HeightRequest="50"/>
+                        <Label Text="essa" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="0" Padding="0">
+                        <Button ImageSource="ic_healing.png" BackgroundColor="Blue" WidthRequest="50" HeightRequest="50"/>
+                        <Label Text="essa" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </FlexLayout>
+            </Grid>
+            
+        </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
