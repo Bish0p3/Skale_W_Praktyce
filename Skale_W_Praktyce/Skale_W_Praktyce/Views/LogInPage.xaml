@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Skale_W_Praktyce.Views.LogInPage">
+
+
+    <!-- TITLE -->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Button ImageSource="menu.png" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" WidthRequest="30"/>
+            <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    
+    <!-- MAIN CONTENT -->
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="LOGIN:"/>
+            <Editor x:Name="Login"/>
+            <Label Text="HASŁO:"/>
+            <Editor x:Name="Password"/>
+            <Button Text="ZALOGUJ" Clicked="LoginButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
 ﻿using Skale_W_Praktyce.ViewModels;
+using Skale_W_Praktyce.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,9 @@ namespace Skale_W_Praktyce
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        async void Button_Clicked(object sender, EventArgs e)
         {
-            ViewModel a = new ViewModel();
-            a.LoadPatients();
+            await Navigation.PushAsync(new AddPatientPage());
         }
     }
 }

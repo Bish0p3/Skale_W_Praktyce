@@ -25,5 +25,10 @@ namespace Skale_W_Praktyce
         {
             await Navigation.PushAsync(new ScalesCategories());
         }
+
+        async void zalogujSieButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LogInPage());
+        }
     }
 }

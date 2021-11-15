@@ -25,12 +25,12 @@
 
         <Label Text="Istniejący pacjenci:" HorizontalOptions="StartAndExpand" FontSize="Large" VerticalTextAlignment="Center"/>
         <Button Text="Dodaj pacjenta" Clicked="Button_Clicked" Grid.Row="1"/>
-        <Label x:Name="labelTest" Grid.Row="2" />
+
         <ListView x:Name="EmployeeView"
             ItemsSource="{Binding Patients}" Grid.Row="2" Background="red">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding LastName, Mode=TwoWay}"/>
+                    <TextCell Text="{Binding FirstName}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

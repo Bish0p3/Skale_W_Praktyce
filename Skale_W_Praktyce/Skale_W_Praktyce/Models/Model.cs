@@ -7,14 +7,20 @@ namespace Skale_W_Praktyce.Models
 {
     public class Model
     {
+        
     }
+
     public class Patient : INotifyPropertyChanged
     {
-        //Fields
+        #region Fields
+
         private string firstName;
         private string lastName;
 
-        //Properties
+        #endregion
+
+        #region Properties
+
         public string FirstName
         {
             get
@@ -54,14 +60,19 @@ namespace Skale_W_Praktyce.Models
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region PropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
         private void RaisePropertyChanged(string property)
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
-        }
+        } 
+
+        #endregion
     }
 }

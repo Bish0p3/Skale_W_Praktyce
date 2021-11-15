@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:Skale_W_Praktyce.ViewModels;assembly=Skale_W_Praktyce"
+             x:DataType="viewModel:ViewModel"
+             x:Class="Skale_W_Praktyce.Views.AddPatientPage">
+
+    <!-- TITLE -->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="Stwórz profil pacjenta" TextColor="White" FontSize="20" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <!-- MAIN CONTENT -->
+    <ContentPage.Content>
+        <Grid BackgroundColor="#4F1F1F">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <Label x:Name="labelTest" Grid.Row="0" Text="{Binding Name}"/>
+                <Editor Grid.Row="1" x:Name="editore" Text="{Binding Name}" IsEnabled="{Binding IsEnabledEditor}" />
+                <Button Text="KLIKNIJ" Clicked="Button_Clicked" Grid.Row="2"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
