@@ -5,7 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Skale_W_Praktyce.ViewModels;
+using Skale_W_Praktyce.Views.Flyout;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,8 +18,8 @@ namespace Skale_W_Praktyce.Views
         public LogInPage()
         {
             InitializeComponent();
+            BindingContext = new ViewModel(Navigation);
         }
-
         private async void LoginButton_Clicked(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(@"Data Source=USER;Initial Catalog=admin;Integrated Security=True"); // making connection   

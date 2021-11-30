@@ -1,6 +1,9 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Skale_W_Praktyce.Views;
+using Skale_W_Praktyce.Views.Flyout;
+using System.Threading.Tasks;
 
 namespace Skale_W_Praktyce
 {
@@ -9,10 +12,9 @@ namespace Skale_W_Praktyce
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new LogInPage());
         }
-
+        public INavigation Navigation { get; set; }
         protected override void OnStart()
         {
         }
@@ -23,6 +25,11 @@ namespace Skale_W_Praktyce
 
         protected override void OnResume()
         {
+        }
+
+        public async Task LogInButton_Method()
+        {
+            await Navigation.PushModalAsync(new LogInPage());
         }
     }
 }

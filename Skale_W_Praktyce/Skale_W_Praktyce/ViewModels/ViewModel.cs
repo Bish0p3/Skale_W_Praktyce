@@ -7,6 +7,9 @@ using System.Collections.ObjectModel;
 using Skale_W_Praktyce.Models;
 using Skale_W_Praktyce.Views;
 using System.Windows.Input;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Skale_W_Praktyce.Views.Flyout;
 
 namespace Skale_W_Praktyce.ViewModels
 {
@@ -15,44 +18,46 @@ namespace Skale_W_Praktyce.ViewModels
 
         #region Constructor
 
-        public ViewModel()
+        public ViewModel(INavigation navigation)
         {
+            Navigation = navigation;
 
+            TestCommand = new Command(PerformEditorTestMethod);
+            LogInButton_Clicked = new Command(async () => await LogInButton_Method());
+            CreateAProfileButton_Clicked = new Command(async () => await CreateAProfileButton_Method());
+            BrowseScalesButton_Clicked = new Command(async () => await BrowseScalesButton_Method());
 
+            MainLoginButton_Clicked = new Command(async () => await MainLoginButton_Method());
         }
-
+        
         #endregion
 
         #region Fields
 
-        private string name;
-        private bool isEnabledEditor;
+        private string editorText;
+        private string labelText;
+        private bool isEnabledEditor = true;
 
-        private Command editorTestMethod;
+        #endregion
+
+        #region Commands
+
+        public ICommand TestCommand { get; set; }
+        public ICommand LogInButton_Clicked { get; set; }
+        public ICommand CreateAProfileButton_Clicked { get;  set; }
+        public ICommand BrowseScalesButton_Clicked { get; set; }
+
+        public ICommand MainLoginButton_Clicked { get; set; }
+
         #endregion
 
         #region Properties
+        // Navigation
+        public INavigation Navigation { get; set; } 
 
+        //PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Patient> Patients
-        {
-            get;
-            set;
-        }
-
-        public ICommand EditorTestMethod
-        {
-            get
-            {
-                if (editorTestMethod == null)
-                {
-                    editorTestMethod = new Command(PerformEditorTestMethod);
-                }
-
-                return editorTestMethod;
-            }
-        }
         public bool IsEnabledEditor
         {
             set
@@ -65,71 +70,85 @@ namespace Skale_W_Praktyce.ViewModels
                 return isEnabledEditor;
             }
         }
-        public string Name
+        public string EditorText
         {
             set
             {
-                if(name != value)
+                if(editorText != value)
                 {
-                    name = value;
-                    OnPropertyChanged("Name");
+                    editorText = value;
+                    OnPropertyChanged("EditorText");
+                    OnPropertyChanged("LabelText");
                 }
             }
             get
             {
-                return name;
+                return editorText;
             }
         }
+
+        public string LabelText
+        {
+            set
+            {
+                if (labelText != value)
+                {
+                    labelText = value;
+                    OnPropertyChanged("LabelText");
+                }
+            }
+            get
+            {
+                return labelText;
+            }
+        }
+
         #endregion
 
         #region Methods
+
+        #region Login page
+        public async Task LogInButton_Method()
+        {
+            Application.Current.MainPage = new NavigationPage(new MainPage());
+            await Navigation.PopAsync();
+        }
+        #endregion
+
+        public async Task MainLoginButton_Method()
+        {
+            Application.Current.MainPage = new NavigationPage(new LogInPage());
+            await Navigation.PopAsync();
+        }
+
+        public async Task CreateAProfileButton_Method()
+        {
+            await Navigation.PushAsync(new PatientsListPage());
+        }
+
+        public async Task BrowseScalesButton_Method()
+        {
+            await Navigation.PushAsync(new ScalesCategories());
+        }
         public void PerformEditorTestMethod()
         {
             IsEnabledEditor = false;
+            LabelText = EditorText;
+            OnPropertyChanged(nameof(IsEnabledEditor));
+            OnPropertyChanged(nameof(LabelText));
+            OnPropertyChanged(nameof(EditorText));
         }
-        public void LoadPatients()
-        {
 
-            ObservableCollection<Patient> patients = new ObservableCollection<Patient>();
-
-            patients.Add(new Patient { FirstName = "Mark", LastName = "Allain" });
-            patients.Add(new Patient { FirstName = "Allen", LastName = "Allain" });
-            patients.Add(new Patient { FirstName = "Linda", LastName = "Hamerski" });
-
-            Patients = patients;
-        }
 
         #endregion
 
         #region Helpers
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 
-        public class CommandHandler : ICommand
-        {
-            private Action _action;
-            private bool _canExecute;
-            public CommandHandler(Action action, bool canExecute)
-            {
-                _action = action;
-                _canExecute = canExecute;
-            }
-
-            public bool CanExecute(object parameter)
-            {
-                return _canExecute;
-            }
-
-            public event EventHandler CanExecuteChanged;
-
-            public void Execute(object parameter)
-            {
-                _action();
-            }
-        }
         #endregion
     }
 }

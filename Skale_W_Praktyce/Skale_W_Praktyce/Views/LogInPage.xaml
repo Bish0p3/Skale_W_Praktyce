@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel"
              x:Class="Skale_W_Praktyce.Views.LogInPage">
 
 
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Button ImageSource="menu.png" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" WidthRequest="30"/>
             <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
@@ -19,7 +18,8 @@
             <Editor x:Name="Login"/>
             <Label Text="HASŁO:"/>
             <Editor x:Name="Password"/>
-            <Button Text="ZALOGUJ" Clicked="LoginButton_Clicked"/>
+            <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}"/>
+            <Button Text="REJESTRACJA"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

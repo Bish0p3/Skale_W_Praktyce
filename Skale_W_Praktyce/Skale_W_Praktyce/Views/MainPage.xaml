@@ -1,16 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Skale_W_Praktyce.MainPage"
-             
-             >
+             x:Class="Skale_W_Praktyce.Views.MainPage"
+             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel">
 
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Button ImageSource="menu.png" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" WidthRequest="30"/>
-            <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
-            <Button ImageSource="menu.png" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" WidthRequest="30" Clicked="zalogujSieButton_Clicked"/>
+            <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Button Text="LOGIN" HorizontalOptions="End" Command="{Binding MainLoginButton_Clicked}"/>
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -24,7 +22,6 @@
             
             <!-- BACKGROUND -->
             <Image Grid.Row="0" Source="bg.jpg" Aspect="Fill" Grid.RowSpan="2" Opacity=".4"/>
-            <Button Grid.Row="0" Text="Zaloguj się" Clicked="zalogujSieButton_Clicked"/>
 
             <!-- MAIN CONTENT -->
             <Grid Grid.Row="0" Grid.RowSpan="2">
@@ -43,9 +40,9 @@
                 <Frame BackgroundColor="#A8E7E9" Grid.Column="1" Grid.Row="1" CornerRadius="15">
                     <StackLayout VerticalOptions="CenterAndExpand">
                         <Label Text="Witaj, co chcesz zrobić?" HorizontalOptions="Center" FontSize="20" TextColor="Black" Margin="20"/>
-                        <Button HeightRequest="100" Text="Stwórz lub wybierz profil pacjenta" Margin="10" Clicked="createBrowseButton_Clicked"/>
+                        <Button HeightRequest="100" Text="Stwórz lub wybierz profil pacjenta" Margin="10" Command="{Binding CreateAProfileButton_Clicked}"/>
                         <Rectangle Fill="Black" HeightRequest="3" Margin="10"/>
-                        <Button HeightRequest="100" Text="Przeglądaj skale" Margin="10" Clicked="browseScalesButton_Clicked"/>
+                        <Button HeightRequest="100" Text="Przeglądaj skale" Margin="10" Command="{Binding BrowseScalesButton_Clicked}"/>
                     </StackLayout>
                 </Frame>
 

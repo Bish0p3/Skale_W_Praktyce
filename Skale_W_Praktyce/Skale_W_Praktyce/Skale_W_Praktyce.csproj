@@ -22,6 +22,12 @@
     <Compile Update="Views\AddPatientPage.xaml.cs">
       <DependentUpon>AddPatientPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Flyout\MainPage_FlyoutMenuPage.xaml.cs">
+      <DependentUpon>MainPage_FlyoutMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Flyout\MainPage_Flyout.xaml.cs">
+      <DependentUpon>MainPage_Flyout.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ScalesCategories.xaml.cs">
       <DependentUpon>ScalesCategories.xaml</DependentUpon>
     </Compile>
@@ -35,6 +41,12 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\AddPatientPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Flyout\MainPage_Flyout.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Flyout\MainPage_FlyoutMenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LogInPage.xaml">

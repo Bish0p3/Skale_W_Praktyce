@@ -1,0 +1,53 @@
+Nawigacja:
+	XAML: 
+    <Button Command="{Binding ContinueBtnClicked}" />  
+
+
+	XAML.cs: 
+    public class SignIn : ContentPage
+    {
+    public SignIn(){
+       InitializeComponent();
+       // Note the VM constructor takes now a INavigation parameter
+       BindingContext = new LocalAccountViewModel(Navigation);
+    }
+}
+
+    VM:
+    public class LocalAccountViewModel : INotifyPropertyChanged
+{
+    public INavigation Navigation { get; set;}
+
+    public LocalAccountViewModel(INavigation navigation)
+    {
+        this.Navigation = navigation;
+        this.ContinueBtnClicked = new Command(async () => await GotoPage2());
+    }
+
+    public async Task GotoPage2()
+    {
+        /////
+        await Navigation.PushAsync(new Page2());
+    }
+    ...
+}
+
+LOGIN:
+
+So one approach is to reset the MainPage completly with your new Page when a login is successfull.
+
+So that would be:
+
+MainPage = new LoginView();
+
+and on successfull login:
+
+MainPage = new NavigationPage(new RootPage());
+
+The other approach is to immediately set the root page and push the LoginView modal when a login is required. For example:
+
+Hide the content on your root page.
+Perform an automatic login if the user has an access token stored on the device
+If it is successfull make the content visible
+If no token is stored or the automatic login fails, display the LoginPage modal
+If the login is successfull go on with step 3 and pop the LoginPage

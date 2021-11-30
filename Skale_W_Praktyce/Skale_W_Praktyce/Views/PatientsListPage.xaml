@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewModel="clr-namespace:Skale_W_Praktyce.ViewModels;assembly=Skale_W_Praktyce" 
              x:Class="Skale_W_Praktyce.PatientsListPage">
-    <ContentPage.BindingContext>
-        <viewModel:ViewModel/>
-    </ContentPage.BindingContext>
+
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start">

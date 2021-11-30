@@ -4,7 +4,7 @@
              xmlns:viewModel="clr-namespace:Skale_W_Praktyce.ViewModels;assembly=Skale_W_Praktyce"
              x:DataType="viewModel:ViewModel"
              x:Class="Skale_W_Praktyce.Views.AddPatientPage">
-
+    
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
@@ -21,9 +21,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackLayout>
-                <Label x:Name="labelTest" Grid.Row="0" Text="{Binding Name}"/>
-                <Editor Grid.Row="1" x:Name="editore" Text="{Binding Name}" IsEnabled="{Binding IsEnabledEditor}" />
-                <Button Text="KLIKNIJ" Clicked="Button_Clicked" Grid.Row="2"/>
+                <Label x:Name="labelTest" Grid.Row="0" Text="{Binding LabelText}"/>
+                <Entry Grid.Row="1" Placeholder="Szukaj.." Text="{Binding EditorText}" IsEnabled="{Binding IsEnabledEditor}" />
+                <Button Text="KLIKNIJ" Grid.Row="2" Command="{Binding TestCommand}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

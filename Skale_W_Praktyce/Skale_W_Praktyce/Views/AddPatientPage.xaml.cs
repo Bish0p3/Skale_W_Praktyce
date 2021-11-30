@@ -15,12 +15,7 @@ namespace Skale_W_Praktyce.Views
         public AddPatientPage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            editore.IsEnabled = false;
-            labelTest.Text = editore.Text;
+            BindingContext = new ViewModel(Navigation);
         }
     }
 }
