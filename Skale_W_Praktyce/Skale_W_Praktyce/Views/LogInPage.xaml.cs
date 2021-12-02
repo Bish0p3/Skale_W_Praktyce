@@ -22,18 +22,35 @@ namespace Skale_W_Praktyce.Views
         }
         private async void LoginButton_Clicked(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=USER;Initial Catalog=admin;Integrated Security=True"); // making connection   
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM Users WHERE username='" + Login.Text + "' AND password='" + Password.Text + "'", con);
-            /* in above line the program is selecting the whole data from table and the matching it with the user name and password provided by user. */
-            DataTable dt = new DataTable(); //this is creating a virtual table  
-            sda.Fill(dt);
-            if (dt.Rows[0][0].ToString() == "1")
+
+        }
+        private void LoginEntry_Completed(object sender, EventArgs e)
+        {
+            Password.Focus();
+        }
+        private void ConnectDB_Button(object sender, EventArgs e)
+        {
+            try
             {
-                /* I have made a new page called home page. If the user is successfully authenticated then the form will be moved to the next form */
-                await Navigation.PopAsync();
+                string srvrdbname = "skalewpraktyce_db";
+                string srvrname = "192.168.1.104";
+                string srvrusername = "admin";
+                string srvrpassword = "admin";
+
+                string sqlconn = $"Data Source={srvrname}; Initial Catalog ={srvrdbname}; User ID={srvrusername};Password={srvrpassword};";
+
+                SqlConnection sqlConnection = new SqlConnection(sqlconn);
+
+                sqlConnection.Open();
+                
+                connectionStatus_Label.Text = "OPEN";
             }
-            else
-                await DisplayAlert("Alert","Invalid username or password","OK");
+            catch (Exception)
+            {
+                throw;
+            }
+           
+
         }
     }
 }

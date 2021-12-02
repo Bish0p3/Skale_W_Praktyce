@@ -15,11 +15,14 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="LOGIN:"/>
-            <Editor x:Name="Login"/>
+            <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
+            <Entry x:Name="Login" MaxLength="50" ClearButtonVisibility="WhileEditing" Keyboard="Email" ReturnType="Next" Completed="LoginEntry_Completed"/>
             <Label Text="HASŁO:"/>
-            <Editor x:Name="Password"/>
+            <Entry IsPassword="True" x:Name="Password" MaxLength="50" ClearButtonVisibility="WhileEditing" Keyboard="Text" ReturnType="Send"/>
             <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}"/>
             <Button Text="REJESTRACJA"/>
+            <Button Text="CONNECT TO DB" Clicked="ConnectDB_Button"/>
+            <Label Text="" x:Name="connectionStatus_Label"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

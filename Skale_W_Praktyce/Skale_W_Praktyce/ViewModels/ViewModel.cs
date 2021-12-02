@@ -23,11 +23,19 @@ namespace Skale_W_Praktyce.ViewModels
             Navigation = navigation;
 
             TestCommand = new Command(PerformEditorTestMethod);
+
+            #region Login Page Commands
+
             LogInButton_Clicked = new Command(async () => await LogInButton_Method());
+            LoginEntry_Completed = new Command(LoginEntry_Method);
+
+            #endregion
+
             CreateAProfileButton_Clicked = new Command(async () => await CreateAProfileButton_Method());
             BrowseScalesButton_Clicked = new Command(async () => await BrowseScalesButton_Method());
 
             MainLoginButton_Clicked = new Command(async () => await MainLoginButton_Method());
+
         }
         
         #endregion
@@ -43,7 +51,12 @@ namespace Skale_W_Praktyce.ViewModels
         #region Commands
 
         public ICommand TestCommand { get; set; }
+
+        #region Login Page Commands
         public ICommand LogInButton_Clicked { get; set; }
+        public ICommand LoginEntry_Completed { get; set; }
+
+        #endregion
         public ICommand CreateAProfileButton_Clicked { get;  set; }
         public ICommand BrowseScalesButton_Clicked { get; set; }
 
@@ -112,6 +125,11 @@ namespace Skale_W_Praktyce.ViewModels
         {
             Application.Current.MainPage = new NavigationPage(new MainPage());
             await Navigation.PopAsync();
+        }
+
+        public void LoginEntry_Method()
+        {
+            
         }
         #endregion
 
