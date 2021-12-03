@@ -1,28 +1,107 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel"
-             x:Class="Skale_W_Praktyce.Views.LogInPage">
+             x:Class="Skale_W_Praktyce.Views.LogInPage"
+             NavigationPage.HasNavigationBar="False"
+             >
 
 
     <!-- TITLE -->
-    <NavigationPage.TitleView>
+    <!--<NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
             <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
         </StackLayout>
-    </NavigationPage.TitleView>
+    </NavigationPage.TitleView>-->
     
     <!-- MAIN CONTENT -->
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="LOGIN:"/>
-            <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
-            <Entry x:Name="Login" MaxLength="50" ClearButtonVisibility="WhileEditing" Keyboard="Email" ReturnType="Next" Completed="LoginEntry_Completed"/>
-            <Label Text="HASŁO:"/>
-            <Entry IsPassword="True" x:Name="Password" MaxLength="50" ClearButtonVisibility="WhileEditing" Keyboard="Text" ReturnType="Send"/>
-            <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}"/>
-            <Button Text="REJESTRACJA"/>
-            <Button Text="CONNECT TO DB" Clicked="ConnectDB_Button"/>
-            <Label Text="" x:Name="connectionStatus_Label"/>
-        </StackLayout>
+        <Grid BackgroundColor="#50FBC1BC">
+            
+            <!-- FRAME -->
+            <Frame Opacity="0.5" BorderColor="LightGray">
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,0">
+                        <GradientStop Color="#3fc9ef" Offset="1"/>
+                        <GradientStop Color="#0086e7" Offset="0.0"/>
+                        <GradientStop Color="#0086e7" Offset="0.0"/>
+                        <GradientStop Color="#0086e7" Offset="0.0"/>
+                        <GradientStop Color="#3fc9ef" Offset="0.0"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+            <Frame Opacity="0.5" BorderColor="LightGray">
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+                        <GradientStop Color="#0086e7"
+                          Offset="0.0"/>
+                        <GradientStop Color="#0086e7"
+                          Offset="0.0"/>
+                        <GradientStop Color="#3fc9ef"
+                          Offset="0.3"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+            
+            <!-- CONTENT -->
+            <Grid>
+                <StackLayout VerticalOptions="Center" Margin="50">
+                    <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
+                    <Button/>
+                    <Frame CornerRadius="10" Padding="3" Margin="3">
+                        <Entry x:Name="Login" 
+                       BackgroundColor="White"
+                       TextColor="Black"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Placeholder="Nazwa Użytkownika"
+                       MaxLength="50" 
+                       Keyboard="Email" 
+                       ReturnType="Next" 
+                       Completed="LoginEntry_Completed"/>
+                    </Frame>
+
+                    <Frame CornerRadius="10" Padding="3" Margin="3">
+                        <Entry x:Name="Password" 
+                            BackgroundColor="White"
+                           TextColor="Black"
+                               HorizontalTextAlignment="Center"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center"
+                           IsPassword="True" 
+                           Placeholder="Hasło"
+                           MaxLength="50"  
+                           Keyboard="Text" 
+                           ReturnType="Send"/>
+                    </Frame>
+                    
+                    <Label HorizontalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Jeżeli zapomniałeś hasła, kliknij " />
+                                <Span Text="tutaj"
+                                      TextColor="Blue"
+                                      TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    
+                    <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}" />
+                    <Button Text="REJESTRACJA"/>
+                    <Button Text="CONNECT TO DB" Clicked="ConnectDB_Button"/>
+                    <Label Text="" x:Name="connectionStatus_Label"/>
+                        
+                </StackLayout>
+
+            </Grid>
+        </Grid>
     </ContentPage.Content>
+    
 </ContentPage>

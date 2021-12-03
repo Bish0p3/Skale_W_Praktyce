@@ -51,3 +51,7 @@ Perform an automatic login if the user has an access token stored on the device
 If it is successfull make the content visible
 If no token is stored or the automatic login fails, display the LoginPage modal
 If the login is successfull go on with step 3 and pop the LoginPage
+
+
+ZMIANA ROZNYCH KOLOROW ANDROID:
+ANDROID-> STYLES -> STYLES.xML
