@@ -1,10 +1,15 @@
-﻿using Skale_W_Praktyce.Views;
-using Skale_W_Praktyce.Views.Flyout;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.ComponentModel;
+using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using Skale_W_Praktyce.Models;
+using Skale_W_Praktyce.Views;
+using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
+using Skale_W_Praktyce.Views.Flyout;
 
 namespace Skale_W_Praktyce.ViewModels
 {
@@ -17,21 +22,21 @@ namespace Skale_W_Praktyce.ViewModels
         {
             Navigation = navigation;
 
-
             TestCommand = new Command(PerformEditorTestMethod);
 
             #region Login Page Commands
 
             LogInButton_Clicked = new Command(async () => await LogInButton_Method());
+            RegisterButton_Clicked = new Command(async () => await RegisterButton_Method());
             LoginEntry_Completed = new Command(LoginEntry_Method);
 
             #endregion
 
+            #region Main Page Commands
             CreateAProfileButton_Clicked = new Command(async () => await CreateAProfileButton_Method());
             BrowseScalesButton_Clicked = new Command(async () => await BrowseScalesButton_Method());
-
             MainLoginButton_Clicked = new Command(async () => await MainLoginButton_Method());
-
+            #endregion
         }
 
         #endregion
@@ -42,7 +47,6 @@ namespace Skale_W_Praktyce.ViewModels
         private string labelText;
         private bool isEnabledEditor = true;
 
-
         #endregion
 
         #region Commands
@@ -51,19 +55,24 @@ namespace Skale_W_Praktyce.ViewModels
 
         #region Login Page Commands
         public ICommand LogInButton_Clicked { get; set; }
+        public ICommand RegisterButton_Clicked { get; set; }
         public ICommand LoginEntry_Completed { get; set; }
 
         #endregion
-        public ICommand CreateAProfileButton_Clicked { get; set; }
+
+        #region Main Page Commands
+        public ICommand CreateAProfileButton_Clicked { get;  set; }
         public ICommand BrowseScalesButton_Clicked { get; set; }
 
         public ICommand MainLoginButton_Clicked { get; set; }
+        #endregion
+
 
         #endregion
 
         #region Properties
         // Navigation
-        public INavigation Navigation { get; set; }
+        public INavigation Navigation { get; set; } 
 
         //PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -84,7 +93,7 @@ namespace Skale_W_Praktyce.ViewModels
         {
             set
             {
-                if (editorText != value)
+                if(editorText != value)
                 {
                     editorText = value;
                     OnPropertyChanged("EditorText");
@@ -120,29 +129,38 @@ namespace Skale_W_Praktyce.ViewModels
         #region Login page
         public async Task LogInButton_Method()
         {
-            Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
+            Application.Current.MainPage = new NavigationPage(new MainPage());
             await Navigation.PopAsync();
         }
-
+        public async Task RegisterButton_Method()
+        {
+            await Navigation.PushAsync(new RegisterPage());
+        }
         public void LoginEntry_Method()
         {
-
+            
         }
         #endregion
 
+        #region Main Page methods
         public async Task MainLoginButton_Method()
         {
             Application.Current.MainPage = new NavigationPage(new LogInPage());
             await Navigation.PopAsync();
         }
+
         public async Task CreateAProfileButton_Method()
         {
             await Navigation.PushAsync(new PatientsListPage());
         }
+
         public async Task BrowseScalesButton_Method()
         {
             await Navigation.PushAsync(new ScalesCategories());
         }
+
+        #endregion
+
         public void PerformEditorTestMethod()
         {
             IsEnabledEditor = false;
