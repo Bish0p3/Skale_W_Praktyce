@@ -14,7 +14,7 @@ namespace Skale_W_Praktyce.Views
             InitializeComponent();
             BindingContext = new ViewModel(Navigation);
         }
-        private void LoginButton_Clicked(object sender, EventArgs e)
+        private async void LoginButton_Clicked(object sender, EventArgs e)
         {
 
         }
@@ -27,7 +27,7 @@ namespace Skale_W_Praktyce.Views
             try
             {
                 string srvrdbname = "skalewpraktyce_db";
-                string srvrname = "192.168.1.104";
+                string srvrname = "153.19.163.39";
                 string srvrusername = "admin";
                 string srvrpassword = "admin";
 

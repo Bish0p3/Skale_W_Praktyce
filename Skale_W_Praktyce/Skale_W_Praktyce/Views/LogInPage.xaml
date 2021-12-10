@@ -95,7 +95,7 @@
                     </Label>
                     
                     <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}" />
-                    <Button Text="REJESTRACJA"/>
+                    <Button Text="REJESTRACJA" Command="{Binding RegisterButton_Clicked}"/>
                     <Button Text="CONNECT TO DB" Clicked="ConnectDB_Button"/>
                     <Label Text="" x:Name="connectionStatus_Label"/>
                         

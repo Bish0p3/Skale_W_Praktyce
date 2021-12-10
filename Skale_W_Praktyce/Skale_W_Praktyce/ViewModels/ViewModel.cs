@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Skale_W_Praktyce.Views;
+using Skale_W_Praktyce.Views.Flyout;
+using System;
 using System.ComponentModel;
-using Xamarin.Forms;
-using System.Collections.ObjectModel;
-using Skale_W_Praktyce.Models;
-using Skale_W_Praktyce.Views;
-using System.Windows.Input;
+using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Skale_W_Praktyce.Views.Flyout;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Skale_W_Praktyce.ViewModels
 {
@@ -37,6 +34,11 @@ namespace Skale_W_Praktyce.ViewModels
             BrowseScalesButton_Clicked = new Command(async () => await BrowseScalesButton_Method());
             MainLoginButton_Clicked = new Command(async () => await MainLoginButton_Method());
             #endregion
+
+            #region Register Page Commands
+            RegisterSendButton_Clicked = new Command(async () => await RegisterSendButton_Method());
+
+            #endregion
         }
 
         #endregion
@@ -46,6 +48,12 @@ namespace Skale_W_Praktyce.ViewModels
         private string editorText;
         private string labelText;
         private bool isEnabledEditor = true;
+
+        #region Register Page
+        private string register_EmailEntry;
+        private string register_PasswordEntry;
+        private string register_LoginEntry;
+        #endregion
 
         #endregion
 
@@ -61,18 +69,21 @@ namespace Skale_W_Praktyce.ViewModels
         #endregion
 
         #region Main Page Commands
-        public ICommand CreateAProfileButton_Clicked { get;  set; }
+        public ICommand CreateAProfileButton_Clicked { get; set; }
         public ICommand BrowseScalesButton_Clicked { get; set; }
 
         public ICommand MainLoginButton_Clicked { get; set; }
         #endregion
 
+        #region Register Page Commands
+        public ICommand RegisterSendButton_Clicked { get; set; }
+        #endregion
 
         #endregion
 
         #region Properties
         // Navigation
-        public INavigation Navigation { get; set; } 
+        public INavigation Navigation { get; set; }
 
         //PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -93,7 +104,7 @@ namespace Skale_W_Praktyce.ViewModels
         {
             set
             {
-                if(editorText != value)
+                if (editorText != value)
                 {
                     editorText = value;
                     OnPropertyChanged("EditorText");
@@ -105,7 +116,6 @@ namespace Skale_W_Praktyce.ViewModels
                 return editorText;
             }
         }
-
         public string LabelText
         {
             set
@@ -122,6 +132,57 @@ namespace Skale_W_Praktyce.ViewModels
             }
         }
 
+        #region Register Page properties
+        public string Register_EmailEntry
+        {
+            set
+            {
+                if (register_EmailEntry != value)
+                {
+                    register_EmailEntry = value;
+                    OnPropertyChanged("Register_EmailEntry");
+                }
+            }
+            get
+            {
+                return register_EmailEntry;
+            }
+
+        }
+        public string Register_LoginEntry
+        {
+            set
+            {
+                if (register_LoginEntry != value)
+                {
+                    register_LoginEntry = value;
+                    OnPropertyChanged("Register_EmailEntry");
+                }
+            }
+            get
+            {
+                return register_LoginEntry;
+            }
+
+        }
+        public string Register_PasswordEntry
+        {
+            set
+            {
+                if (register_PasswordEntry != value)
+                {
+                    register_PasswordEntry = value;
+                    OnPropertyChanged("Register_EmailEntry");
+                }
+            }
+            get
+            {
+                return register_PasswordEntry;
+            }
+
+        }
+        #endregion
+
         #endregion
 
         #region Methods
@@ -129,7 +190,8 @@ namespace Skale_W_Praktyce.ViewModels
         #region Login page
         public async Task LogInButton_Method()
         {
-            Application.Current.MainPage = new NavigationPage(new MainPage());
+
+            Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
             await Navigation.PopAsync();
         }
         public async Task RegisterButton_Method()
@@ -138,7 +200,7 @@ namespace Skale_W_Praktyce.ViewModels
         }
         public void LoginEntry_Method()
         {
-            
+
         }
         #endregion
 
@@ -161,6 +223,54 @@ namespace Skale_W_Praktyce.ViewModels
 
         #endregion
 
+        #region Register Page methods
+        public async Task RegisterSendButton_Method()
+        {
+            if (Register_PasswordEntry != "" && Register_LoginEntry != "" && Register_EmailEntry != "")
+            {
+                string srvrdbname = "skalewpraktyce_db";
+                string srvrname = "153.19.163.39";
+                string srvrusername = "admin";
+                string srvrpassword = "admin";
+
+                string connectionString = $"Data Source={srvrname}; Initial Catalog ={srvrdbname}; User ID={srvrusername};Password={srvrpassword};";
+                string queryString = $"INSERT INTO [dbo].[usersTable](Email, Username, Password) VALUES ('{Register_EmailEntry}', '{Register_LoginEntry}', '{register_PasswordEntry}')";
+
+
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(queryString, sqlConnection);
+                    //command.Parameters.AddWithValue("@tPatSName", "Your-Parm-Value");
+                    sqlConnection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    try
+                    {
+                        while (reader.Read())
+                        {
+                            //Console.WriteLine(String.Format("DONE"));// etc
+                        }
+                    }
+                    finally
+                    {
+                        // Always call Close when done reading.
+                        reader.Close();
+                        // POPUP
+                        await Application.Current.MainPage.DisplayAlert("Rejestracja",
+                            "Zostałeś zarejestrowany, na adres email została wysłana wiadomość z danymi logowania. \n Możesz się teraz zalogować.", "OK");
+
+                    }
+                }
+            }
+            else
+            {
+                // POPUP
+                await Application.Current.MainPage.DisplayAlert("Uwaga",
+                    "Uzupełnij wszystkie pola i spróbuj ponownie.", "OK");
+
+            }
+        }
+
+        #endregion
         public void PerformEditorTestMethod()
         {
             IsEnabledEditor = false;

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel"
+             x:Class="Skale_W_Praktyce.Views.RegisterPage">
+    
+    <!-- NAV BAR -->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Rejestracja" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    
+    <!-- MAIN CONTENT -->
+    <ContentPage.Content>
+        <Grid>
+            <!-- FRAME -->
+            <Frame Opacity="0.5" BorderColor="LightGray">
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,0">
+                        <GradientStop Color="#3fc9ef" Offset="1"/>
+                        <GradientStop Color="#0086e7" Offset="0.0"/>
+                        <GradientStop Color="#0086e7" Offset="0.0"/>
+                        <GradientStop Color="#0086e7" Offset="0.0"/>
+                        <GradientStop Color="#3fc9ef" Offset="0.0"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+            <Frame Opacity="0.5" BorderColor="LightGray">
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+                        <GradientStop Color="#0086e7"
+                          Offset="0.0"/>
+                        <GradientStop Color="#0086e7"
+                          Offset="0.0"/>
+                        <GradientStop Color="#3fc9ef"
+                          Offset="0.3"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+
+
+            <StackLayout VerticalOptions="Center" Margin="50">
+                <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
+                <Image Source="logo4.png" Margin="0, -100, 0, 0" Scale="1"/>
+                
+                <Frame CornerRadius="10" Padding="3" Margin="3">
+                    <Entry x:Name="EmailEntry" 
+                       Text="{Binding Register_EmailEntry}"
+                           
+                       BackgroundColor="White"
+                       TextColor="Black"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Placeholder="Adres E-Mail"
+                       MaxLength="50" 
+                       Keyboard="Email" 
+                       ReturnType="Next" 
+                       Completed="EmailEntry_Completed"/>
+                </Frame>
+                
+                <Frame CornerRadius="10" Padding="3" Margin="3">
+                    <Entry x:Name="LoginEntry" 
+                       Text="{Binding Register_LoginEntry}"
+                       
+                       BackgroundColor="White"
+                       TextColor="Black"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Placeholder="Nazwa Użytkownika"
+                       MaxLength="50" 
+                       Keyboard="Plain" 
+                       ReturnType="Next" 
+                       Completed="LoginEntry_Completed"/>
+                </Frame>
+
+                <Frame CornerRadius="10" Padding="3" Margin="3">
+                    <Entry x:Name="PasswordEntry" 
+                           Text="{Binding Register_PasswordEntry}"
+                           
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center"
+                           IsPassword="True" 
+                           Placeholder="Hasło"
+                           MaxLength="50"  
+                           Keyboard="Plain" 
+                           ReturnType="Send"/>
+                </Frame>
+
+                <Button Text="ZAREJESTRUJ" Command="{Binding RegisterSendButton_Clicked}" />
+
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

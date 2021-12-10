@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using Skale_W_Praktyce.Models;
+﻿using Skale_W_Praktyce.Models;
+using System.Collections.ObjectModel;
 
 namespace Skale_W_Praktyce.ViewModels
 {

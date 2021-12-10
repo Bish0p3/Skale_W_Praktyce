@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Skale_W_Praktyce.ViewModels;
 
 namespace Skale_W_Praktyce.Views.Flyout
 {
