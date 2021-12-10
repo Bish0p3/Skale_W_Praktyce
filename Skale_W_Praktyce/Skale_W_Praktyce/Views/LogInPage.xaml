@@ -49,7 +49,8 @@
             <Grid>
                 <StackLayout VerticalOptions="Center" Margin="50">
                     <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
-                    <Button/>
+                    <Image Source="logo4.png" Margin="0, -50, 0, 0"/>
+                    <Label Text="Skale W Praktyce" Margin="0,-50,0,30" FontSize="Large" FontAttributes="Bold"  HorizontalOptions="Center"/>
                     <Frame CornerRadius="10" Padding="3" Margin="3">
                         <Entry x:Name="Login" 
                        BackgroundColor="White"

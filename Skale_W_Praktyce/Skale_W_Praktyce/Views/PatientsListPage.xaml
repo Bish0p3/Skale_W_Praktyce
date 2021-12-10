@@ -1,15 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewModel="clr-namespace:Skale_W_Praktyce.ViewModels;assembly=Skale_W_Praktyce" 
-             x:Class="Skale_W_Praktyce.PatientsListPage">
-
+             xmlns:ViewModels="clr-namespace:Skale_W_Praktyce.ViewModels" 
+             x:Class="Skale_W_Praktyce.Views.PatientsListPage">
+    
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
             <Label Text="Profile pacjenta" TextColor="White" FontSize="20" />
         </StackLayout>
     </NavigationPage.TitleView>
+
+	<ContentPage.BindingContext>
+		<ViewModels:PatientsViewModel/>
+	</ContentPage.BindingContext>
 
     <!-- MAIN CONTENT -->
     <Grid>
@@ -18,20 +22,29 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <Image Source="bg.jpg" Aspect="Fill" Grid.RowSpan="2" Opacity=".4"/>
+        <Image Source="bg.jpg" Aspect="Fill" Grid.RowSpan="3" Opacity=".4"/>
+        <StackLayout>
+            <Label Text="Istniejący pacjenci:" HorizontalOptions="StartAndExpand" FontSize="Large" VerticalTextAlignment="Center"/>
 
-        <Label Text="Istniejący pacjenci:" HorizontalOptions="StartAndExpand" FontSize="Large" VerticalTextAlignment="Center"/>
-        <Button Text="Dodaj pacjenta" Clicked="Button_Clicked" Grid.Row="1"/>
 
-        <ListView x:Name="EmployeeView"
-            ItemsSource="{Binding Patients}" Grid.Row="2" Background="red">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding FirstName}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            <ListView ItemsSource="{Binding PatientsList}"
+              CachingStrategy="RecycleElement"
+              RowHeight="60">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="8">
+                                <Label Text="{Binding FirstName}"
+                               FontAttributes="Bold"/>
+                                <Label Text="{Binding LastName}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Button Text="Dodaj pacjenta" Clicked="Button_Clicked"/>
 
+        </StackLayout>
     </Grid>
 </ContentPage>

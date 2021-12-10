@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Skale_W_Praktyce.ViewModels;
+using System;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Skale_W_Praktyce.ViewModels;
-using Skale_W_Praktyce.Views.Flyout;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,7 +14,7 @@ namespace Skale_W_Praktyce.Views
             InitializeComponent();
             BindingContext = new ViewModel(Navigation);
         }
-        private async void LoginButton_Clicked(object sender, EventArgs e)
+        private void LoginButton_Clicked(object sender, EventArgs e)
         {
 
         }
@@ -42,14 +36,14 @@ namespace Skale_W_Praktyce.Views
                 SqlConnection sqlConnection = new SqlConnection(sqlconn);
 
                 sqlConnection.Open();
-                
+
                 connectionStatus_Label.Text = "OPEN";
             }
             catch (Exception)
             {
                 throw;
             }
-           
+
 
         }
     }

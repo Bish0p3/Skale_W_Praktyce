@@ -1,9 +1,6 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Skale_W_Praktyce.Views;
-using Skale_W_Praktyce.Views.Flyout;
+﻿using Skale_W_Praktyce.Views;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Skale_W_Praktyce
 {

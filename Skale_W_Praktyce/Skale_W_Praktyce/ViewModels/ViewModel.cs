@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Skale_W_Praktyce.Views;
+using Skale_W_Praktyce.Views.Flyout;
 using System.ComponentModel;
-using Xamarin.Forms;
-using System.Collections.ObjectModel;
-using Skale_W_Praktyce.Models;
-using Skale_W_Praktyce.Views;
-using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using Skale_W_Praktyce.Views.Flyout;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Skale_W_Praktyce.ViewModels
 {
@@ -21,6 +16,7 @@ namespace Skale_W_Praktyce.ViewModels
         public ViewModel(INavigation navigation)
         {
             Navigation = navigation;
+
 
             TestCommand = new Command(PerformEditorTestMethod);
 
@@ -37,7 +33,7 @@ namespace Skale_W_Praktyce.ViewModels
             MainLoginButton_Clicked = new Command(async () => await MainLoginButton_Method());
 
         }
-        
+
         #endregion
 
         #region Fields
@@ -45,6 +41,7 @@ namespace Skale_W_Praktyce.ViewModels
         private string editorText;
         private string labelText;
         private bool isEnabledEditor = true;
+
 
         #endregion
 
@@ -57,7 +54,7 @@ namespace Skale_W_Praktyce.ViewModels
         public ICommand LoginEntry_Completed { get; set; }
 
         #endregion
-        public ICommand CreateAProfileButton_Clicked { get;  set; }
+        public ICommand CreateAProfileButton_Clicked { get; set; }
         public ICommand BrowseScalesButton_Clicked { get; set; }
 
         public ICommand MainLoginButton_Clicked { get; set; }
@@ -66,7 +63,7 @@ namespace Skale_W_Praktyce.ViewModels
 
         #region Properties
         // Navigation
-        public INavigation Navigation { get; set; } 
+        public INavigation Navigation { get; set; }
 
         //PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -87,7 +84,7 @@ namespace Skale_W_Praktyce.ViewModels
         {
             set
             {
-                if(editorText != value)
+                if (editorText != value)
                 {
                     editorText = value;
                     OnPropertyChanged("EditorText");
@@ -123,13 +120,13 @@ namespace Skale_W_Praktyce.ViewModels
         #region Login page
         public async Task LogInButton_Method()
         {
-            Application.Current.MainPage = new NavigationPage(new MainPage());
+            Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
             await Navigation.PopAsync();
         }
 
         public void LoginEntry_Method()
         {
-            
+
         }
         #endregion
 
@@ -138,12 +135,10 @@ namespace Skale_W_Praktyce.ViewModels
             Application.Current.MainPage = new NavigationPage(new LogInPage());
             await Navigation.PopAsync();
         }
-
         public async Task CreateAProfileButton_Method()
         {
             await Navigation.PushAsync(new PatientsListPage());
         }
-
         public async Task BrowseScalesButton_Method()
         {
             await Navigation.PushAsync(new ScalesCategories());
@@ -156,7 +151,6 @@ namespace Skale_W_Praktyce.ViewModels
             OnPropertyChanged(nameof(LabelText));
             OnPropertyChanged(nameof(EditorText));
         }
-
 
         #endregion
 

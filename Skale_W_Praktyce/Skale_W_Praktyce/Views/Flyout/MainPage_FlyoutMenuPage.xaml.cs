@@ -1,14 +1,9 @@
-﻿using Skale_W_Praktyce.Views.Flyout;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Skale_W_Praktyce.ViewModels;
 
 namespace Skale_W_Praktyce.Views.Flyout
 {
@@ -33,12 +28,12 @@ namespace Skale_W_Praktyce.Views.Flyout
             {
                 MenuItems = new ObservableCollection<FlyoutPageTestFlyoutMenuItem>(new[]
                 {
-                    new FlyoutPageTestFlyoutMenuItem { Id = 0, Title = "Page 1" },
-                    new FlyoutPageTestFlyoutMenuItem { Id = 1, Title = "Page 2" },
-                    new FlyoutPageTestFlyoutMenuItem { Id = 2, Title = "Page 3" },
-                    new FlyoutPageTestFlyoutMenuItem { Id = 3, Title = "Page 4" },
-                    new FlyoutPageTestFlyoutMenuItem { Id = 4, Title = "Dodaj pacjenta 5" , TargetType = typeof(AddPatientPage)},
-                    new FlyoutPageTestFlyoutMenuItem { Id = 5, Title = "es", TargetType = typeof(MainPage)},
+                    new FlyoutPageTestFlyoutMenuItem { Id = 0, Title = "Strona Główna", TargetType = typeof(MainPage_Flyout)},
+                    new FlyoutPageTestFlyoutMenuItem { Id = 1, Title = "Przeglądaj Skale", TargetType = typeof(ScalesCategories)},
+                    new FlyoutPageTestFlyoutMenuItem { Id = 2, Title = "Kategorie", TargetType = typeof(ScalesCategories) },
+                    new FlyoutPageTestFlyoutMenuItem { Id = 3, Title = "Pacjenci", TargetType = typeof(AddPatientPage) },
+                    new FlyoutPageTestFlyoutMenuItem { Id = 4, Title = "Źródła" , TargetType = typeof(AddPatientPage)},
+                    new FlyoutPageTestFlyoutMenuItem { Id = 5, Title = "Wyloguj", TargetType = typeof(AddPatientPage)},
                 });
             }
 

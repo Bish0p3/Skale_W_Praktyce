@@ -15,18 +15,19 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
           </Grid.ColumnDefinitions>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
-          </Grid.RowDefinitions>
-          <Label
-              Grid.Column="1"
-              Grid.Row="2"
-              Text="Skale w praktyce"
-              Style="{DynamicResource SubtitleStyle}"/>
-        </Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Label
+                          Grid.Column="1"
+                          Grid.Row="2"
+                          Text="Skale w praktyce"
+                          Style="{DynamicResource SubtitleStyle}"/>
+                    <Image Source="logo1.png" Grid.Column="1" Grid.Row="1" HorizontalOptions="Start"/>
+                </Grid>
       </ListView.Header>
       <ListView.ItemTemplate>
         <DataTemplate>
