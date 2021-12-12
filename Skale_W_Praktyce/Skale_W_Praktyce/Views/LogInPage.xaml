@@ -89,7 +89,7 @@
                                       TextColor="Blue"
                                       TextDecorations="Underline">
                                     <Span.GestureRecognizers>
-                                        <TapGestureRecognizer/>
+                                        <TapGestureRecognizer Command="{Binding Gateway_Clicked}"/>
                                     </Span.GestureRecognizers>
                                 </Span>
                             </FormattedString>

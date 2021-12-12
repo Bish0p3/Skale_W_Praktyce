@@ -25,7 +25,7 @@ namespace Skale_W_Praktyce.ViewModels
 
             LogInButton_Clicked = new Command(async () => await LogInButton_Method());
             RegisterButton_Clicked = new Command(async () => await RegisterButton_Method());
-            LoginEntry_Completed = new Command(LoginEntry_Method);
+            Gateway_Clicked = new Command(async() => await Gateway_Method());
 
             #endregion
 
@@ -49,7 +49,7 @@ namespace Skale_W_Praktyce.ViewModels
         #region Login Page Commands
         public ICommand LogInButton_Clicked { get; set; }
         public ICommand RegisterButton_Clicked { get; set; }
-        public ICommand LoginEntry_Completed { get; set; }
+        public ICommand Gateway_Clicked { get; set; }
 
         #endregion
 
@@ -289,9 +289,10 @@ namespace Skale_W_Praktyce.ViewModels
         {
             await Navigation.PushAsync(new RegisterPage());
         }
-        public void LoginEntry_Method()
+        public async Task Gateway_Method()
         {
-
+            Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
+            await Navigation.PopAsync();
         }
         #endregion
 
