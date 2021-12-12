@@ -37,23 +37,8 @@ namespace Skale_W_Praktyce.ViewModels
 
             #region Register Page Commands
             RegisterSendButton_Clicked = new Command(async () => await RegisterSendButton_Method());
-
             #endregion
         }
-
-        #endregion
-
-        #region Fields
-
-        private string editorText;
-        private string labelText;
-        private bool isEnabledEditor = true;
-
-        #region Register Page
-        private string register_EmailEntry;
-        private string register_PasswordEntry;
-        private string register_LoginEntry;
-        #endregion
 
         #endregion
 
@@ -77,6 +62,25 @@ namespace Skale_W_Praktyce.ViewModels
 
         #region Register Page Commands
         public ICommand RegisterSendButton_Clicked { get; set; }
+        #endregion
+
+        #endregion
+
+        #region Fields
+
+        private string editorText;
+        private string labelText;
+        private bool isEnabledEditor = true;
+
+        #region Login page
+        private string login_LoginEntry;
+        private string login_PasswordEntry;
+        #endregion
+
+        #region Register Page
+        private string register_EmailEntry;
+        private string register_PasswordEntry;
+        private string register_LoginEntry;
         #endregion
 
         #endregion
@@ -131,6 +135,40 @@ namespace Skale_W_Praktyce.ViewModels
                 return labelText;
             }
         }
+
+        #region Login page properties
+        public string Login_LoginEntry
+        {
+            set
+            {
+                if(login_LoginEntry != value)
+                {
+                    login_LoginEntry = value;
+                    OnPropertyChanged("Login_LoginEntry");
+                }
+            }
+            get
+            {
+                return login_LoginEntry;
+            }
+        }
+        
+        public string Login_PasswordEntry
+        {
+            set
+            {
+                if(login_PasswordEntry != value)
+                {
+                    login_PasswordEntry = value;
+                    OnPropertyChanged("Login_PasswordEntry");
+                }
+            }
+            get
+            {
+                return login_PasswordEntry;
+            }
+        }
+        #endregion
 
         #region Register Page properties
         public string Register_EmailEntry
@@ -190,9 +228,62 @@ namespace Skale_W_Praktyce.ViewModels
         #region Login page
         public async Task LogInButton_Method()
         {
+            if (!string.IsNullOrWhiteSpace(Login_PasswordEntry) && !string.IsNullOrWhiteSpace(Login_LoginEntry))
+            {
+                string srvrdbname = "skalewpraktyce_db";
+                string srvrname = "153.19.163.39";
+                string srvrusername = "admin";
+                string srvrpassword = "admin";
 
-            Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
-            await Navigation.PopAsync();
+                string connectionString = $"Data Source={srvrname}; Initial Catalog ={srvrdbname}; User ID={srvrusername};Password={srvrpassword};";
+                string queryString = $"SELECT [Username], [Password] FROM [skalewpraktyce_db].[dbo].[usersTable] WHERE [Username] = '{Login_LoginEntry}'";
+
+
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(queryString, sqlConnection);
+                    sqlConnection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    try
+                    {
+                        // Check if SQL Query answer is not empty
+                        if(reader.Read())
+                        {
+                            // Check if db password is the same as the one in the entry
+                            if(reader["Password"].ToString() == Login_PasswordEntry)
+                            {
+                                // Proceed to main page
+                                Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
+                                await Navigation.PopAsync();
+                            }
+                            else
+                            {
+                                // POPUP
+                                await Application.Current.MainPage.DisplayAlert("Błąd",
+                                    "Błędny login lub hasło. \nSpróbuj ponownie.", "OK");
+                            }
+                        }
+                        // If SQL Query answer is empty
+                        else
+                        {
+                            // POPUP
+                            await Application.Current.MainPage.DisplayAlert("Błąd",
+                                "Błędny login lub hasło. \nSpróbuj ponownie.", "OK");
+                        }
+                    }
+                    finally
+                    {
+                        // Always call Close when done reading.
+                        reader.Close();
+                    }
+                }
+            }
+            else
+            {
+                // POPUP
+                await Application.Current.MainPage.DisplayAlert("Uwaga",
+                    "Uzupełnij wszystkie pola i spróbuj ponownie.", "OK");
+            }
         }
         public async Task RegisterButton_Method()
         {
@@ -226,7 +317,7 @@ namespace Skale_W_Praktyce.ViewModels
         #region Register Page methods
         public async Task RegisterSendButton_Method()
         {
-            if (Register_PasswordEntry != "" && Register_LoginEntry != "" && Register_EmailEntry != "")
+            if (!string.IsNullOrWhiteSpace(Register_PasswordEntry) && !string.IsNullOrWhiteSpace(Register_LoginEntry) && !string.IsNullOrWhiteSpace(Register_EmailEntry))
             {
                 string srvrdbname = "skalewpraktyce_db";
                 string srvrname = "153.19.163.39";
@@ -234,29 +325,40 @@ namespace Skale_W_Praktyce.ViewModels
                 string srvrpassword = "admin";
 
                 string connectionString = $"Data Source={srvrname}; Initial Catalog ={srvrdbname}; User ID={srvrusername};Password={srvrpassword};";
-                string queryString = $"INSERT INTO [dbo].[usersTable](Email, Username, Password) VALUES ('{Register_EmailEntry}', '{Register_LoginEntry}', '{register_PasswordEntry}')";
+                string queryStringCheck = $"SELECT [Username], [Email] FROM [skalewpraktyce_db].[dbo].[usersTable] WHERE [Username] = '{Register_LoginEntry}' OR [Email] = '{Register_EmailEntry}'";
+                string queryStringRegister = $"INSERT INTO [dbo].[usersTable](Email, Username, Password) VALUES ('{Register_EmailEntry}', '{Register_LoginEntry}', '{register_PasswordEntry}')";
 
 
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand(queryString, sqlConnection);
-                    //command.Parameters.AddWithValue("@tPatSName", "Your-Parm-Value");
+                    SqlCommand commandCheck = new SqlCommand(queryStringCheck, sqlConnection);
+                    SqlCommand commandRegister = new SqlCommand(queryStringRegister, sqlConnection);
                     sqlConnection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                    SqlDataReader CheckReader = commandCheck.ExecuteReader();
+                    bool checkBool = CheckReader.Read();
+                    CheckReader.Close();
                     try
                     {
-                        while (reader.Read())
+                        // Check if entry data is alerady in the db (login, email)
+                        if (checkBool)
                         {
-                            //Console.WriteLine(String.Format("DONE"));// etc
+                            // POPUP
+                            await Application.Current.MainPage.DisplayAlert("Rejestracja",
+                                "Wprowadzony Email lub nazwa użytkownika istnieje lub w bazie \nSpróbuj ponownie.", "OK");
+                        }
+                        // If not, enter entry data to database, display popup and go to login page
+                        else
+                        {
+                            SqlDataReader RegisterReader = commandRegister.ExecuteReader();
+                            RegisterReader.Close();
+                            // POPUP
+                            await Application.Current.MainPage.DisplayAlert("Rejestracja",
+                                "Zostałeś zarejestrowany, na adres email została wysłana wiadomość z danymi logowania. \nMożesz się teraz zalogować.", "OK");
+                            await Navigation.PopAsync();
                         }
                     }
                     finally
                     {
-                        // Always call Close when done reading.
-                        reader.Close();
-                        // POPUP
-                        await Application.Current.MainPage.DisplayAlert("Rejestracja",
-                            "Zostałeś zarejestrowany, na adres email została wysłana wiadomość z danymi logowania. \n Możesz się teraz zalogować.", "OK");
 
                     }
                 }
@@ -266,7 +368,6 @@ namespace Skale_W_Praktyce.ViewModels
                 // POPUP
                 await Application.Current.MainPage.DisplayAlert("Uwaga",
                     "Uzupełnij wszystkie pola i spróbuj ponownie.", "OK");
-
             }
         }
 

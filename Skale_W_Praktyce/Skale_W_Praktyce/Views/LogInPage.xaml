@@ -62,7 +62,8 @@
                        MaxLength="50" 
                        Keyboard="Email" 
                        ReturnType="Next" 
-                       Completed="LoginEntry_Completed"/>
+                       Completed="LoginEntry_Completed"
+                       Text="{Binding Login_LoginEntry}"/>
                     </Frame>
 
                     <Frame CornerRadius="10" Padding="3" Margin="3">
@@ -75,8 +76,9 @@
                            IsPassword="True" 
                            Placeholder="Hasło"
                            MaxLength="50"  
-                           Keyboard="Text" 
-                           ReturnType="Send"/>
+                           Keyboard="Plain" 
+                           ReturnType="Send"
+                           Text="{Binding Login_PasswordEntry}"/>
                     </Frame>
                     
                     <Label HorizontalOptions="Center">
