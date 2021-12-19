@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Skale_W_Praktyce.Views.Scales.ScalesListPage"
+             xmlns:ViewModels="clr-namespace:Skale_W_Praktyce.ViewModels" >
+	<ContentPage.BindingContext>
+		<ViewModels:ScalesViewModel/>
+	</ContentPage.BindingContext>
+
+    <!-- TITLE -->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Przeglądanie skal" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <!-- CONTENT -->
+    <StackLayout>
+        <Button Command="{Binding RefreshScalesCommand}"/>
+
+        
+        <!-- SCALES LIST -->
+        <ListView   ItemsSource="{Binding ScalesList}"
+                    ItemTapped="Handle_ItemTapped"
+                    CachingStrategy="RecycleElement">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding ScaleName}" 
+                                   FontSize="Small"/>
+                                <Label Text="{Binding ScaleDesc}" 
+                                   FontSize="Small"/>
+                            </StackLayout>
+                            <Image Source="brain.png"
+                                   HeightRequest="25"
+                                   WidthRequest="25"
+                                   Margin="10"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="EndAndExpand">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                    Command="{Binding ScaleListFavButton}"
+                                    CommandParameter="Image1"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

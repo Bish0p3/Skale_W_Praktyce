@@ -27,17 +27,20 @@
     <Compile Update="Views\AddPatientPage.xaml.cs">
       <DependentUpon>AddPatientPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Flyout\MainPage_FlyoutMenuPage.xaml.cs">
-      <DependentUpon>MainPage_FlyoutMenuPage.xaml</DependentUpon>
+    <Compile Update="Views\Flyout\ScalesListPage_Flyout.xaml.cs">
+      <DependentUpon>ScalesListPage_Flyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Flyout\FlyoutMenuPage.xaml.cs">
+      <DependentUpon>FlyoutMenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Flyout\MainPage_Flyout.xaml.cs">
       <DependentUpon>MainPage_Flyout.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ScalesCategories.xaml.cs">
+    <Compile Update="Views\Scales\ScalesCategories.xaml.cs">
       <DependentUpon>ScalesCategories.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ScalesList.xaml.cs">
-      <DependentUpon>ScalesList.xaml</DependentUpon>
+    <Compile Update="Views\Scales\ScalesListPage.xaml.cs">
+      <DependentUpon>ScalesListPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\PatientsListPage.xaml.cs">
       <DependentUpon>PatientsListPage.xaml</DependentUpon>
@@ -51,7 +54,7 @@
     <EmbeddedResource Update="Views\Flyout\MainPage_Flyout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Flyout\MainPage_FlyoutMenuPage.xaml">
+    <EmbeddedResource Update="Views\Flyout\FlyoutMenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LogInPage.xaml">
@@ -60,13 +63,16 @@
     <EmbeddedResource Update="Views\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ScalesCategories.xaml">
+    <EmbeddedResource Update="Views\Scales\ScalesCategories.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ScalesList.xaml">
+    <EmbeddedResource Update="Views\Scales\ScalesListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PatientsListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Scales\ViewCell1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

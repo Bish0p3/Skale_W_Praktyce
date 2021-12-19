@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Skale_W_Praktyce.Views.Flyout.MainPage_Flyout"
+             x:Class="Skale_W_Praktyce.Views.Flyout.ScalesListPage_Flyout"
              xmlns:flyoutpages="clr-namespace:Skale_W_Praktyce.Views.Flyout"
-             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views"
+             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views.Scales"
              NavigationPage.HasNavigationBar="False">
   <FlyoutPage.Flyout>
     <flyoutpages:FlyoutMenuPage x:Name="FlyoutPage" />
@@ -11,7 +11,7 @@
   <FlyoutPage.Detail>
     <NavigationPage>
       <x:Arguments>
-        <pages:MainPage />
+        <pages:ScalesListPage />
       </x:Arguments>
     </NavigationPage>
   </FlyoutPage.Detail>

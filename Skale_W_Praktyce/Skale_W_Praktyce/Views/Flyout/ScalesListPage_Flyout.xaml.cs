@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace Skale_W_Praktyce.Views.Flyout
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage_Flyout : FlyoutPage
+    public partial class ScalesListPage_Flyout : FlyoutPage
     {
-        public MainPage_Flyout()
+        public ScalesListPage_Flyout()
         {
             InitializeComponent();
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Skale_W_Praktyce.Views.MainPage"
-             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel">
+             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views" >
 
     <!-- TITLE -->
     <NavigationPage.TitleView>

@@ -1,5 +1,6 @@
 ﻿using Skale_W_Praktyce.Views;
 using Skale_W_Praktyce.Views.Flyout;
+using Skale_W_Praktyce.Views.Scales;
 using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
@@ -310,7 +311,7 @@ namespace Skale_W_Praktyce.ViewModels
 
         public async Task BrowseScalesButton_Method()
         {
-            await Navigation.PushAsync(new ScalesCategories());
+            await Navigation.PushAsync(new ScalesListPage_Flyout());
         }
 
         #endregion
@@ -373,6 +374,7 @@ namespace Skale_W_Praktyce.ViewModels
         }
 
         #endregion
+
         public void PerformEditorTestMethod()
         {
             IsEnabledEditor = false;

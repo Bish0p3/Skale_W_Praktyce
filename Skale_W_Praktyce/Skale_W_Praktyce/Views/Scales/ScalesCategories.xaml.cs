@@ -1,8 +1,8 @@
-﻿
+﻿using Skale_W_Praktyce.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Skale_W_Praktyce.Views
+namespace Skale_W_Praktyce.Views.Scales
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScalesCategories : ContentPage
@@ -10,6 +10,7 @@ namespace Skale_W_Praktyce.Views
         public ScalesCategories()
         {
             InitializeComponent();
+            //BindingContext = new ScalesViewModel(Navigation);
         }
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Skale_W_Praktyce.Views.Flyout
 {
-    public class FlyoutPageTestFlyoutMenuItem
+    public class FlyoutPageFlyoutMenuItem
     {
-        public FlyoutPageTestFlyoutMenuItem()
+        public FlyoutPageFlyoutMenuItem()
         {
-            TargetType = typeof(FlyoutPageTestFlyoutMenuItem);
+            TargetType = typeof(FlyoutPageFlyoutMenuItem);
         }
         public int Id { get; set; }
         public string Title { get; set; }
