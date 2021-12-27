@@ -5,7 +5,7 @@
     <Application.Resources>
 
         <Color x:Key="Transparent">#50FBC1BC</Color>
-        <!-- Colors -->
+    <!-- #region Colors -->
         <Color x:Key="Primary">#0081A7</Color>
         <Color x:Key="Secondary">#F07167</Color>
         <Color x:Key="Background">#FDFCDC</Color>
@@ -46,9 +46,9 @@
         <Color x:Key="8">#99D98C</Color>
         <Color x:Key="9">#B5E48C</Color>
         <Color x:Key="10">#D9ED92</Color>-->
+    <!--#endregion-->
 
-
-
+    <!--#region Styles -->
         <Style x:Key="DefaultEntryStyle" TargetType="{x:Type Entry}">
             <Setter Property="BackgroundColor" Value="White"/>
             <Setter Property="TextColor" Value="Black"/>
@@ -76,6 +76,7 @@
         <Style TargetType="{x:Type ContentPage}"
                ApplyToDerivedTypes="True">
         </Style>-->
-
+    <!--#endregion-->
+        
     </Application.Resources>
 </Application>
