@@ -14,37 +14,9 @@ namespace Skale_W_Praktyce.Views
             InitializeComponent();
             BindingContext = new ViewModel(Navigation);
         }
-        private async void LoginButton_Clicked(object sender, EventArgs e)
-        {
-
-        }
         private void LoginEntry_Completed(object sender, EventArgs e)
         {
             Password.Focus();
-        }
-        private void ConnectDB_Button(object sender, EventArgs e)
-        {
-            try
-            {
-                string srvrdbname = "skalewpraktyce_db";
-                string srvrname = "153.19.163.39";
-                string srvrusername = "admin";
-                string srvrpassword = "admin";
-
-                string sqlconn = $"Data Source={srvrname}; Initial Catalog ={srvrdbname}; User ID={srvrusername};Password={srvrpassword};";
-
-                SqlConnection sqlConnection = new SqlConnection(sqlconn);
-
-                sqlConnection.Open();
-
-                connectionStatus_Label.Text = "OPEN";
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-
         }
     }
 }

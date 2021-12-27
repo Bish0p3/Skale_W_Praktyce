@@ -19,7 +19,7 @@ namespace Skale_W_Praktyce.ViewModels
         public ViewModel(INavigation navigation)
         {
             Navigation = navigation;
-
+            
             TestCommand = new Command(PerformEditorTestMethod);
 
             #region Login Page Commands
@@ -231,14 +231,9 @@ namespace Skale_W_Praktyce.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(Login_PasswordEntry) && !string.IsNullOrWhiteSpace(Login_LoginEntry))
             {
-                string srvrdbname = "skalewpraktyce_db";
-                string srvrname = "153.19.163.39";
-                string srvrusername = "admin";
-                string srvrpassword = "admin";
-
-                string connectionString = $"Data Source={srvrname}; Initial Catalog ={srvrdbname}; User ID={srvrusername};Password={srvrpassword};";
+                ServerData server = new ServerData();
+                string connectionString = $"Data Source={server.srvrname}; Initial Catalog ={server.srvrdbname}; User ID={server.srvrusername};Password={server.srvrpassword};";
                 string queryString = $"SELECT [Username], [Password] FROM [skalewpraktyce_db].[dbo].[usersTable] WHERE [Username] = '{Login_LoginEntry}'";
-
 
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                 {
@@ -321,12 +316,8 @@ namespace Skale_W_Praktyce.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(Register_PasswordEntry) && !string.IsNullOrWhiteSpace(Register_LoginEntry) && !string.IsNullOrWhiteSpace(Register_EmailEntry))
             {
-                string srvrdbname = "skalewpraktyce_db";
-                string srvrname = "153.19.163.39";
-                string srvrusername = "admin";
-                string srvrpassword = "admin";
-
-                string connectionString = $"Data Source={srvrname}; Initial Catalog ={srvrdbname}; User ID={srvrusername};Password={srvrpassword};";
+                ServerData server = new ServerData();
+                string connectionString = $"Data Source={server.srvrname}; Initial Catalog ={server.srvrdbname}; User ID={server.srvrusername};Password={server.srvrpassword};";
                 string queryStringCheck = $"SELECT [Username], [Email] FROM [skalewpraktyce_db].[dbo].[usersTable] WHERE [Username] = '{Register_LoginEntry}' OR [Email] = '{Register_EmailEntry}'";
                 string queryStringRegister = $"INSERT INTO [dbo].[usersTable](Email, Username, Password) VALUES ('{Register_EmailEntry}', '{Register_LoginEntry}', '{register_PasswordEntry}')";
 
