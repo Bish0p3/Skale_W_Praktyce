@@ -2,32 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel"
              x:Class="Skale_W_Praktyce.Views.LogInPage"
-             NavigationPage.HasNavigationBar="False"
-             >
-
-
-    <!-- TITLE -->
-    <!--<NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontAttributes="Bold"/>
-        </StackLayout>
-    </NavigationPage.TitleView>-->
+             NavigationPage.HasNavigationBar="False">
+    
     
     <!-- MAIN CONTENT -->
     
     <ContentPage.Content>
-        <Grid BackgroundColor="#50FBC1BC">
+        <Grid>
             
-            <!-- FRAME -->
-            <Frame Opacity="0.5" BorderColor="LightGray">
+            <!-- #region FRAME -->
+            <Frame>
                 <Frame.Background>
                     <LinearGradientBrush StartPoint="0,0"
                              EndPoint="1,0">
-                        <GradientStop Color="#3fc9ef" Offset="1"/>
-                        <GradientStop Color="#0086e7" Offset="0.0"/>
-                        <GradientStop Color="#0086e7" Offset="0.0"/>
-                        <GradientStop Color="#0086e7" Offset="0.0"/>
-                        <GradientStop Color="#3fc9ef" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 1}" Offset="1"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 1}" Offset="0.0"/>
                     </LinearGradientBrush>
                 </Frame.Background>
             </Frame>
@@ -35,29 +27,25 @@
                 <Frame.Background>
                     <LinearGradientBrush StartPoint="0,0"
                              EndPoint="0,1">
-                        <GradientStop Color="#0086e7"
+                        <GradientStop Color="{StaticResource 1}"
                           Offset="0.0"/>
-                        <GradientStop Color="#0086e7"
+                        <GradientStop Color="{StaticResource 1}"
                           Offset="0.0"/>
-                        <GradientStop Color="#3fc9ef"
+                        <GradientStop Color="{StaticResource 2}"
                           Offset="0.3"/>
                     </LinearGradientBrush>
                 </Frame.Background>
             </Frame>
+            <!--#endregion-->
             
-            <!-- CONTENT -->
+            <!-- #region CONTENT -->
             <Grid>
                 <StackLayout VerticalOptions="Center" Margin="50">
                     <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
                     <Image Source="logo4.png" Margin="0, -50, 0, 0"/>
                     <Label Text="Skale W Praktyce" Margin="0,-50,0,30" FontSize="Large" FontAttributes="Bold"  HorizontalOptions="Center"/>
                     <Frame CornerRadius="10" Padding="3" Margin="3">
-                        <Entry x:Name="Login" 
-                       BackgroundColor="White"
-                       TextColor="Black"
-                       HorizontalOptions="Fill"
-                       VerticalOptions="Center"
-                       HorizontalTextAlignment="Center"
+                        <Entry x:Name="Login" Style="{StaticResource DefaultEntryStyle}"
                        Placeholder="Nazwa Użytkownika"
                        MaxLength="50" 
                        Keyboard="Email" 
@@ -68,11 +56,7 @@
 
                     <Frame CornerRadius="10" Padding="3" Margin="3">
                         <Entry x:Name="Password" 
-                            BackgroundColor="White"
-                           TextColor="Black"
-                               HorizontalTextAlignment="Center"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Center"
+                           Style="{StaticResource DefaultEntryStyle}"
                            IsPassword="True" 
                            Placeholder="Hasło"
                            MaxLength="50"  
@@ -80,7 +64,7 @@
                            ReturnType="Send"
                            Text="{Binding Login_PasswordEntry}"/>
                     </Frame>
-                    
+
                     <Label HorizontalOptions="Center">
                         <Label.FormattedText>
                             <FormattedString>
@@ -95,15 +79,13 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    
-                    <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}" />
-                    <Button Text="REJESTRACJA" Command="{Binding RegisterButton_Clicked}"/>
-                    <Button Text="CONNECT TO DB" Clicked="ConnectDB_Button"/>
-                    <Label Text="" x:Name="connectionStatus_Label"/>
-                        
-                </StackLayout>
 
+                    <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
+                    <Button Text="REJESTRACJA" Command="{Binding RegisterButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
+                </StackLayout>
             </Grid>
+            <!--#endregion-->
+            
         </Grid>
     </ContentPage.Content>
     

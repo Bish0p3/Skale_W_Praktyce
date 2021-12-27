@@ -4,5 +4,78 @@
              x:Class="Skale_W_Praktyce.App">
     <Application.Resources>
 
+        <Color x:Key="Transparent">#50FBC1BC</Color>
+        <!-- Colors -->
+        <Color x:Key="Primary">#0081A7</Color>
+        <Color x:Key="Secondary">#F07167</Color>
+        <Color x:Key="Background">#FDFCDC</Color>
+        <Color x:Key="Surface">#0081A7</Color>
+        <Color x:Key="Error">#F07167</Color>
+        <Color x:Key="OnPrimary">#0B132B</Color>
+        <Color x:Key="OnSecondary">#0B132B</Color>
+        <Color x:Key="OnBackground">#0B132B</Color>
+        <Color x:Key="OnSurface">#0B132B</Color>
+        <Color x:Key="OnError">#0B132B</Color>
+
+        <Color x:Key="1">#0081A7</Color>
+        <Color x:Key="2">#00AFB9</Color>
+        <Color x:Key="3">#FDFCDC</Color>
+        <Color x:Key="4">#FED9B7</Color>
+        <Color x:Key="5">#F07167</Color>
+        
+        <!-- Dark theme -->
+        <Color x:Key="PrimaryAlt">#3A506B</Color>
+        <Color x:Key="SecondaryAlt">#7d532e</Color>
+
+        <Color x:Key="old1">#0086e7</Color>
+        <Color x:Key="old2">#3fc9ef</Color>
+
+        <!--<Color x:Key="1">#0B132B</Color>
+        <Color x:Key="2">#1C2541</Color>
+        <Color x:Key="3">#3A506B</Color>
+        <Color x:Key="4">#5BC0BE</Color>
+        <Color x:Key="5">#6FFFE9</Color>-->
+        
+        <!--<Color x:Key="1">#184E77</Color>
+        <Color x:Key="2">#1E6091</Color>
+        <Color x:Key="3">#1A759F</Color>
+        <Color x:Key="4">#168AAD</Color>
+        <Color x:Key="5">#34A0A4</Color>
+        <Color x:Key="6">#52B69A</Color>
+        <Color x:Key="7">#76C893</Color>
+        <Color x:Key="8">#99D98C</Color>
+        <Color x:Key="9">#B5E48C</Color>
+        <Color x:Key="10">#D9ED92</Color>-->
+
+
+
+        <Style x:Key="DefaultEntryStyle" TargetType="{x:Type Entry}">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="DefaultButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="BackgroundColor" Value="{StaticResource Secondary}"/>
+            <Setter Property="TextColor" Value="{StaticResource OnSecondary}"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CharacterSpacing" Value="2"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+        <!-- Implicit styles --><!--
+        <Style TargetType="{x:Type NavigationPage}">
+            <Setter Property="BarBackgroundColor"
+                    Value="{StaticResource NavigationBarColor}" />
+            <Setter Property="BarTextColor"
+                    Value="{StaticResource NavigationBarTextColor}" />
+        </Style>
+
+        <Style TargetType="{x:Type ContentPage}"
+               ApplyToDerivedTypes="True">
+        </Style>-->
+
     </Application.Resources>
 </Application>
