@@ -17,7 +17,6 @@ namespace Skale_W_Praktyce.Models
         private string scaleName;
         private string scaleDesc;
         private string scaleTags;
-        private string scaleViewName;
 
         #endregion
 

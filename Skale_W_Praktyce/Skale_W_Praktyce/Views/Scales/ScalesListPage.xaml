@@ -22,32 +22,48 @@
         <!-- SCALES LIST -->
         <ListView   ItemsSource="{Binding ScalesList}"
                     ItemSelected="ListView_ItemSelected"
-                    CachingStrategy="RecycleElement">
+                    CachingStrategy="RecycleElement"
+                    HasUnevenRows="True"
+                    Margin="5">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <StackLayout Orientation="Vertical">
+                            <StackLayout Orientation="Vertical" Margin="0,0,0,0" Padding="0,0,0,0" Spacing="0">
                                 <Label Text="{Binding ScaleName}" 
-                                   FontSize="Small"/>
+                                   FontSize="Large"
+                                   FontAttributes="Bold"/>
                                 <Label Text="{Binding ScaleDesc}" 
-                                   FontSize="Small"/>
+                                   FontSize="Medium"/>
                                 <Label Text="{Binding ScaleTags}" 
-                                   FontSize="Micro"
-                                   TextColor="Gray"/>
+                                   FontSize="Small"
+                                   TextColor="LightGray"/>
                             </StackLayout>
-                            <Image Source="brain.png"
-                                   HeightRequest="25"
-                                   WidthRequest="25"
-                                   Margin="10"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="EndAndExpand">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
+                            <StackLayout Orientation="Vertical" Margin="0,0,0,0" Padding="0,0,0,0" Spacing="0"
+                                         VerticalOptions="Center">
+                                <Image Source="favorite.png"
+                                   HeightRequest="40"
+                                   WidthRequest="40"
+                                   Margin="0"
+                                   HorizontalOptions="End">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
                                     Command="{Binding ScaleListFavButton}"
                                     CommandParameter="Image1"/>
-                                </Image.GestureRecognizers>
-                            </Image>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Source="guide.png"
+                                   HeightRequest="40"
+                                   WidthRequest="40"
+                                   Margin="0"
+                                   HorizontalOptions="End">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                    Command="{Binding ScaleListFavButton}"
+                                    CommandParameter="Image1"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
