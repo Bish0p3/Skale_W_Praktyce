@@ -21,7 +21,7 @@
         
         <!-- SCALES LIST -->
         <ListView   ItemsSource="{Binding ScalesList}"
-                    ItemTapped="Handle_ItemTapped"
+                    ItemSelected="ListView_ItemSelected"
                     CachingStrategy="RecycleElement">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -32,6 +32,9 @@
                                    FontSize="Small"/>
                                 <Label Text="{Binding ScaleDesc}" 
                                    FontSize="Small"/>
+                                <Label Text="{Binding ScaleTags}" 
+                                   FontSize="Micro"
+                                   TextColor="Gray"/>
                             </StackLayout>
                             <Image Source="brain.png"
                                    HeightRequest="25"

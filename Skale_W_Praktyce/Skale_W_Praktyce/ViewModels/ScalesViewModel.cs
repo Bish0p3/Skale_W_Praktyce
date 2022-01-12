@@ -6,6 +6,7 @@ using Skale_W_Praktyce.Views.Flyout;
 using System.Collections.ObjectModel;
 using Skale_W_Praktyce.Models;
 using System.Runtime.CompilerServices;
+using Skale_W_Praktyce.Views;
 
 namespace Skale_W_Praktyce.ViewModels
 {
@@ -36,9 +37,21 @@ namespace Skale_W_Praktyce.ViewModels
 
            ScalesList = new ObservableCollection<Scale>
                 {
-                    new Scale(){ ScaleName = "OPSEC", ScaleDesc = "LOREM IPSUM essasito essasito essasito essasito"},
-                    new Scale(){ ScaleName = "OPSEC", ScaleDesc = "LOREM IPSUM essasito essasito essasito essasito"},
-                    new Scale(){ ScaleName = "TEST 2 ", ScaleDesc = "Jablonska Jablonska Jablonska Jablonska Jablonska"},
+                    new Scale(){ 
+                        ScaleName = "Skala śpiączki Glasgow (dla dorosłych)",
+                        ScaleDesc = "GLASGOW Meningococcal Septicemia Prognostic Score (GMSPS)",
+                        ScaleTags = "Układ nerwowy",
+                        ScaleViewName = typeof(MainPage_Flyout)},
+                    new Scale(){ 
+                        ScaleName = "OPSEC", 
+                        ScaleDesc = "LOREM IPSUM essasito essasito essasito essasito",
+                        ScaleTags = "Układ nerwowy",
+                        ScaleViewName = typeof(PatientsListPage)},
+                    new Scale(){
+                        ScaleName = "OPSEC",
+                        ScaleDesc = "LOREM IPSUM essasito essasito essasito essasito",
+                        ScaleTags = "Układ nerwowy",
+                        ScaleViewName = typeof(MainPage_Flyout)},
                 };
 
 

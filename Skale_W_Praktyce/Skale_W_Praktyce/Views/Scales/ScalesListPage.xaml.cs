@@ -1,5 +1,7 @@
-﻿using Skale_W_Praktyce.ViewModels;
+﻿using Skale_W_Praktyce.Models;
+using Skale_W_Praktyce.ViewModels;
 using Skale_W_Praktyce.Views.Flyout;
+using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,14 +16,17 @@ namespace Skale_W_Praktyce.Views.Scales
             InitializeComponent();
         }
 
-    async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.Item == null)
+            var item = e.SelectedItem as Scale;
+            if (item == null)
                 return;
 
-            await Navigation.PushAsync(new AddPatientPage());
-            //Deselect Item
+            var page = (Page)Activator.CreateInstance(item.ScaleViewName);
+            page.Title = item.ScaleName;
+            await Navigation.PushAsync(page);
             ((ListView)sender).SelectedItem = null;
+
         }
     }
 }

@@ -14,17 +14,39 @@
 
 
     <ContentPage.Content>
-        <Grid BackgroundColor="LightGray" Margin="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
-            <!-- BACKGROUND -->
-            <Image Grid.Row="0" Source="bg.jpg" Aspect="Fill" Grid.RowSpan="2" Opacity=".4"/>
+        <Grid BackgroundColor="{StaticResource Background}" Margin="0">
+
+            <!-- #region FRAME -->
+            <Frame>
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,0">
+                        <GradientStop Color="{StaticResource 1}" Offset="1"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 1}" Offset="0.0"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+            <Frame Opacity="0.5" BorderColor="LightGray">
+                <Frame.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="0,1">
+                        <GradientStop Color="{StaticResource 1}"
+                          Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 1}"
+                          Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 2}"
+                          Offset="0.3"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+            <!--#endregion-->
+
 
             <!-- MAIN CONTENT -->
-            <Grid Grid.Row="0" Grid.RowSpan="2">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="9*"/>
@@ -37,17 +59,25 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Frame BackgroundColor="#A8E7E9" Grid.Column="1" Grid.Row="1" CornerRadius="15">
+                <Frame BackgroundColor="{StaticResource 2}" Grid.Column="1" Grid.Row="1" CornerRadius="15">
                     <StackLayout VerticalOptions="CenterAndExpand">
-                        <Label Text="Witaj, co chcesz zrobić?" HorizontalOptions="Center" FontSize="20" TextColor="Black" Margin="20"/>
-                        <Button HeightRequest="100" Text="Stwórz lub wybierz profil pacjenta" Margin="10" Command="{Binding CreateAProfileButton_Clicked}"/>
+                        <Label Text="Witaj, co chcesz zrobić?" HorizontalOptions="Center" FontSize="20" TextColor="{StaticResource OnSurface}" Margin="20"/>
+                        <Button Style="{StaticResource DefaultButtonStyle}"
+                                HeightRequest="100" 
+                                Text="Stwórz lub wybierz profil pacjenta" 
+                                Margin="10"
+                                Command="{Binding CreateAProfileButton_Clicked}"
+                                TextColor="{StaticResource OnSecondary}"/>
                         <Rectangle Fill="Black" HeightRequest="3" Margin="10"/>
-                        <Button HeightRequest="100" Text="Przeglądaj skale" Margin="10" Command="{Binding BrowseScalesButton_Clicked}"/>
+                        <Button Style="{StaticResource DefaultButtonStyle}" 
+                                HeightRequest="100" 
+                                Text="Przeglądaj skale" 
+                                Margin="10" 
+                                Command="{Binding BrowseScalesButton_Clicked}"
+                                TextColor="{StaticResource OnSecondary}"/>
                     </StackLayout>
                 </Frame>
-
             </Grid>
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

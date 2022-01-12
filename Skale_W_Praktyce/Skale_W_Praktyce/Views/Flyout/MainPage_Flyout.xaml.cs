@@ -21,7 +21,6 @@ namespace Skale_W_Praktyce.Views.Flyout
 
             var page = (Page)Activator.CreateInstance(item.TargetType);
             page.Title = item.Title;
-
             Detail = new NavigationPage(page);
             IsPresented = false;
 

@@ -7,10 +7,17 @@ namespace Skale_W_Praktyce.Models
 {
     internal class Scale : INotifyPropertyChanged
     {
+
+        public Scale()
+        {
+            ScaleViewName = typeof(Scale);
+        }
         #region Fields
 
         private string scaleName;
         private string scaleDesc;
+        private string scaleTags;
+        private string scaleViewName;
 
         #endregion
 
@@ -43,6 +50,22 @@ namespace Skale_W_Praktyce.Models
                 }
             }
         }
+
+        public string ScaleTags
+        {
+            get { return scaleTags; }
+            set
+            {
+                if (scaleTags != value)
+                {
+                    scaleTags = value;
+                    RaisePropertyChanged("ScaleTags");
+                }
+            }
+        }
+
+        public Type ScaleViewName { get; set; }
+
 
         #endregion
 
