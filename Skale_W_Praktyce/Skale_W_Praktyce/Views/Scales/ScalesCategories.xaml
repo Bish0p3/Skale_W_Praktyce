@@ -4,25 +4,21 @@
              x:Class="Skale_W_Praktyce.Views.Scales.ScalesCategories">
 
 
-    <!-- TITLE -->
+    <!--#region TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
             <Label Text="Kategorie Skal" TextColor="White" FontSize="20" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
-
+    <!--#endregion-->
+    
+    <!--#region CONTENT-->
     <ContentPage.Content>
-        
-
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
-
-            <!-- BACKGROUND -->
-            <Image Grid.RowSpan="3" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="bg.jpg" Opacity=".4"/>
-
 
             <SearchBar Grid.Row="0" Placeholder="Wyszukaj..."
                TextTransform="Lowercase"
@@ -111,4 +107,5 @@
         </Frame>
         </Grid>
     </ContentPage.Content>
+    <!--#endregion-->
 </ContentPage>

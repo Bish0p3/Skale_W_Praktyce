@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Skale_W_Praktyce.Views.Scales.ScalesListPage"
-             xmlns:ViewModels="clr-namespace:Skale_W_Praktyce.ViewModels" >
-	<ContentPage.BindingContext>
-		<ViewModels:ScalesViewModel/>
-	</ContentPage.BindingContext>
+             x:Class="Skale_W_Praktyce.Views.Scales.ScalesListPage">
 
     <!-- TITLE -->
     <NavigationPage.TitleView>
@@ -16,8 +12,13 @@
 
     <!-- CONTENT -->
     <StackLayout>
-        <Button Command="{Binding RefreshScalesCommand}"/>
-
+        
+        <!-- SEARCH BAR -->
+        <SearchBar Placeholder="Wyszukaj..."
+                   TextTransform="Lowercase"
+                   HorizontalTextAlignment="Start"
+                   FontSize="Medium"
+                   FontAttributes="Italic"/>
         
         <!-- SCALES LIST -->
         <ListView   ItemsSource="{Binding ScalesList}"
@@ -29,40 +30,36 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <StackLayout Orientation="Vertical" Margin="0,0,0,0" Padding="0,0,0,0" Spacing="0">
+                            <StackLayout Orientation="Vertical" 
+                                         Margin="0,0,0,0"
+                                         Padding="0,0,0,0" 
+                                         Spacing="0"  
+                                         HorizontalOptions="Start">
                                 <Label Text="{Binding ScaleName}" 
-                                   FontSize="Large"
-                                   FontAttributes="Bold"/>
+                                       Style="{StaticResource ScaleName}"/>
                                 <Label Text="{Binding ScaleDesc}" 
-                                   FontSize="Medium"/>
+                                       Style="{StaticResource ScaleDesc}"/>
                                 <Label Text="{Binding ScaleTags}" 
-                                   FontSize="Small"
-                                   TextColor="LightGray"/>
+                                       Style="{StaticResource ScaleTags}"/>
                             </StackLayout>
-                            <StackLayout Orientation="Vertical" Margin="0,0,0,0" Padding="0,0,0,0" Spacing="0"
+                            
+                            <!--#region BUTTONS -->
+                            <StackLayout Orientation="Vertical"  
+                                         HorizontalOptions="EndAndExpand"
                                          VerticalOptions="Center">
+
                                 <Image Source="favorite.png"
-                                   HeightRequest="40"
-                                   WidthRequest="40"
-                                   Margin="0"
-                                   HorizontalOptions="End">
+                                   HeightRequest="30"
+                                   WidthRequest="30">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer
-                                    Command="{Binding ScaleListFavButton}"
+                                    Command="{Binding ScaleFavButtonCommand}"
                                     CommandParameter="Image1"/>
                                     </Image.GestureRecognizers>
                                 </Image>
-                                <Image Source="guide.png"
-                                   HeightRequest="40"
-                                   WidthRequest="40"
-                                   Margin="0"
-                                   HorizontalOptions="End">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                    Command="{Binding ScaleListFavButton}"
-                                    CommandParameter="Image1"/>
-                                    </Image.GestureRecognizers>
-                                </Image>
+
+                                <!--#endregion-->
+                                
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>

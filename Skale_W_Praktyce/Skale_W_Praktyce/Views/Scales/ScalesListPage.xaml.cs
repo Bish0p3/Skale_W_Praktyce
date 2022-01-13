@@ -14,6 +14,7 @@ namespace Skale_W_Praktyce.Views.Scales
         public ScalesListPage()
         {
             InitializeComponent();
+            BindingContext = new ScalesViewModel();
         }
 
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
