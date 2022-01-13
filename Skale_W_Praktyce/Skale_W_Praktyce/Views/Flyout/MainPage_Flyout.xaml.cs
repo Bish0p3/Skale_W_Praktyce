@@ -13,13 +13,18 @@ namespace Skale_W_Praktyce.Views.Flyout
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as FlyoutPageFlyoutMenuItem;
             if (item == null)
                 return;
 
             var page = (Page)Activator.CreateInstance(item.TargetType);
+            if(item.Title == "Wyloguj")
+            {
+                Application.Current.MainPage = new NavigationPage(new LogInPage());
+                await Navigation.PopAsync();
+            }
             page.Title = item.Title;
             Detail = new NavigationPage(page);
             IsPresented = false;
