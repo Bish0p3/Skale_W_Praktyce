@@ -2,13 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Skale_W_Praktyce.Views.MainPage"
-             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views" >
+             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel">
 
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
-            <Button Text="LOGIN" HorizontalOptions="End" Command="{Binding MainLoginButton_Clicked}"/>
+            <Label Text="Skale medyczne w praktyce" TextColor="{StaticResource 3}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -44,7 +43,6 @@
             </Frame>
             <!--#endregion-->
 
-
             <!-- MAIN CONTENT -->
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -52,29 +50,35 @@
                     <ColumnDefinition Width="9*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="6*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Frame BackgroundColor="{StaticResource 2}" Grid.Column="1" Grid.Row="1" CornerRadius="15">
-                    <StackLayout VerticalOptions="CenterAndExpand">
+                <Frame BackgroundColor="{StaticResource Surface}" Grid.Column="1" Grid.Row="1" CornerRadius="15">
+                    <StackLayout VerticalOptions="Center" Spacing="15" Margin="5,0,5,0">
                         <Label Text="Witaj, co chcesz zrobić?" HorizontalOptions="Center" FontSize="20" TextColor="{StaticResource OnSurface}" Margin="20"/>
                         <Button Style="{StaticResource DefaultButtonStyle}"
-                                HeightRequest="100" 
-                                Text="Stwórz lub wybierz profil pacjenta" 
-                                Margin="10"
-                                Command="{Binding CreateAProfileButton_Clicked}"
-                                TextColor="{StaticResource OnSecondary}"/>
-                        <Rectangle Fill="Black" HeightRequest="3" Margin="10"/>
-                        <Button Style="{StaticResource DefaultButtonStyle}" 
-                                HeightRequest="100" 
                                 Text="Przeglądaj skale" 
-                                Margin="10" 
-                                Command="{Binding BrowseScalesButton_Clicked}"
-                                TextColor="{StaticResource OnSecondary}"/>
+                                TextColor="{StaticResource OnSecondary}"
+                                Command="{Binding BrowseScalesButton_Clicked}"/>
+                        <Button Style="{StaticResource DefaultButtonStyle}"
+                                Text="Kategorie" 
+                                TextColor="{StaticResource OnSecondary}"
+                                Command="{Binding CategoriesButton_Clicked}"/>
+                        <Button Style="{StaticResource DefaultButtonStyle}" 
+                                Text="Pacjenci" 
+                                TextColor="{StaticResource OnSecondary}"
+                                Command="{Binding PatientsButton_Clicked}"/>
+                        <Button Style="{StaticResource DefaultButtonStyle}" 
+                                Text="Pomoc" 
+                                TextColor="{StaticResource OnSecondary}"
+                                Command="{Binding HelpButton_Clicked}"/>
+                        <Button Style="{StaticResource DefaultButtonStyle}" 
+                                Text="Wyloguj"  
+                                TextColor="{StaticResource OnSecondary}"
+                                Command="{Binding LogoutButton_Clicked}"/>
                     </StackLayout>
                 </Frame>
             </Grid>

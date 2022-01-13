@@ -9,12 +9,12 @@
         <Color x:Key="Primary">#0081A7</Color>
         <Color x:Key="Secondary">#F07167</Color>
         <Color x:Key="Background">#FDFCDC</Color>
-        <Color x:Key="Surface">#0081A7</Color>
+        <Color x:Key="Surface">#00AFB9</Color>
         <Color x:Key="Error">#F07167</Color>
         <Color x:Key="OnPrimary">#0B132B</Color>
         <Color x:Key="OnSecondary">#0B132B</Color>
         <Color x:Key="OnBackground">#0B132B</Color>
-        <Color x:Key="OnSurface">#0B132B</Color>
+        <Color x:Key="OnSurface">#FDFCDC</Color>
         <Color x:Key="OnError">#0B132B</Color>
 
         <Color x:Key="1">#0081A7</Color>

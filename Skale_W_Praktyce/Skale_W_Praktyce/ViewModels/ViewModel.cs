@@ -31,9 +31,11 @@ namespace Skale_W_Praktyce.ViewModels
             #endregion
 
             #region Main Page Commands
-            CreateAProfileButton_Clicked = new Command(async () => await CreateAProfileButton_Method());
             BrowseScalesButton_Clicked = new Command(async () => await BrowseScalesButton_Method());
-            MainLoginButton_Clicked = new Command(async () => await MainLoginButton_Method());
+            CategoriesButton_Clicked = new Command(async () => await CategoriesButton_Method());
+            PatientsButton_Clicked = new Command(async () => await PatientsButton_Method());
+            HelpButton_Clicked = new Command(async () => await HelpButton_Method());
+            LogoutButton_Clicked = new Command(async () => await LogoutButton_Method());
             #endregion
 
             #region Register Page Commands
@@ -55,10 +57,12 @@ namespace Skale_W_Praktyce.ViewModels
         #endregion
 
         #region Main Page Commands
-        public ICommand CreateAProfileButton_Clicked { get; set; }
         public ICommand BrowseScalesButton_Clicked { get; set; }
+        public ICommand CategoriesButton_Clicked { get; set; }
+        public ICommand PatientsButton_Clicked { get; set; }
+        public ICommand HelpButton_Clicked { get; set; }
+        public ICommand LogoutButton_Clicked { get; set; }
 
-        public ICommand MainLoginButton_Clicked { get; set; }
         #endregion
 
         #region Register Page Commands
@@ -293,20 +297,26 @@ namespace Skale_W_Praktyce.ViewModels
         #endregion
 
         #region Main Page methods
-        public async Task MainLoginButton_Method()
-        {
-            Application.Current.MainPage = new NavigationPage(new LogInPage());
-            await Navigation.PopAsync();
-        }
-
-        public async Task CreateAProfileButton_Method()
-        {
-            await Navigation.PushAsync(new PatientsListPage());
-        }
-
         public async Task BrowseScalesButton_Method()
         {
             await Navigation.PushAsync(new ScalesListPage_Flyout());
+        }
+        public async Task CategoriesButton_Method()
+        {
+            await Navigation.PushAsync(new ScalesCategories());
+        }
+        public async Task PatientsButton_Method()
+        {
+            await Navigation.PushAsync(new PatientsListPage());
+        }
+        public async Task HelpButton_Method()
+        {
+            await Navigation.PushAsync(new PatientsListPage());
+        }
+        public async Task LogoutButton_Method()
+        {
+            Application.Current.MainPage = new NavigationPage(new LogInPage());
+            await Navigation.PopAsync();
         }
 
         #endregion
