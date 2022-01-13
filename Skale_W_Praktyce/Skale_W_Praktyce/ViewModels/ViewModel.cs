@@ -78,6 +78,7 @@ namespace Skale_W_Praktyce.ViewModels
         private bool isEnabledEditor = true;
 
         #region Login page
+        private bool isBusy = false;
         private string login_LoginEntry;
         private string login_PasswordEntry;
         #endregion
@@ -142,6 +143,12 @@ namespace Skale_W_Praktyce.ViewModels
         }
 
         #region Login page properties
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { isBusy = value; OnPropertyChanged("IsBusy"); }
+        }
+
         public string Login_LoginEntry
         {
             set
@@ -235,6 +242,9 @@ namespace Skale_W_Praktyce.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(Login_PasswordEntry) && !string.IsNullOrWhiteSpace(Login_LoginEntry))
             {
+                // Loading Circle (activityIndicator)
+                IsBusy = true;
+
                 ServerData server = new ServerData();
                 string connectionString = $"Data Source={server.srvrname}; Initial Catalog ={server.srvrdbname}; User ID={server.srvrusername};Password={server.srvrpassword};";
                 string queryString = $"SELECT [Username], [Password] FROM [skalewpraktyce_db].[dbo].[usersTable] WHERE [Username] = '{Login_LoginEntry}'";

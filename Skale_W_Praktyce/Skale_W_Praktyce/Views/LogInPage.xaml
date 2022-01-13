@@ -40,7 +40,7 @@
             
             <!-- #region CONTENT -->
             <Grid>
-                <StackLayout VerticalOptions="Center" Margin="50">
+                <StackLayout VerticalOptions="Center" Margin="50" FlowDirection="RightToLeft">
                     <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
                     <Image Source="logo4.png" Margin="0, -50, 0, 0"/>
                     <Label Text="Skale W Praktyce" Margin="0,-50,0,30" FontSize="Large" FontAttributes="Bold"  HorizontalOptions="Center"/>
@@ -82,6 +82,7 @@
 
                     <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
                     <Button Text="REJESTRACJA" Command="{Binding RegisterButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
+                    <ActivityIndicator x:Name="LoadingCircle" IsVisible="{Binding IsBusy, Mode=TwoWay}" IsRunning="{Binding IsBusy, Mode=TwoWay}" Color="{StaticResource PrimaryAlt}"/>
                 </StackLayout>
             </Grid>
             <!--#endregion-->
