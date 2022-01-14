@@ -34,7 +34,7 @@ namespace Skale_W_Praktyce.ViewModels
             BrowseScalesButton_Clicked = new Command(async () => await BrowseScalesButton_Method());
             CategoriesButton_Clicked = new Command(async () => await CategoriesButton_Method());
             PatientsButton_Clicked = new Command(async () => await PatientsButton_Method());
-            HelpButton_Clicked = new Command(async () => await HelpButton_Method());
+            HelpButton_Clicked = new Command(HelpButton_Method);
             LogoutButton_Clicked = new Command(async () => await LogoutButton_Method());
             #endregion
 
@@ -309,7 +309,7 @@ namespace Skale_W_Praktyce.ViewModels
         #region Main Page methods
         public async Task BrowseScalesButton_Method()
         {
-            await Navigation.PushAsync(new ScalesListPage());
+            await Navigation.PushAsync(new ScalesListPage_Flyout());
         }
         public async Task CategoriesButton_Method()
         {
@@ -319,9 +319,9 @@ namespace Skale_W_Praktyce.ViewModels
         {
             await Navigation.PushAsync(new PatientsListPage());
         }
-        public async Task HelpButton_Method()
+        public void HelpButton_Method()
         {
-            await Navigation.PushAsync(new PatientsListPage());
+            //await Navigation.PushAsync(new PatientsListPage());
         }
         public async Task LogoutButton_Method()
         {

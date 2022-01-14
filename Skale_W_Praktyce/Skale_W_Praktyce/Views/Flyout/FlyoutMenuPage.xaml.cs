@@ -29,7 +29,7 @@ namespace Skale_W_Praktyce.Views.Flyout
                 MenuItems = new ObservableCollection<FlyoutPageFlyoutMenuItem>(new[]
                 {
                     new FlyoutPageFlyoutMenuItem { Id = 0, Title = "Strona Główna", TargetType = typeof(MainPage_Flyout)},
-                    new FlyoutPageFlyoutMenuItem { Id = 1, Title = "Przeglądaj Skale", TargetType = typeof(ScalesCategories)},
+                    new FlyoutPageFlyoutMenuItem { Id = 1, Title = "Przeglądaj Skale", TargetType = typeof(ScalesListPage)},
                     new FlyoutPageFlyoutMenuItem { Id = 2, Title = "Kategorie", TargetType = typeof(ScalesCategories) },
                     new FlyoutPageFlyoutMenuItem { Id = 3, Title = "Pacjenci", TargetType = typeof(AddPatientPage) },
                     new FlyoutPageFlyoutMenuItem { Id = 4, Title = "Źródła" , TargetType = typeof(AddPatientPage)},

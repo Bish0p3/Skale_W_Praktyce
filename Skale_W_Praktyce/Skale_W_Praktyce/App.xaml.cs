@@ -24,9 +24,5 @@ namespace Skale_W_Praktyce
         {
         }
 
-        public async Task LogInButton_Method()
-        {
-            await Navigation.PushModalAsync(new LogInPage());
-        }
     }
 }
