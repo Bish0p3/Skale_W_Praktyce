@@ -7,24 +7,28 @@ using System.Collections.ObjectModel;
 using Skale_W_Praktyce.Models;
 using System.Runtime.CompilerServices;
 using Skale_W_Praktyce.Views;
+using System.Linq;
+using Skale_W_Praktyce.Views.Scales;
 
 namespace Skale_W_Praktyce.ViewModels
 {
     class ScalesViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Scale> ScalesList { get; set; }
 
-
-        public ScalesViewModel()
+        public ScalesViewModel(INavigation navigation)
         {
-
+            Navigation = navigation;
 
             #region ScalesCategories
-            NeurologyTapCommand = new Command(async () => await NeurologyTapMethod());
-            ScaleFavButtonCommand = new Command(ScaleFavButtonMethod);
+            BasicCategoryTapCommand = new Command(async () => await BasicCategoryTapMethod());
+            NerveSystemCategoryTapCommand = new Command(async () => await NerveSystemCategoryTapMethod());
+            CirculatorySystemCategoryTapCommand = new Command(async () => await CirculatorySystemCategoryTapMethod());
+            LungsSystemCategoryTapCommand = new Command(async () => await LungsSystemCategoryTapMethod());
+            GeriatryCategoryTapCommand = new Command(async () => await GeriatryCategoryTapMethod());
+            PsychologyCategoryTapCommand = new Command(async () => await PsychologyCategoryTapMethod());
             #endregion
 
-
+            ScalesListCategory = new ObservableCollection<Scale>();
             ScalesList = new ObservableCollection<Scale>
                 {
                     new Scale(){
@@ -80,6 +84,40 @@ namespace Skale_W_Praktyce.ViewModels
                 };
         }
 
+        #region Fields
+        private ObservableCollection<Scale> scalesList;
+        private ObservableCollection<Scale> scalesListCategory;
+        #endregion
+
+        #region Properties
+        public ObservableCollection<Scale> ScalesList
+        {
+            get { return scalesList; }
+            set
+            {
+                if (scalesList != value)
+                {
+                    scalesList = value;
+                    OnPropertyChanged("ScalesList");
+                }
+            }
+        }
+
+        public ObservableCollection<Scale> ScalesListCategory
+        {
+            get { return scalesListCategory; }
+            set
+            {
+                if (scalesListCategory != value)
+                {
+                    scalesListCategory = value;
+                    OnPropertyChanged("ScalesListCategory");
+                }
+            }
+        }
+
+        #endregion
+
         #region Commands
         public INavigation Navigation { get; set; }
 
@@ -89,9 +127,15 @@ namespace Skale_W_Praktyce.ViewModels
         #endregion
 
         #region ScalesCategories
-        public ICommand NeurologyTapCommand { get; }
-        public ICommand ScaleSelectTapCommand { get; }
-        public ICommand ScaleFavButtonCommand { get; }
+        public ICommand BasicCategoryTapCommand { get; }
+        public ICommand NerveSystemCategoryTapCommand { get; }
+        public ICommand CirculatorySystemCategoryTapCommand { get; }
+        public ICommand LungsSystemCategoryTapCommand { get; }
+        public ICommand GeriatryCategoryTapCommand { get; }
+        public ICommand PsychologyCategoryTapCommand { get; }
+
+
+
         #endregion
 
         #endregion
@@ -99,11 +143,37 @@ namespace Skale_W_Praktyce.ViewModels
         #region Methods
 
         #region ScalesCategories
-        public async Task NeurologyTapMethod()
+        public async Task BasicCategoryTapMethod()
+        {
+            for (int i = 0; i < ScalesList.Count; i++)
+            {
+                if(ScalesList[i].ScaleTags == "Ogólne")
+                {
+                    ScalesListCategory.Add(ScalesList[i]);
+                }
+            }
+            await Navigation.PushAsync(new ScalesListCategories());
+        }
+        public async Task NerveSystemCategoryTapMethod()
         {
             await Navigation.PushAsync(new ScalesListPage_Flyout());
         }
-
+        public async Task CirculatorySystemCategoryTapMethod()
+        {
+            await Navigation.PushAsync(new ScalesListPage_Flyout());
+        }
+        public async Task LungsSystemCategoryTapMethod()
+        {
+            await Navigation.PushAsync(new ScalesListPage_Flyout());
+        }
+        public async Task GeriatryCategoryTapMethod()
+        {
+            await Navigation.PushAsync(new ScalesListPage_Flyout());
+        }
+        public async Task PsychologyCategoryTapMethod()
+        {
+            await Navigation.PushAsync(new ScalesListPage_Flyout());
+        }
         public void ScaleFavButtonMethod()
         {
 

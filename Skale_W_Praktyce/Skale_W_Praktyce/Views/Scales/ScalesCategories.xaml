@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ScalesViewModel"
              x:Class="Skale_W_Praktyce.Views.Scales.ScalesCategories">
 
 
@@ -40,9 +40,7 @@
                          <StackLayout>
                                 <Image Source="document.png" HeightRequest="50" WidthRequest="50">
                                     <Image.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                        Command="{Binding BasicTapCommand}"
-                                        CommandParameter="Image1" />            
+                                        <TapGestureRecognizer Command="{Binding BasicCategoryTapCommand}"/>            
                                     </Image.GestureRecognizers>
                                 </Image>
                                 <Label Text="Ogólne" HorizontalOptions="Center" VerticalOptions="Center"/>
@@ -51,7 +49,7 @@
                         <Image Source="nerve_system.png" HeightRequest="50" WidthRequest="50">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
-                                        Command="{Binding TapCommand}"
+                                        Command="{Binding NerveSystemCategoryTapCommand}"
                                         CommandParameter="Image1" />
                             </Image.GestureRecognizers>
                         </Image>
@@ -61,7 +59,7 @@
                                 <Image Source="circulatory_system.png" HeightRequest="50" WidthRequest="50">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer
-                                        Command="{Binding TapCommand}"
+                                        Command="{Binding CirculatorySystemCategoryTapCommand}"
                                         CommandParameter="Image1" />
                                     </Image.GestureRecognizers>
                                 </Image>
@@ -74,7 +72,7 @@
                         <Image Source="lungs_system.png" HeightRequest="50" WidthRequest="50">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
-                                        Command="{Binding TapCommand}"
+                                        Command="{Binding LungsSystemCategoryTapCommand}"
                                         CommandParameter="Image1" />
                             </Image.GestureRecognizers>
                         </Image>
@@ -84,7 +82,7 @@
                         <Image Source="geriatry.png" HeightRequest="50" WidthRequest="50">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
-                                        Command="{Binding TapCommand}"
+                                        Command="{Binding GeriatryCategoryTapCommand}"
                                         CommandParameter="Image1" />
                             </Image.GestureRecognizers>
                         </Image>
@@ -94,7 +92,7 @@
                         <Image Source="psychology.png" HeightRequest="50" WidthRequest="50">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
-                                        Command="{Binding TapCommand}"
+                                        Command="{Binding PsychologyCategoryTapCommand}"
                                         CommandParameter="Image1" />
                             </Image.GestureRecognizers>
                         </Image>
