@@ -309,7 +309,7 @@ namespace Skale_W_Praktyce.ViewModels
         #region Main Page methods
         public async Task BrowseScalesButton_Method()
         {
-            await Navigation.PushAsync(new ScalesListPage_Flyout());
+            await Navigation.PushAsync(new ScalesListPage());
         }
         public async Task CategoriesButton_Method()
         {

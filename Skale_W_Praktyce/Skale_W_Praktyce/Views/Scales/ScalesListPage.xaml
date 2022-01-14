@@ -11,7 +11,7 @@
     </NavigationPage.TitleView>
 
     <!-- CONTENT -->
-    <StackLayout>
+    <StackLayout BackgroundColor="{StaticResource Background}">
         
         <!-- SEARCH BAR -->
         <SearchBar Placeholder="Wyszukaj..."

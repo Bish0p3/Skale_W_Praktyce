@@ -7,105 +7,103 @@
     <!--#region TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
-            <Label Text="Kategorie Skal" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+            <Label Text="Kategorie Skal" TextColor="{StaticResource OnSurface}" FontSize="20" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
     <!--#endregion-->
     
     <!--#region CONTENT-->
     <ContentPage.Content>
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="9*"/>
-            </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource Background}" Orientation="Vertical">
 
-            <SearchBar Grid.Row="0" Placeholder="Wyszukaj..."
-               TextTransform="Lowercase"
-               HorizontalTextAlignment="Center"
-               FontSize="Medium"
-               FontAttributes="Italic" />
-            
-            <Frame Grid.Row="1" BorderColor="Transparent" Padding="0" Margin="20" BackgroundColor="Transparent" Grid.RowSpan="2">
-            <Grid Padding="0" Margin="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <SearchBar
+                   Placeholder="Wyszukaj..."
+                   TextTransform="Lowercase"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Medium"
+                   FontAttributes="Italic" />
 
-                <Label Grid.ColumnSpan="2" Text="Wybierz kategorie:" FontSize="Large" TextColor="Black" HorizontalTextAlignment="Center" Margin="15"/>
+
+            <Label Text="Wybierz kategorie:" 
+                   FontSize="Large" 
+                   TextColor="Black" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="15"/>
+
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="Center" 
+                         VerticalOptions="Center" 
+                         Spacing="50"
+                         Margin="50">
+
+                <StackLayout Spacing="50">
+                         <StackLayout>
+                                <Image Source="document.png" HeightRequest="50" WidthRequest="50">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding BasicTapCommand}"
+                                        CommandParameter="Image1" />            
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="Ogólne" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </StackLayout>
+                    <StackLayout>
+                        <Image Source="nerve_system.png" HeightRequest="50" WidthRequest="50">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding TapCommand}"
+                                        CommandParameter="Image1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Układ nerwowy" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Margin="0" Padding="0">
+                                <Image Source="circulatory_system.png" HeightRequest="50" WidthRequest="50">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding TapCommand}"
+                                        CommandParameter="Image1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Label Text="Układ krążenia" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </StackLayout>
+                </StackLayout>
+
+                <StackLayout Spacing="50">
+                    <StackLayout>
+                        <Image Source="lungs_system.png" HeightRequest="50" WidthRequest="50">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding TapCommand}"
+                                        CommandParameter="Image1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Układ oddechowy" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Image Source="geriatry.png" HeightRequest="50" WidthRequest="50">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding TapCommand}"
+                                        CommandParameter="Image1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Geriatria" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout Margin="0" Padding="0">
+                        <Image Source="psychology.png" HeightRequest="50" WidthRequest="50">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding TapCommand}"
+                                        CommandParameter="Image1" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label Text="Psychiatria" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
                 
-                <FlexLayout Grid.Column="0" Padding="0" Margin="0" AlignContent="Center" AlignItems="Center" JustifyContent="SpaceEvenly" Wrap="Wrap" Direction="Column">
-                        <StackLayout Margin="0" Padding="0">
-                            <Image Source="brain.png" HeightRequest="50" WidthRequest="50">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                    Command="{Binding NeurologyTapCommand}"
-                                    CommandParameter="Image1" />            
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="Neurologia" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Margin="0" Padding="0">
-                            <Image Source="heart.png" HeightRequest="50" WidthRequest="50">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                    Command="{Binding TapCommand}"
-                                    CommandParameter="Image1" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="Kardiologia" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    </StackLayout>
-
-                    <StackLayout Margin="0" Padding="0">
-                            <Image Source="liver.png" HeightRequest="50" WidthRequest="50">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                    Command="{Binding TapCommand}"
-                                    CommandParameter="Image1" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="Hepatologia" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    </StackLayout>
-                </FlexLayout>
-                
-                <FlexLayout Grid.Column="1" Padding="0" Margin="0" AlignContent="Center" AlignItems="Center" JustifyContent="SpaceEvenly" Wrap="Wrap" Direction="Column">
-                    <StackLayout Margin="0" Padding="0">
-                            <Image Source="mask.png" HeightRequest="50" WidthRequest="50">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                    Command="{Binding TapCommand}"
-                                    CommandParameter="Image1" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="Choroby zakaźne" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Margin="0" Padding="0">
-                            <Image Source="stomach.png" HeightRequest="50" WidthRequest="50">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                    Command="{Binding TapCommand}"
-                                    CommandParameter="Image1" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="Gastrologia" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    </StackLayout>
-
-                    <StackLayout Margin="0" Padding="0">
-                            <Image Source="thyroidgland.png" HeightRequest="50" WidthRequest="50">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                    Command="{Binding TapCommand}"
-                                    CommandParameter="Image1" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label Text="Odporność" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    </StackLayout>
-                </FlexLayout>
-            </Grid>
-            
-        </Frame>
-        </Grid>
+            </StackLayout> <!-- ICONS 1ST and 2ND -->
+        </StackLayout> <!-- MAIN -->
     </ContentPage.Content>
     <!--#endregion-->
 </ContentPage>
