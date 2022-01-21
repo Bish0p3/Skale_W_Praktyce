@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Skale_W_Praktyce.Views.Scales.scale_GLASGOW">
+
+    <!-- TITLE -->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding ScaleName}" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <StackLayout BackgroundColor="{StaticResource Background}">
+
+        <ListView IsGroupingEnabled="true"
+                  GroupDisplayBinding="{Binding QuestionName}"
+                  ItemsSource="{Binding ScaleQuestions}"
+                  HasUnevenRows="False"
+                  Margin="5"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding QuestionAnswer}" 
+                                   Style="{StaticResource ScaleName}"/>
+                            <Label Text="{Binding QuestionAnswerPoints}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        
+        <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="EndAndExpand" HeightRequest="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Frame Grid.Column="0" BorderColor="{StaticResource Secondary}" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Surface}">
+                <Label Text="69" FontSize="Large" TextColor="{StaticResource Secondary}"/>
+            </Frame>
+            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                <BoxView Margin="1" VerticalOptions="Fill" WidthRequest="5" Color="{StaticResource OnBackground}"/>
+                <Label Text="Zdrowy" BackgroundColor="Blue" VerticalOptions="Center" FontSize="Medium"/>
+
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>
