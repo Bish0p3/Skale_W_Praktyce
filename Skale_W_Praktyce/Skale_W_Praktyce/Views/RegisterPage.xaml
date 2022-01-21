@@ -7,7 +7,7 @@
     <!-- NAV BAR -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Label Text="Rejestracja" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Label Text="Rejestracja" TextColor="{StaticResource Background}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
     
@@ -15,15 +15,15 @@
     <ContentPage.Content>
         <Grid>
             <!-- FRAME -->
-            <Frame Opacity="0.5" BorderColor="LightGray">
+            <Frame Opacity="0.5" BorderColor="{StaticResource Background}">
                 <Frame.Background>
                     <LinearGradientBrush StartPoint="0,0"
                              EndPoint="1,0">
-                        <GradientStop Color="#3fc9ef" Offset="1"/>
-                        <GradientStop Color="#0086e7" Offset="0.0"/>
-                        <GradientStop Color="#0086e7" Offset="0.0"/>
-                        <GradientStop Color="#0086e7" Offset="0.0"/>
-                        <GradientStop Color="#3fc9ef" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 1}" Offset="1"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
+                        <GradientStop Color="{StaticResource 1}" Offset="0.0"/>
                     </LinearGradientBrush>
                 </Frame.Background>
             </Frame>
@@ -31,11 +31,11 @@
                 <Frame.Background>
                     <LinearGradientBrush StartPoint="0,0"
                              EndPoint="0,1">
-                        <GradientStop Color="#0086e7"
+                        <GradientStop Color="{StaticResource 1}"
                           Offset="0.0"/>
-                        <GradientStop Color="#0086e7"
+                        <GradientStop Color="{StaticResource 1}"
                           Offset="0.0"/>
-                        <GradientStop Color="#3fc9ef"
+                        <GradientStop Color="{StaticResource 2}"
                           Offset="0.3"/>
                     </LinearGradientBrush>
                 </Frame.Background>
@@ -49,12 +49,7 @@
                 <Frame CornerRadius="10" Padding="3" Margin="3">
                     <Entry x:Name="EmailEntry" 
                        Text="{Binding Register_EmailEntry}"
-                           
-                       BackgroundColor="White"
-                       TextColor="Black"
-                       HorizontalOptions="Fill"
-                       VerticalOptions="Center"
-                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource DefaultEntryStyle}"
                        Placeholder="Adres E-Mail"
                        MaxLength="50" 
                        Keyboard="Email" 
@@ -65,12 +60,7 @@
                 <Frame CornerRadius="10" Padding="3" Margin="3">
                     <Entry x:Name="LoginEntry" 
                        Text="{Binding Register_LoginEntry}"
-                       
-                       BackgroundColor="White"
-                       TextColor="Black"
-                       HorizontalOptions="Fill"
-                       VerticalOptions="Center"
-                       HorizontalTextAlignment="Center"
+                       Style="{StaticResource DefaultEntryStyle}"
                        Placeholder="Nazwa Użytkownika"
                        MaxLength="50" 
                        Keyboard="Plain" 
@@ -81,12 +71,7 @@
                 <Frame CornerRadius="10" Padding="3" Margin="3">
                     <Entry x:Name="PasswordEntry" 
                            Text="{Binding Register_PasswordEntry}"
-                           
-                           BackgroundColor="White"
-                           TextColor="Black"
-                           HorizontalTextAlignment="Center"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Center"
+                           Style="{StaticResource DefaultEntryStyle}"
                            IsPassword="True" 
                            Placeholder="Hasło"
                            MaxLength="50"  
@@ -94,7 +79,8 @@
                            ReturnType="Send"/>
                 </Frame>
 
-                <Button Text="ZAREJESTRUJ" Command="{Binding RegisterSendButton_Clicked}" />
+                <Button Text="ZAREJESTRUJ" Command="{Binding RegisterSendButton_Clicked}" 
+                        Style="{StaticResource DefaultButtonStyle}"/>
 
             </StackLayout>
 
