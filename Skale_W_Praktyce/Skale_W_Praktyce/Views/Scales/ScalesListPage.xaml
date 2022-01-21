@@ -53,9 +53,10 @@
                                    WidthRequest="30">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer
-                                    Command="{Binding ScaleFavButtonCommand}"
+                                    
                                     CommandParameter="Image1"/>
                                     </Image.GestureRecognizers>
+                                    <!--Command="{Binding ScaleFavButtonCommand}"-->
                                 </Image>
 
                                 <!--#endregion-->
