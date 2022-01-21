@@ -29,7 +29,6 @@
 
             <Color x:Key="old1">#0086e7</Color>
             <Color x:Key="old2">#3fc9ef</Color>
-
             <!--<Color x:Key="1">#0B132B</Color>
             <Color x:Key="2">#1C2541</Color>
             <Color x:Key="3">#3A506B</Color>
@@ -83,7 +82,7 @@
             <Setter Property="FontSize" Value="17"/>
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
-
+        
         <Style x:Key="ScaleDesc" TargetType="Label" >
             <Setter Property="FontSize" Value="14"/>
         </Style>
@@ -94,6 +93,10 @@
             <Setter Property="FontAttributes" Value="Italic"/>
         </Style>
 
+        <Style x:Key="InScaleFont" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="TextColor" Value="{StaticResource OnBackground}"/>
+        </Style>
         <!--#endregion-->
     </Application.Resources>
 </Application>
