@@ -1,15 +1,13 @@
-﻿using System.ComponentModel;
-using Xamarin.Forms;
+﻿using Skale_W_Praktyce.Models;
+using Skale_W_Praktyce.Views;
+using Skale_W_Praktyce.Views.Flyout;
+using Skale_W_Praktyce.Views.Scales;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Skale_W_Praktyce.Views.Flyout;
-using System.Collections.ObjectModel;
-using Skale_W_Praktyce.Models;
-using System.Runtime.CompilerServices;
-using Skale_W_Praktyce.Views;
-using System.Linq;
-using Skale_W_Praktyce.Views.Scales;
-using System.Collections.Generic;
+using Xamarin.Forms;
 using static Skale_W_Praktyce.Models.ScaleAnswers;
 
 namespace Skale_W_Praktyce.ViewModels
@@ -86,9 +84,9 @@ namespace Skale_W_Praktyce.ViewModels
                 };
 
 
-            #region InScalesList - questions and answers
+            #region GLASGOW - questions and answers
             ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
-            var que1 = new ScaleAnswersQuestion() { QuestionName = "Otwieranie oczu"};
+            var que1 = new ScaleAnswersQuestion() { QuestionName = "Otwieranie oczu" };
             que1.Add(new ScaleAnswers() { QuestionAnswer = "spontaniczne", QuestionAnswerPoints = 1 });
             que1.Add(new ScaleAnswers() { QuestionAnswer = "na polecenie", QuestionAnswerPoints = 2 });
             que1.Add(new ScaleAnswers() { QuestionAnswer = "na bodźce bólowe", QuestionAnswerPoints = 2 });
@@ -114,21 +112,8 @@ namespace Skale_W_Praktyce.ViewModels
             ScaleQuestions.Add(que2);
             ScaleQuestions.Add(que3);
 
-            //    List<ScaleAnswers> Groups = new List<ScaleAnswers> {
-            //    new PageTypeGroup ("Alpha", "A"){
-            //        new PageModel("Amelia", "Cedar", new switchCellPage(),""),
-            //        new PageModel("Alfie", "Spruce", new switchCellPage(), "grapefruit.jpg"),
-            //        new PageModel("Ava", "Pine", new switchCellPage(), "grapefruit.jpg"),
-            //        new PageModel("Archie", "Maple", new switchCellPage(), "grapefruit.jpg")
-            //    },
-            //    new PageTypeGroup ("Bravo", "B"){
-            //        new PageModel("Brooke", "Lumia", new switchCellPage(),""),
-            //        new PageModel("Bobby", "Xperia", new switchCellPage(), "grapefruit.jpg"),
-            //        new PageModel("Bella", "Desire", new switchCellPage(), "grapefruit.jpg"),
-            //        new PageModel("Ben", "Chocolate", new switchCellPage(), "grapefruit.jpg")
-            //    }
-            //};
-            //    All = Groups; //set the publicly accessible list
+
+
             #endregion
 
 
@@ -142,6 +127,7 @@ namespace Skale_W_Praktyce.ViewModels
         private ObservableCollection<Scale> scalesListCategory;
         public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
 
+        private string gLASGOWScaleAnswer;
         #endregion
 
         #region Properties
@@ -181,6 +167,18 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
+        public string GLASGOWScaleAnswer
+        {
+            get { return gLASGOWScaleAnswer; }
+            set
+            {
+                if(gLASGOWScaleAnswer != value)
+                {
+                    gLASGOWScaleAnswer = value;
+                    OnPropertyChanged("GLASGOWScaleAnswer");
+                }
+            }
+        }
         #endregion
 
         #region Commands
@@ -212,7 +210,7 @@ namespace Skale_W_Praktyce.ViewModels
         {
             for (int i = 0; i < ScalesList.Count; i++)
             {
-                if(ScalesList[i].ScaleTags == "Ogólne")
+                if (ScalesList[i].ScaleTags == "Ogólne")
                 {
                     ScalesListCategory.Add(ScalesList[i]);
                 }

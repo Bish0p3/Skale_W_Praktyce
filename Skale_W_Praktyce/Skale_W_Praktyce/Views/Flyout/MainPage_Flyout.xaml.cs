@@ -20,7 +20,7 @@ namespace Skale_W_Praktyce.Views.Flyout
                 return;
 
             var page = (Page)Activator.CreateInstance(item.TargetType);
-            if(item.Title == "Wyloguj")
+            if (item.Title == "Wyloguj")
             {
                 Application.Current.MainPage = new NavigationPage(new LogInPage());
                 await Navigation.PopAsync();

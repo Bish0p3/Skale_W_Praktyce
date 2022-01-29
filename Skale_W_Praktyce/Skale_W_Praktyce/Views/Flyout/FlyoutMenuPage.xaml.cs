@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using Skale_W_Praktyce.Views.Scales;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Skale_W_Praktyce.Views.Scales;
 
 namespace Skale_W_Praktyce.Views.Flyout
 {

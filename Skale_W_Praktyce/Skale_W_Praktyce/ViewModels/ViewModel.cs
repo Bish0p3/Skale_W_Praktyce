@@ -1,7 +1,6 @@
 ﻿using Skale_W_Praktyce.Views;
 using Skale_W_Praktyce.Views.Flyout;
 using Skale_W_Praktyce.Views.Scales;
-using System;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
@@ -19,14 +18,14 @@ namespace Skale_W_Praktyce.ViewModels
         public ViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            
+
             TestCommand = new Command(PerformEditorTestMethod);
 
             #region Login Page Commands
 
             LogInButton_Clicked = new Command(async () => await LogInButton_Method());
             RegisterButton_Clicked = new Command(async () => await RegisterButton_Method());
-            Gateway_Clicked = new Command(async() => await Gateway_Method());
+            Gateway_Clicked = new Command(async () => await Gateway_Method());
 
             #endregion
 
@@ -153,7 +152,7 @@ namespace Skale_W_Praktyce.ViewModels
         {
             set
             {
-                if(login_LoginEntry != value)
+                if (login_LoginEntry != value)
                 {
                     login_LoginEntry = value;
                     OnPropertyChanged("Login_LoginEntry");
@@ -164,12 +163,12 @@ namespace Skale_W_Praktyce.ViewModels
                 return login_LoginEntry;
             }
         }
-        
+
         public string Login_PasswordEntry
         {
             set
             {
-                if(login_PasswordEntry != value)
+                if (login_PasswordEntry != value)
                 {
                     login_PasswordEntry = value;
                     OnPropertyChanged("Login_PasswordEntry");
@@ -257,10 +256,10 @@ namespace Skale_W_Praktyce.ViewModels
                     try
                     {
                         // Check if SQL Query answer is not empty
-                        if(reader.Read())
+                        if (reader.Read())
                         {
                             // Check if db password is the same as the one in the entry
-                            if(reader["Password"].ToString() == Login_PasswordEntry)
+                            if (reader["Password"].ToString() == Login_PasswordEntry)
                             {
                                 // Proceed to main page
                                 Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());

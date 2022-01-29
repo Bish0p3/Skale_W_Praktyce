@@ -1,5 +1,4 @@
 ﻿using Skale_W_Praktyce.Views;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Skale_W_Praktyce

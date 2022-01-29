@@ -1,8 +1,6 @@
 ﻿using Skale_W_Praktyce.Models;
 using Skale_W_Praktyce.ViewModels;
-using Skale_W_Praktyce.Views.Flyout;
 using System;
-using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

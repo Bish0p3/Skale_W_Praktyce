@@ -6,7 +6,7 @@
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Label Text="{Binding ScaleName}" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Label Text="Skala GLASGOW" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
 
@@ -22,9 +22,15 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding QuestionAnswer}" 
-                                   Style="{StaticResource ScaleName}"/>
-                            <Label Text="{Binding QuestionAnswerPoints}"/>
+                            <Label Text="{Binding QuestionAnswer}"
+                                   Style="{StaticResource ScaleName}"
+                                   VerticalOptions = "Center"
+                                   HorizontalOptions="Start"/>
+                            <Label Text="{Binding QuestionAnswerPoints}"
+                                   Style="{StaticResource ScaleDesc}"
+                                   VerticalOptions = "Center"
+                                   HorizontalOptions="EndAndExpand"
+                                   BackgroundColor="Red"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -33,18 +39,31 @@
         
         
         <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="EndAndExpand" HeightRequest="100">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <Frame Grid.Column="0" BorderColor="{StaticResource Secondary}" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="{StaticResource Surface}">
-                <Label Text="69" FontSize="Large" TextColor="{StaticResource Secondary}"/>
-            </Frame>
-            <StackLayout Grid.Column="1" Orientation="Horizontal">
-                <BoxView Margin="1" VerticalOptions="Fill" WidthRequest="5" Color="{StaticResource OnBackground}"/>
-                <Label Text="Zdrowy" BackgroundColor="Blue" VerticalOptions="Center" FontSize="Medium"/>
+            
+            <StackLayout Orientation="Horizontal" Spacing="30">
 
+                <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="20, 5, 0, 5"> <!-- LEFT TOP RIGHT BOTTOM -->
+                    <Label Text="Wynik:" HorizontalOptions="Center" VerticalOptions="Start"
+                       Style="{StaticResource ScaleDesc}"
+                       Margin="0" 
+                       Padding="0"/>
+                    <Label Text="6" HorizontalOptions="Center" VerticalOptions="Center"
+                       Style="{StaticResource ScaleName}"
+                       Margin="0" 
+                       Padding="0"/>
+                </StackLayout>
+
+
+                <StackLayout Grid.Column="1" Orientation="Horizontal">
+                    <Label Text="{Binding GLASGOWScaleAnswer}" VerticalOptions="Center" FontSize="Medium" />
+                    
+                </StackLayout>
+                
             </StackLayout>
+
+           
+            
+           
         </Grid>
     </StackLayout>
 </ContentPage>
