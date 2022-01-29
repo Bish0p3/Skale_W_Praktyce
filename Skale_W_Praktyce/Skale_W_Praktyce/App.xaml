@@ -4,6 +4,12 @@
              x:Class="Skale_W_Praktyce.App">
     <Application.Resources>
 
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="#00AFB9"/>
+            <Setter Property="BarTextColor" Value="White"/>
+        </Style>
+
+
         <Color x:Key="Transparent">#50FBC1BC</Color>
         <!-- #region Colors -->
             <Color x:Key="Primary">#0081A7</Color>
