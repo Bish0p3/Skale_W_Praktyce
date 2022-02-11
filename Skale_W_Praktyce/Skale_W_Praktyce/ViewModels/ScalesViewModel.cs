@@ -28,6 +28,10 @@ namespace Skale_W_Praktyce.ViewModels
             PsychologyCategoryTapCommand = new Command(async () => await PsychologyCategoryTapMethod());
             #endregion
 
+
+            ListView_AnswerSelectedCommand = new Command(ListView_AnswerSelectedMethod);
+
+
             ScalesListCategory = new ObservableCollection<Scale>();
             ScalesList = new ObservableCollection<Scale>
                 {
@@ -119,7 +123,19 @@ namespace Skale_W_Praktyce.ViewModels
 
         }
 
-
+        private void HandleSelectedAnswer()
+        {
+            Wynik_Glasgow += ListView_SelectedAnswer.QuestionAnswerPoints;
+            //Application.Current.MainPage.DisplayAlert("SelectedItem: ", "Question: " + ListView_SelectedAnswer.QuestionAnswer, "ok");
+            if(Wynik_Glasgow <= 10)
+            {
+                Diagnoza_Glasgow = "Zdrowy";
+            }
+            else
+            {
+                Diagnoza_Glasgow = "Martwy";
+            }
+        }
 
 
         #region Fields
@@ -127,10 +143,26 @@ namespace Skale_W_Praktyce.ViewModels
         private ObservableCollection<Scale> scalesListCategory;
         public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
 
-        private string gLASGOWScaleAnswer;
+
+        private ScaleAnswers listView_selectedAnswer;
+        private string diagnoza_Glasgow;
+        private int wynik_Glasgow;
         #endregion
 
         #region Properties
+        public int Wynik_Glasgow
+        {
+            get { return wynik_Glasgow; }
+            set
+            {
+                if (wynik_Glasgow != value)
+                {
+                    wynik_Glasgow = value;
+                    OnPropertyChanged("Wynik_Glasgow");
+                }
+            }
+
+        }
         public ObservableCollection<Scale> ScalesList
         {
             get { return scalesList; }
@@ -140,6 +172,30 @@ namespace Skale_W_Praktyce.ViewModels
                 {
                     scalesList = value;
                     OnPropertyChanged("ScalesList");
+                }
+            }
+        }
+        public string Diagnoza_Glasgow
+        {
+            get { return diagnoza_Glasgow; }
+            set
+            {
+                if(diagnoza_Glasgow != value)
+                {
+                    diagnoza_Glasgow = value;
+                    OnPropertyChanged("Diagnoza_Glasgow");
+                }
+            }
+        }
+        public ScaleAnswers ListView_SelectedAnswer
+        {
+            get { return listView_selectedAnswer; }
+            set
+            {
+                if(listView_selectedAnswer != value)
+                {
+                    listView_selectedAnswer = value;
+                    HandleSelectedAnswer();
                 }
             }
         }
@@ -167,22 +223,11 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
-        public string GLASGOWScaleAnswer
-        {
-            get { return gLASGOWScaleAnswer; }
-            set
-            {
-                if(gLASGOWScaleAnswer != value)
-                {
-                    gLASGOWScaleAnswer = value;
-                    OnPropertyChanged("GLASGOWScaleAnswer");
-                }
-            }
-        }
         #endregion
 
         #region Commands
         public INavigation Navigation { get; set; }
+        public ICommand ListView_AnswerSelectedCommand { get; set; }
 
         #region ScalesList
 
@@ -244,6 +289,11 @@ namespace Skale_W_Praktyce.ViewModels
 
         #endregion
 
+
+        public void ListView_AnswerSelectedMethod()
+        {
+
+        }
         #endregion
 
         #region Helpers
