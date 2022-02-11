@@ -15,5 +15,6 @@ namespace Skale_W_Praktyce.Views.Scales
             BindingContext = new ScalesViewModel(Navigation);
             
         }
+
     }
 }

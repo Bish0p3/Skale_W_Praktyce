@@ -19,15 +19,17 @@
                   ItemsSource="{Binding ScaleQuestions}"
                   HasUnevenRows="False"
                   Margin="5"
-                  SelectedItem="{Binding ListView_SelectedAnswer}"
-                  x:Name="MainList"
-                  >
+                  SelectedItem="{Binding SelectedAnswer}">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding AnswerTappedCommand}"/>
+            </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        
-                        <StackLayout Orientation="Horizontal">
-                            <BoxView Color="Fuchsia" />
+                        <StackLayout Orientation="Horizontal"
+                                     BackgroundColor="{Binding AnswerSelectedColor, Mode=TwoWay}">
                             <Label Text="{Binding QuestionAnswer}"
                                    Style="{StaticResource ScaleName}"
                                    VerticalOptions = "Center"
@@ -38,7 +40,6 @@
                                    HorizontalOptions="EndAndExpand"
                                    FontAttributes="Bold"/>
                         </StackLayout>
-                        
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -63,7 +64,6 @@
 
                 <StackLayout Grid.Column="1" Orientation="Horizontal">
                     <Label Text="{Binding Diagnoza_Glasgow}" VerticalOptions="Center" FontSize="Medium" />
-                    
                 </StackLayout>
                 
             </StackLayout>

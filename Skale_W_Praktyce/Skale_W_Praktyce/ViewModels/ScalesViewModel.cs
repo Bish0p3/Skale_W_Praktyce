@@ -14,25 +14,27 @@ namespace Skale_W_Praktyce.ViewModels
 {
     class ScalesViewModel : INotifyPropertyChanged
     {
-
         public ScalesViewModel(INavigation navigation)
         {
             Navigation = navigation;
 
+
             #region ScalesCategories
+            // Kategorie tap commands
             BasicCategoryTapCommand = new Command(async () => await BasicCategoryTapMethod());
             NerveSystemCategoryTapCommand = new Command(async () => await NerveSystemCategoryTapMethod());
             CirculatorySystemCategoryTapCommand = new Command(async () => await CirculatorySystemCategoryTapMethod());
             LungsSystemCategoryTapCommand = new Command(async () => await LungsSystemCategoryTapMethod());
             GeriatryCategoryTapCommand = new Command(async () => await GeriatryCategoryTapMethod());
             PsychologyCategoryTapCommand = new Command(async () => await PsychologyCategoryTapMethod());
+
+            // lista po wybraniu kategorii
+            ScalesListCategory = new ObservableCollection<Scale>();
+
             #endregion
 
-
-            ListView_AnswerSelectedCommand = new Command(ListView_AnswerSelectedMethod);
-
-
-            ScalesListCategory = new ObservableCollection<Scale>();
+            #region Scales List
+            // Lista skal
             ScalesList = new ObservableCollection<Scale>
                 {
                     new Scale(){
@@ -86,7 +88,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleTags = "Ogólne, Psychiatria",
                         ScaleViewName = typeof(MainPage_Flyout)},
                 };
-
+            #endregion
 
             #region GLASGOW - questions and answers
             ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
@@ -120,21 +122,7 @@ namespace Skale_W_Praktyce.ViewModels
 
             #endregion
 
-
-        }
-
-        private void HandleSelectedAnswer()
-        {
-            Wynik_Glasgow += ListView_SelectedAnswer.QuestionAnswerPoints;
-            //Application.Current.MainPage.DisplayAlert("SelectedItem: ", "Question: " + ListView_SelectedAnswer.QuestionAnswer, "ok");
-            if(Wynik_Glasgow <= 10)
-            {
-                Diagnoza_Glasgow = "Zdrowy";
-            }
-            else
-            {
-                Diagnoza_Glasgow = "Martwy";
-            }
+            AnswerTappedCommand = new Command(HandleSelectedAnswer);
         }
 
 
@@ -142,14 +130,18 @@ namespace Skale_W_Praktyce.ViewModels
         private ObservableCollection<Scale> scalesList;
         private ObservableCollection<Scale> scalesListCategory;
         public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
+        private ScaleAnswers selectedAnswer;
 
-
-        private ScaleAnswers listView_selectedAnswer;
+        #region GLASGOW
         private string diagnoza_Glasgow;
         private int wynik_Glasgow;
         #endregion
 
+        #endregion
+
         #region Properties
+
+        #region GLASGOW
         public int Wynik_Glasgow
         {
             get { return wynik_Glasgow; }
@@ -161,8 +153,22 @@ namespace Skale_W_Praktyce.ViewModels
                     OnPropertyChanged("Wynik_Glasgow");
                 }
             }
-
         }
+        public string Diagnoza_Glasgow
+        {
+            get { return diagnoza_Glasgow; }
+            set
+            {
+                if (diagnoza_Glasgow != value)
+                {
+                    diagnoza_Glasgow = value;
+                    OnPropertyChanged("Diagnoza_Glasgow");
+                }
+            }
+        }
+
+        #endregion
+
         public ObservableCollection<Scale> ScalesList
         {
             get { return scalesList; }
@@ -172,30 +178,6 @@ namespace Skale_W_Praktyce.ViewModels
                 {
                     scalesList = value;
                     OnPropertyChanged("ScalesList");
-                }
-            }
-        }
-        public string Diagnoza_Glasgow
-        {
-            get { return diagnoza_Glasgow; }
-            set
-            {
-                if(diagnoza_Glasgow != value)
-                {
-                    diagnoza_Glasgow = value;
-                    OnPropertyChanged("Diagnoza_Glasgow");
-                }
-            }
-        }
-        public ScaleAnswers ListView_SelectedAnswer
-        {
-            get { return listView_selectedAnswer; }
-            set
-            {
-                if(listView_selectedAnswer != value)
-                {
-                    listView_selectedAnswer = value;
-                    HandleSelectedAnswer();
                 }
             }
         }
@@ -223,11 +205,23 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
+        public ScaleAnswers SelectedAnswer
+        {
+            get { return selectedAnswer; }
+            set
+            {
+                if (selectedAnswer != value)
+                {
+                    selectedAnswer = value;
+                }
+            }
+        }
+
         #endregion
 
         #region Commands
         public INavigation Navigation { get; set; }
-        public ICommand ListView_AnswerSelectedCommand { get; set; }
+        public ICommand AnswerTappedCommand { get; set; }
 
         #region ScalesList
 
@@ -289,11 +283,37 @@ namespace Skale_W_Praktyce.ViewModels
 
         #endregion
 
-
-        public void ListView_AnswerSelectedMethod()
+        #region GLASGOW
+        private void HandleSelectedAnswer()
         {
-
+            if (SelectedAnswer.IsSelected == false)
+            {
+                Wynik_Glasgow += SelectedAnswer.QuestionAnswerPoints;
+                SelectedAnswer.AnswerSelectedColor = Color.FromHex("#F07167");
+                SelectedAnswer.IsSelected = true;
+                CheckStatus();
+            }
+            else
+            {
+                Wynik_Glasgow -= SelectedAnswer.QuestionAnswerPoints;
+                SelectedAnswer.AnswerSelectedColor = Color.Transparent;
+                SelectedAnswer.IsSelected = false;
+                CheckStatus();
+            }
         }
+        private void CheckStatus()
+        {
+            if (Wynik_Glasgow <= 10)
+            {
+                Diagnoza_Glasgow = "Zdrowy";
+            }
+            else
+            {
+                Diagnoza_Glasgow = "Martwy";
+            }
+        }
+        #endregion
+
         #endregion
 
         #region Helpers

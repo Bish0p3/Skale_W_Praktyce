@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace Skale_W_Praktyce.Models
 {
@@ -14,9 +15,23 @@ namespace Skale_W_Praktyce.Models
         #region Fields
         private string questionAnswer;
         private int questionAnswerPoints;
+        private bool isSelected = false;
+        private Color answerSelectedColor;
         #endregion
 
         #region Properties
+        public Color AnswerSelectedColor
+        {
+            get { return answerSelectedColor; }
+            set
+            {
+                if(answerSelectedColor != value)
+                {
+                    answerSelectedColor = value;
+                    RaisePropertyChanged("AnswerSelectedColor");
+                }
+            }
+        }
         public string QuestionAnswer
         {
             get { return questionAnswer; }
@@ -38,6 +53,18 @@ namespace Skale_W_Praktyce.Models
                 {
                     questionAnswerPoints = value;
                     RaisePropertyChanged("QuestionAnswerPoints");
+                }
+            }
+        }
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                if(isSelected != value)
+                {
+                    isSelected = value;
+                    RaisePropertyChanged("IsSelected");
                 }
             }
         }
