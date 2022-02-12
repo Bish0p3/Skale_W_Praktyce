@@ -92,26 +92,30 @@ namespace Skale_W_Praktyce.ViewModels
 
             #region GLASGOW - questions and answers
             ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
-            var que1 = new ScaleAnswersQuestion() { QuestionName = "Otwieranie oczu" };
-            que1.Add(new ScaleAnswers() { QuestionAnswer = "spontaniczne", QuestionAnswerPoints = 1 });
-            que1.Add(new ScaleAnswers() { QuestionAnswer = "na polecenie", QuestionAnswerPoints = 2 });
+            var que1 = new ScaleAnswersQuestion() { QuestionName = "Otwieranie oczu:" };
+            que1.Add(new ScaleAnswers() { QuestionAnswer = "spontaniczne", QuestionAnswerPoints = 4 });
+            que1.Add(new ScaleAnswers() { QuestionAnswer = "na polecenie", QuestionAnswerPoints = 3 });
             que1.Add(new ScaleAnswers() { QuestionAnswer = "na bodźce bólowe", QuestionAnswerPoints = 2 });
-            que1.Add(new ScaleAnswers() { QuestionAnswer = "nie otwiera oczu", QuestionAnswerPoints = 2 });
+            que1.Add(new ScaleAnswers() { QuestionAnswer = "nie otwiera oczu", QuestionAnswerPoints = 1 });
 
 
-            var que2 = new ScaleAnswersQuestion() { QuestionName = "Kontakt słowny" };
-            que2.Add(new ScaleAnswers() { QuestionAnswer = "odpowiedź logiczna, pacjent zorientowany co do miejsca, czasu i własnej osoby", QuestionAnswerPoints = 3 });
-            que2.Add(new ScaleAnswers() { QuestionAnswer = "odpowiedź splątana, pacjent zdezorientowany", QuestionAnswerPoints = 1 });
+            var que2 = new ScaleAnswersQuestion() { QuestionName = "Kontakt słowny:" };
+            que2.Add(new ScaleAnswers() { QuestionAnswer = "odpowiedź logiczna, pacjent zorientowany co do miejsca, czasu i własnej osoby", QuestionAnswerPoints = 5 });
+            que2.Add(new ScaleAnswers() { QuestionAnswer = "odpowiedź splątana, pacjent zdezorientowany", QuestionAnswerPoints = 4 });
             que2.Add(new ScaleAnswers() { QuestionAnswer = "odpowiedź nieadekwatna, nie na temat lub krzyk", QuestionAnswerPoints = 3 });
-            que2.Add(new ScaleAnswers() { QuestionAnswer = "niezrozumiałe dźwięki, pojękiwanie", QuestionAnswerPoints = 1 });
-            que2.Add(new ScaleAnswers() { QuestionAnswer = "bez reakcji", QuestionAnswerPoints = 3 });
+            que2.Add(new ScaleAnswers() { QuestionAnswer = "niezrozumiałe dźwięki, pojękiwanie", QuestionAnswerPoints = 2 });
+            que2.Add(new ScaleAnswers() { QuestionAnswer = "bez reakcji", QuestionAnswerPoints = 1 });
 
-            var que3 = new ScaleAnswersQuestion() { QuestionName = "Kontakt jakis" };
-            que3.Add(new ScaleAnswers() { QuestionAnswer = "odpowiedź logiczna, pacjent zorientowany co do miejsca, czasu i własnej osoby", QuestionAnswerPoints = 3 });
-            que3.Add(new ScaleAnswers() { QuestionAnswer = "odpowiedź splątana, pacjent zdezorientowany", QuestionAnswerPoints = 1 });
-            que3.Add(new ScaleAnswers() { QuestionAnswer = "odpowiedź nieadekwatna, nie na temat lub krzyk", QuestionAnswerPoints = 3 });
-            que3.Add(new ScaleAnswers() { QuestionAnswer = "niezrozumiałe dźwięki, pojękiwanie", QuestionAnswerPoints = 1 });
-            que3.Add(new ScaleAnswers() { QuestionAnswer = "bez reakcji", QuestionAnswerPoints = 3 });
+            var que3 = new ScaleAnswersQuestion() { QuestionName = "Reakcja ruchowa:" };
+            que3.Add(new ScaleAnswers() { QuestionAnswer = "Spełnianie ruchowych poleceń słownych, migowych", QuestionAnswerPoints = 6 });
+            que3.Add(new ScaleAnswers() { QuestionAnswer = "ruchy celowe, pacjent lokalizuje bodziec bólowy", QuestionAnswerPoints = 5 });
+            que3.Add(new ScaleAnswers() { QuestionAnswer = "reakcja obronna na ból, wycofanie, próba usunięcia bodźca bólowego", QuestionAnswerPoints = 4 });
+            que3.Add(new ScaleAnswers() { QuestionAnswer = "patologiczna reakcja zgięciowa, odkorowanie (przywiedzenie ramion, zgięcie w stawach łokciowych" +
+                "i ręki, przeprost w stawach kończyn dolnych)", QuestionAnswerPoints = 3 });
+            que3.Add(new ScaleAnswers() { QuestionAnswer = "patologiczna reakcja wyprostna, odmóżdżenie (odwiedzenie i obrót ramion do wewnątrz, wyprost w stawach" +
+                "łokciowych, nawrócenie przedramion i zgięcie stawów ręki, przeprost w stawach kończyn dolnych, odwrócenie stopy)", QuestionAnswerPoints = 2 });
+            que3.Add(new ScaleAnswers()
+            { QuestionAnswer = "brak reakcji", QuestionAnswerPoints = 1 });
 
 
             ScaleQuestions.Add(que1);
@@ -303,13 +307,29 @@ namespace Skale_W_Praktyce.ViewModels
         }
         private void CheckStatus()
         {
-            if (Wynik_Glasgow <= 10)
+            if (Wynik_Glasgow >= 13)
             {
-                Diagnoza_Glasgow = "Zdrowy";
+                Diagnoza_Glasgow = "łagodne zaburzenia świadomości";
             }
-            else
+            else if (Wynik_Glasgow >= 9 && Wynik_Glasgow <=12 )
             {
-                Diagnoza_Glasgow = "Martwy";
+                Diagnoza_Glasgow = "umiarkowane zaburzenia świadomości";
+            }
+            else if (Wynik_Glasgow >= 6 && Wynik_Glasgow <= 8)
+            {
+                Diagnoza_Glasgow = "brak przytomności";
+            }
+            else if (Wynik_Glasgow == 5)
+            {
+                Diagnoza_Glasgow = "odkorowanie";
+            }
+            else if (Wynik_Glasgow == 4)
+            {
+                Diagnoza_Glasgow = "odmóżdżenie";
+            }
+            else if (Wynik_Glasgow == 3)
+            {
+                Diagnoza_Glasgow = "śmierć mózgu";
             }
         }
         #endregion

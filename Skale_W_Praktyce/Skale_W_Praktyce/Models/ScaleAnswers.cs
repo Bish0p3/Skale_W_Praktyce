@@ -34,7 +34,7 @@ namespace Skale_W_Praktyce.Models
         }
         public string QuestionAnswer
         {
-            get { return questionAnswer; }
+            get => questionAnswer;
             set
             {
                 if (questionAnswer != value)
@@ -46,7 +46,7 @@ namespace Skale_W_Praktyce.Models
         }
         public int QuestionAnswerPoints
         {
-            get { return questionAnswerPoints; }
+            get => questionAnswerPoints;
             set
             {
                 if (questionAnswerPoints != value)
@@ -84,11 +84,7 @@ namespace Skale_W_Praktyce.Models
                     }
                 }
             }
-
-
         }
-
-
 
         #region PropertyChanged
 

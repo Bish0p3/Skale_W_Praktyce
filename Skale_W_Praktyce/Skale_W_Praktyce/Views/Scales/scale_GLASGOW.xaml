@@ -17,8 +17,7 @@
         <ListView IsGroupingEnabled="true"
                   GroupDisplayBinding="{Binding QuestionName}"
                   ItemsSource="{Binding ScaleQuestions}"
-                  HasUnevenRows="False"
-                  Margin="5"
+                  HasUnevenRows="True"
                   SelectedItem="{Binding SelectedAnswer}">
             <ListView.Behaviors>
                 <behaviors:EventToCommandBehavior
@@ -29,7 +28,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal"
-                                     BackgroundColor="{Binding AnswerSelectedColor, Mode=TwoWay}">
+                                     BackgroundColor="{Binding AnswerSelectedColor, Mode=TwoWay}" Padding="5">
                             <Label Text="{Binding QuestionAnswer}"
                                    Style="{StaticResource ScaleName}"
                                    VerticalOptions = "Center"
@@ -37,33 +36,32 @@
                             <Label Text="{Binding QuestionAnswerPoints}"
                                    Style="{StaticResource ScaleDesc}"
                                    VerticalOptions = "Center"
-                                   HorizontalOptions="EndAndExpand"
+                                   HorizontalOptions="End"
                                    FontAttributes="Bold"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        
-        <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="EndAndExpand" HeightRequest="100">
-            
-            <StackLayout Orientation="Horizontal" Spacing="30">
 
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="20, 5, 0, 5"> <!-- LEFT TOP RIGHT BOTTOM -->
-                    <Label Text="Wynik:" HorizontalOptions="Center" VerticalOptions="Start"
+
+        <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="End" HeightRequest="100">
+            <StackLayout Orientation="Horizontal">
+                <!-- WYNIK I PUNKTY -->
+                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Start" Margin="20, 5, 15, 5"> <!-- LEFT TOP RIGHT BOTTOM -->
+                    <Label Text="Wynik:" HorizontalOptions="Center"
                        Style="{StaticResource ScaleDesc}"
                        Margin="0" 
                        Padding="0"/>
-                    <Label Text="{Binding Wynik_Glasgow}" HorizontalOptions="Center" VerticalOptions="Center"
+                    <Label Text="{Binding Wynik_Glasgow}" HorizontalOptions="Center" 
                        Style="{StaticResource ScaleName}"
                        Margin="0" 
                        Padding="0"/>
                 </StackLayout>
 
 
-                <StackLayout Grid.Column="1" Orientation="Horizontal">
-                    <Label Text="{Binding Diagnoza_Glasgow}" VerticalOptions="Center" FontSize="Medium" />
+                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
+                    <Label Text="{Binding Diagnoza_Glasgow}" FontSize="Medium" />
                 </StackLayout>
                 
             </StackLayout>
