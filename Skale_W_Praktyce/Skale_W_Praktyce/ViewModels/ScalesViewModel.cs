@@ -137,7 +137,7 @@ namespace Skale_W_Praktyce.ViewModels
         private ScaleAnswers selectedAnswer;
 
         #region GLASGOW
-        private string diagnoza_Glasgow;
+        private string diagnoza_Glasgow = "Diagnoza";
         private int wynik_Glasgow;
         #endregion
 

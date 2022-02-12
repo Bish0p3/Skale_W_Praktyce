@@ -48,8 +48,8 @@
         <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="End" HeightRequest="100">
             <StackLayout Orientation="Horizontal">
                 <!-- WYNIK I PUNKTY -->
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Start" Margin="20, 5, 15, 5"> <!-- LEFT TOP RIGHT BOTTOM -->
-                    <Label Text="Wynik:" HorizontalOptions="Center"
+                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="Violet" Padding="10" > <!-- LEFT TOP RIGHT BOTTOM -->
+                    <Label Text="Wynik:" HorizontalOptions="Center" LineBreakMode="NoWrap"
                        Style="{StaticResource ScaleDesc}"
                        Margin="0" 
                        Padding="0"/>
@@ -60,8 +60,15 @@
                 </StackLayout>
 
 
-                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
-                    <Label Text="{Binding Diagnoza_Glasgow}" FontSize="Medium" />
+                <StackLayout Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="Red">
+                    <Label Text="{Binding Diagnoza_Glasgow}" FontSize="Medium" BackgroundColor="Green"/>
+                    <Image Source="circulatory_system.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="End" VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                        Command="{Binding AnswerTappedCommand}"
+                                        CommandParameter="Image1" />
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
                 
             </StackLayout>
