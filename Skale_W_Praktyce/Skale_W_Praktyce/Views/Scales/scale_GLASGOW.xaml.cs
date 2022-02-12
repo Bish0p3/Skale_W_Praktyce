@@ -1,6 +1,4 @@
 ﻿using Skale_W_Praktyce.ViewModels;
-using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +11,7 @@ namespace Skale_W_Praktyce.Views.Scales
         {
             InitializeComponent();
             BindingContext = new ScalesViewModel(Navigation);
-            
+
         }
 
     }

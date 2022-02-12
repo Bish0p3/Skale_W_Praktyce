@@ -25,7 +25,7 @@ namespace Skale_W_Praktyce.Models
             get { return answerSelectedColor; }
             set
             {
-                if(answerSelectedColor != value)
+                if (answerSelectedColor != value)
                 {
                     answerSelectedColor = value;
                     RaisePropertyChanged("AnswerSelectedColor");
@@ -61,7 +61,7 @@ namespace Skale_W_Praktyce.Models
             get { return isSelected; }
             set
             {
-                if(isSelected != value)
+                if (isSelected != value)
                 {
                     isSelected = value;
                     RaisePropertyChanged("IsSelected");

@@ -65,12 +65,13 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-                <!-- WYNIK I PUNKTY -->
+            <!-- WYNIK I PUNKTY -->
             <StackLayout Grid.Column="0"
                          Margin="10, 0, 10, 0"
                          Orientation="Vertical" 
                          VerticalOptions="Center"
-                         HorizontalOptions="Center"> <!-- LEFT TOP RIGHT BOTTOM -->
+                         HorizontalOptions="Center">
+                <!-- LEFT TOP RIGHT BOTTOM -->
                 <Label Text="Wynik:" HorizontalOptions="Center" LineBreakMode="NoWrap"
                    Style="{StaticResource ScaleDesc}"
                    Margin="0" 

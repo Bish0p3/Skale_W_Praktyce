@@ -110,10 +110,18 @@ namespace Skale_W_Praktyce.ViewModels
             que3.Add(new ScaleAnswers() { QuestionAnswer = "Spełnianie ruchowych poleceń słownych, migowych", QuestionAnswerPoints = 6 });
             que3.Add(new ScaleAnswers() { QuestionAnswer = "ruchy celowe, pacjent lokalizuje bodziec bólowy", QuestionAnswerPoints = 5 });
             que3.Add(new ScaleAnswers() { QuestionAnswer = "reakcja obronna na ból, wycofanie, próba usunięcia bodźca bólowego", QuestionAnswerPoints = 4 });
-            que3.Add(new ScaleAnswers() { QuestionAnswer = "patologiczna reakcja zgięciowa, odkorowanie (przywiedzenie ramion, zgięcie w stawach łokciowych" +
-                "i ręki, przeprost w stawach kończyn dolnych)", QuestionAnswerPoints = 3 });
-            que3.Add(new ScaleAnswers() { QuestionAnswer = "patologiczna reakcja wyprostna, odmóżdżenie (odwiedzenie i obrót ramion do wewnątrz, wyprost w stawach" +
-                "łokciowych, nawrócenie przedramion i zgięcie stawów ręki, przeprost w stawach kończyn dolnych, odwrócenie stopy)", QuestionAnswerPoints = 2 });
+            que3.Add(new ScaleAnswers()
+            {
+                QuestionAnswer = "patologiczna reakcja zgięciowa, odkorowanie (przywiedzenie ramion, zgięcie w stawach łokciowych" +
+                "i ręki, przeprost w stawach kończyn dolnych)",
+                QuestionAnswerPoints = 3
+            });
+            que3.Add(new ScaleAnswers()
+            {
+                QuestionAnswer = "patologiczna reakcja wyprostna, odmóżdżenie (odwiedzenie i obrót ramion do wewnątrz, wyprost w stawach" +
+                "łokciowych, nawrócenie przedramion i zgięcie stawów ręki, przeprost w stawach kończyn dolnych, odwrócenie stopy)",
+                QuestionAnswerPoints = 2
+            });
             que3.Add(new ScaleAnswers()
             { QuestionAnswer = "brak reakcji", QuestionAnswerPoints = 1 });
 
@@ -312,7 +320,7 @@ namespace Skale_W_Praktyce.ViewModels
             {
                 DiagnosisGLASGOW = "łagodne zaburzenia świadomości";
             }
-            else if (ScoreGLASGOW >= 9 && ScoreGLASGOW <=12 )
+            else if (ScoreGLASGOW >= 9 && ScoreGLASGOW <= 12)
             {
                 DiagnosisGLASGOW = "umiarkowane zaburzenia świadomości";
             }

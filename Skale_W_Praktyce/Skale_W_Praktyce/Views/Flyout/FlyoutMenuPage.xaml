@@ -3,21 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Skale_W_Praktyce.Views.Flyout.FlyoutMenuPage"
              Title="Flyout">
-  <StackLayout>
-    <ListView x:Name="MenuItemsListView"
+    <StackLayout>
+        <ListView x:Name="MenuItemsListView"
               SeparatorVisibility="None"
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}">
-      <ListView.Header>
-        <Grid BackgroundColor="{StaticResource Surface}">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-          </Grid.ColumnDefinitions>
+            <ListView.Header>
+                <Grid BackgroundColor="{StaticResource Surface}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="80"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="10"/>
                     </Grid.RowDefinitions>
@@ -29,19 +22,19 @@
                           Style="{DynamicResource SubtitleStyle}"/>
                     <Image Source="logo1.png" Grid.Column="1" Grid.Row="1" HorizontalOptions="Start"/>
                 </Grid>
-      </ListView.Header>
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <ViewCell>
-            <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-              <Label VerticalOptions="FillAndExpand" 
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                            <Label VerticalOptions="FillAndExpand" 
                     VerticalTextAlignment="Center" 
                     Text="{Binding Title}" 
                     FontSize="24"/>
-            </StackLayout>
-          </ViewCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-  </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
