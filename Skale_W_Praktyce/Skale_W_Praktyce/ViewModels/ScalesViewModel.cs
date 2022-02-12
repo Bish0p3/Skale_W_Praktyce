@@ -122,7 +122,7 @@ namespace Skale_W_Praktyce.ViewModels
             ScaleQuestions.Add(que2);
             ScaleQuestions.Add(que3);
 
-
+            GLASGOW_InfoCommand = new Command(async () => await GLASGOW_InfoMethod());
 
             #endregion
 
@@ -137,8 +137,8 @@ namespace Skale_W_Praktyce.ViewModels
         private ScaleAnswers selectedAnswer;
 
         #region GLASGOW
-        private string diagnoza_Glasgow = "Diagnoza";
-        private int wynik_Glasgow;
+        private string diagnosisGLASGOW = "Diagnoza";
+        private int scoreGLASGOW;
         #endregion
 
         #endregion
@@ -146,27 +146,27 @@ namespace Skale_W_Praktyce.ViewModels
         #region Properties
 
         #region GLASGOW
-        public int Wynik_Glasgow
+        public int ScoreGLASGOW
         {
-            get { return wynik_Glasgow; }
+            get => scoreGLASGOW;
             set
             {
-                if (wynik_Glasgow != value)
+                if (scoreGLASGOW != value)
                 {
-                    wynik_Glasgow = value;
-                    OnPropertyChanged("Wynik_Glasgow");
+                    scoreGLASGOW = value;
+                    OnPropertyChanged("ScoreGLASGOW");
                 }
             }
         }
-        public string Diagnoza_Glasgow
+        public string DiagnosisGLASGOW
         {
-            get { return diagnoza_Glasgow; }
+            get => diagnosisGLASGOW;
             set
             {
-                if (diagnoza_Glasgow != value)
+                if (diagnosisGLASGOW != value)
                 {
-                    diagnoza_Glasgow = value;
-                    OnPropertyChanged("Diagnoza_Glasgow");
+                    diagnosisGLASGOW = value;
+                    OnPropertyChanged("DiagnosisGLASGOW");
                 }
             }
         }
@@ -244,6 +244,7 @@ namespace Skale_W_Praktyce.ViewModels
 
         #endregion
 
+        public ICommand GLASGOW_InfoCommand { get; }
         #endregion
 
         #region Methods
@@ -292,45 +293,56 @@ namespace Skale_W_Praktyce.ViewModels
         {
             if (SelectedAnswer.IsSelected == false)
             {
-                Wynik_Glasgow += SelectedAnswer.QuestionAnswerPoints;
+                ScoreGLASGOW += SelectedAnswer.QuestionAnswerPoints;
                 SelectedAnswer.AnswerSelectedColor = Color.FromHex("#F07167");
                 SelectedAnswer.IsSelected = true;
-                CheckStatus();
+                GLASGOW_CheckStatus();
             }
             else
             {
-                Wynik_Glasgow -= SelectedAnswer.QuestionAnswerPoints;
+                ScoreGLASGOW -= SelectedAnswer.QuestionAnswerPoints;
                 SelectedAnswer.AnswerSelectedColor = Color.Transparent;
                 SelectedAnswer.IsSelected = false;
-                CheckStatus();
+                GLASGOW_CheckStatus();
             }
         }
-        private void CheckStatus()
+        private void GLASGOW_CheckStatus()
         {
-            if (Wynik_Glasgow >= 13)
+            if (ScoreGLASGOW >= 13)
             {
-                Diagnoza_Glasgow = "łagodne zaburzenia świadomości";
+                DiagnosisGLASGOW = "łagodne zaburzenia świadomości";
             }
-            else if (Wynik_Glasgow >= 9 && Wynik_Glasgow <=12 )
+            else if (ScoreGLASGOW >= 9 && ScoreGLASGOW <=12 )
             {
-                Diagnoza_Glasgow = "umiarkowane zaburzenia świadomości";
+                DiagnosisGLASGOW = "umiarkowane zaburzenia świadomości";
             }
-            else if (Wynik_Glasgow >= 6 && Wynik_Glasgow <= 8)
+            else if (ScoreGLASGOW >= 6 && ScoreGLASGOW <= 8)
             {
-                Diagnoza_Glasgow = "brak przytomności";
+                DiagnosisGLASGOW = "brak przytomności";
             }
-            else if (Wynik_Glasgow == 5)
+            else if (ScoreGLASGOW == 5)
             {
-                Diagnoza_Glasgow = "odkorowanie";
+                DiagnosisGLASGOW = "odkorowanie";
             }
-            else if (Wynik_Glasgow == 4)
+            else if (ScoreGLASGOW == 4)
             {
-                Diagnoza_Glasgow = "odmóżdżenie";
+                DiagnosisGLASGOW = "odmóżdżenie";
             }
-            else if (Wynik_Glasgow == 3)
+            else if (ScoreGLASGOW == 3)
             {
-                Diagnoza_Glasgow = "śmierć mózgu";
+                DiagnosisGLASGOW = "śmierć mózgu";
             }
+        }
+        private async Task GLASGOW_InfoMethod()
+        {
+            // POPUP
+            await Application.Current.MainPage.DisplayAlert("Info",
+                "Skala Glasgow to skala pozwalająca określić poziom przytomności pacjenta, " +
+                "stosowana w medycynie, szczególnie w przypadku pacjentów po urazie głowy. " +
+                "Stosuje się ją zarówno w medycynie ratunkowej, " +
+                "jak i do oceny zmian w poziomie świadomości pacjenta w trakcie leczenia." +
+                "\nŹródło:\nhttps://www.medonet.pl/zdrowie,skala-glasgow---swiadomosc--ocena--przytomnosc,artykul,1731057.html", "OK");
+
         }
         #endregion
 

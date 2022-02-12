@@ -24,17 +24,30 @@
                     EventName="ItemTapped"
                     Command="{Binding AnswerTappedCommand}"/>
             </ListView.Behaviors>
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding QuestionName}" 
+                               Style="{StaticResource ScaleName}" 
+                               HorizontalOptions="StartAndExpand"
+                               Margin="10"
+                               TextColor="{StaticResource OnBackground}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal"
                                      BackgroundColor="{Binding AnswerSelectedColor, Mode=TwoWay}" Padding="5">
                             <Label Text="{Binding QuestionAnswer}"
-                                   Style="{StaticResource ScaleName}"
+                                   Style="{StaticResource ScaleDesc}"
+                                   TextColor="{StaticResource OnBackground}"
                                    VerticalOptions = "Center"
-                                   HorizontalOptions="Start"/>
+                                   HorizontalOptions="StartAndExpand"/>
                             <Label Text="{Binding QuestionAnswerPoints}"
                                    Style="{StaticResource ScaleDesc}"
+                                   TextColor="{StaticResource OnBackground}"
                                    VerticalOptions = "Center"
                                    HorizontalOptions="End"
                                    FontAttributes="Bold"/>
@@ -45,37 +58,52 @@
         </ListView>
 
 
-        <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="End" HeightRequest="100">
-            <StackLayout Orientation="Horizontal">
+        <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="End" HeightRequest="75" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
                 <!-- WYNIK I PUNKTY -->
-                <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Start" BackgroundColor="Violet" Padding="10" > <!-- LEFT TOP RIGHT BOTTOM -->
-                    <Label Text="Wynik:" HorizontalOptions="Center" LineBreakMode="NoWrap"
-                       Style="{StaticResource ScaleDesc}"
-                       Margin="0" 
-                       Padding="0"/>
-                    <Label Text="{Binding Wynik_Glasgow}" HorizontalOptions="Center" 
-                       Style="{StaticResource ScaleName}"
-                       Margin="0" 
-                       Padding="0"/>
-                </StackLayout>
+            <StackLayout Grid.Column="0"
+                         Margin="10, 0, 10, 0"
+                         Orientation="Vertical" 
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"> <!-- LEFT TOP RIGHT BOTTOM -->
+                <Label Text="Wynik:" HorizontalOptions="Center" LineBreakMode="NoWrap"
+                   Style="{StaticResource ScaleDesc}"
+                   Margin="0" 
+                   Padding="0"/>
+                <Label Text="{Binding ScoreGLASGOW}" HorizontalOptions="Center" 
+                   Style="{StaticResource ScaleName}"
+                   Margin="0" 
+                   Padding="0"/>
+            </StackLayout>
+            <BoxView Grid.Column="1"  HorizontalOptions="Start" BackgroundColor="Black" 
+                     WidthRequest="2" HeightRequest="20"/>
 
-
-                <StackLayout Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="Red">
-                    <Label Text="{Binding Diagnoza_Glasgow}" FontSize="Medium" BackgroundColor="Green"/>
-                    <Image Source="circulatory_system.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="End" VerticalOptions="Center">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer
-                                        Command="{Binding AnswerTappedCommand}"
-                                        CommandParameter="Image1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-                
+            <!-- DIAGNOZA I INFO -->
+            <StackLayout Grid.Column="2"
+                         Orientation="Vertical" 
+                         VerticalOptions="Center"
+                         Spacing="0"
+                         Margin="10, 0, 10, 0">
+                <Label Text="Diagnoza:" Style="{StaticResource ScaleDesc}"/>
+                <Label Text="{Binding DiagnosisGLASGOW}" Style="{StaticResource InScaleFont}" FontAttributes="Bold"/>
             </StackLayout>
 
-           
-            
-           
+            <Image Grid.Column="3" HorizontalOptions="End"
+                   Source="guide.png" 
+                   HeightRequest="50" 
+                   WidthRequest="50" 
+                   VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                                        Command="{Binding GLASGOW_InfoCommand}"
+                                        CommandParameter="Image1" />
+                </Image.GestureRecognizers>
+            </Image>
         </Grid>
     </StackLayout>
 </ContentPage>

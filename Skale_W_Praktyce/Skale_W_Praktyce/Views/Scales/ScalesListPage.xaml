@@ -23,7 +23,6 @@
         <!-- SCALES LIST -->
         <ListView   ItemsSource="{Binding ScalesList}"
                     ItemSelected="ListView_ItemSelected"
-                    CachingStrategy="RecycleElement"
                     HasUnevenRows="True"
                     Margin="5">
             <ListView.ItemTemplate>
