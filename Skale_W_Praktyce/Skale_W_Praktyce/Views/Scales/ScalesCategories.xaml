@@ -16,14 +16,6 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="{StaticResource Background}" Orientation="Vertical">
 
-            <SearchBar
-                   Placeholder="Wyszukaj..."
-                   TextTransform="Lowercase"
-                   HorizontalTextAlignment="Center"
-                   FontSize="Medium"
-                   FontAttributes="Italic" />
-
-
             <Label Text="Wybierz kategorie:" 
                    FontSize="Large" 
                    TextColor="Black" 

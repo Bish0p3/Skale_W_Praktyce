@@ -68,7 +68,7 @@
                                 TextColor="{StaticResource OnSecondary}"
                                 Command="{Binding CategoriesButton_Clicked}"/>
                         <Button Style="{StaticResource DefaultButtonStyle}" 
-                                Text="Pacjenci" 
+                                Text="Ulubione" 
                                 TextColor="{StaticResource OnSecondary}"
                                 Command="{Binding PatientsButton_Clicked}"/>
                         <Button Style="{StaticResource DefaultButtonStyle}" 

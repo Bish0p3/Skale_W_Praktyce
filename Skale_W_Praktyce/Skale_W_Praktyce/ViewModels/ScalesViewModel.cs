@@ -34,6 +34,8 @@ namespace Skale_W_Praktyce.ViewModels
             #endregion
 
             #region Scales List
+            ScaleSetFavorite = new Command(ScaleSetFavoriteMethod);
+
             // Lista skal
             ScalesList = new ObservableCollection<Scale>
                 {
@@ -236,7 +238,7 @@ namespace Skale_W_Praktyce.ViewModels
         public ICommand AnswerTappedCommand { get; set; }
 
         #region ScalesList
-
+        public ICommand ScaleSetFavorite { get; set; }
 
         #endregion
 
@@ -353,6 +355,11 @@ namespace Skale_W_Praktyce.ViewModels
 
         }
         #endregion
+
+        public void ScaleSetFavoriteMethod()
+        {
+
+        }
 
         #endregion
 
