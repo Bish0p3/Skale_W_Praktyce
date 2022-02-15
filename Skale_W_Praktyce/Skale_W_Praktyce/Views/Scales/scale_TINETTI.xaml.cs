@@ -5,12 +5,12 @@ using Xamarin.Forms.Xaml;
 namespace Skale_W_Praktyce.Views.Scales
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class scale_GLASGOW : ContentPage
+    public partial class scale_TINETTI : ContentPage
     {
-        public scale_GLASGOW()
+        public scale_TINETTI()
         {
             InitializeComponent();
-            BindingContext = new scale_GLASGOW_VM();
+            BindingContext = new scale_TINETTI_VM();
 
         }
 

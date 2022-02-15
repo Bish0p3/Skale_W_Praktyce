@@ -19,7 +19,6 @@ namespace Skale_W_Praktyce.ViewModels
         {
             Navigation = navigation;
 
-
             #region ScalesCategories
             // Kategorie tap commands
             BasicCategoryTapCommand = new Command(async () => await BasicCategoryTapMethod());
@@ -49,7 +48,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Skala TINETTI",
                         ScaleDesc = "Służy do oceny równowagi i chodu.",
                         ScaleTags = "Geriatria",
-                        ScaleViewName = typeof(PatientsListPage)},
+                        ScaleViewName = typeof(scale_TINETTI)},
                     new Scale(){
                         ScaleName = "Skala Norton",
                         ScaleDesc = "Służy do oceny ryzyka postawnia odlezyn u pacjenta przewlekle chorego.",
@@ -93,62 +92,12 @@ namespace Skale_W_Praktyce.ViewModels
                 };
             #endregion
 
-            #region GLASGOW - questions and answers
-            ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
-            var que1 = new ScaleAnswersQuestion() { QuestionName = "Otwieranie oczu:" };
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "spontaniczne", QuestionAnswerPoints = 4 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "na polecenie", QuestionAnswerPoints = 3 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "na bodźce bólowe", QuestionAnswerPoints = 2 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "nie otwiera oczu", QuestionAnswerPoints = 1 });
-
-
-            var que2 = new ScaleAnswersQuestion() { QuestionName = "Kontakt słowny:" };
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź logiczna, pacjent zorientowany co do miejsca, czasu i własnej osoby", QuestionAnswerPoints = 5 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź splątana, pacjent zdezorientowany", QuestionAnswerPoints = 4 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź nieadekwatna, nie na temat lub krzyk", QuestionAnswerPoints = 3 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "niezrozumiałe dźwięki, pojękiwanie", QuestionAnswerPoints = 2 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "bez reakcji", QuestionAnswerPoints = 1 });
-
-            var que3 = new ScaleAnswersQuestion() { QuestionName = "Reakcja ruchowa:" };
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "Spełnianie ruchowych poleceń słownych, migowych", QuestionAnswerPoints = 6 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "ruchy celowe, pacjent lokalizuje bodziec bólowy", QuestionAnswerPoints = 5 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "reakcja obronna na ból, wycofanie, próba usunięcia bodźca bólowego", QuestionAnswerPoints = 4 });
-            que3.Add(new ScaleAnswers()
-            {
-                QuestionID = 2,
-                QuestionAnswer = "patologiczna reakcja zgięciowa, odkorowanie (przywiedzenie ramion, zgięcie w stawach łokciowych" +
-                "i ręki, przeprost w stawach kończyn dolnych)",
-                QuestionAnswerPoints = 3
-            });
-            que3.Add(new ScaleAnswers()
-            {
-                QuestionID = 2,
-                QuestionAnswer = "patologiczna reakcja wyprostna, odmóżdżenie (odwiedzenie i obrót ramion do wewnątrz, wyprost w stawach" +
-                "łokciowych, nawrócenie przedramion i zgięcie stawów ręki, przeprost w stawach kończyn dolnych, odwrócenie stopy)",
-                QuestionAnswerPoints = 2
-            });
-            que3.Add(new ScaleAnswers()
-            { QuestionID = 2, QuestionAnswer = "brak reakcji", QuestionAnswerPoints = 1 });
-
-
-            ScaleQuestions.Add(que1);
-            ScaleQuestions.Add(que2);
-            ScaleQuestions.Add(que3);
-
-            GLASGOW_InfoCommand = new Command(async () => await GLASGOW_InfoMethod());
-
-            #endregion
-
-            AnswerTappedCommand = new Command(HandleSelectedAnswer);
         }
 
 
         #region Fields
         private ObservableCollection<Scale> scalesList;
         private ObservableCollection<Scale> scalesListCategory;
-        public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
-        private ScaleAnswers selectedAnswer;
-
         #region GLASGOW
         private string diagnosisGLASGOW = "..";
         private int scoreGLASGOW;
@@ -157,34 +106,6 @@ namespace Skale_W_Praktyce.ViewModels
         #endregion
 
         #region Properties
-
-        #region GLASGOW
-        public int ScoreGLASGOW
-        {
-            get => scoreGLASGOW;
-            set
-            {
-                if (scoreGLASGOW != value)
-                {
-                    scoreGLASGOW = value;
-                    OnPropertyChanged("ScoreGLASGOW");
-                }
-            }
-        }
-        public string DiagnosisGLASGOW
-        {
-            get => diagnosisGLASGOW;
-            set
-            {
-                if (diagnosisGLASGOW != value)
-                {
-                    diagnosisGLASGOW = value;
-                    OnPropertyChanged("DiagnosisGLASGOW");
-                }
-            }
-        }
-
-        #endregion
 
         public ObservableCollection<Scale> ScalesList
         {
@@ -210,36 +131,11 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
-        public ObservableCollection<ScaleAnswersQuestion> ScaleQuestions
-        {
-            get { return scaleQuestions; }
-            set
-            {
-                if (scaleQuestions != value)
-                {
-                    scaleQuestions = value;
-                    OnPropertyChanged("ScaleQuestions");
-                }
-            }
-        }
-        public ScaleAnswers SelectedAnswer
-        {
-            get { return selectedAnswer; }
-            set
-            {
-                if (selectedAnswer != value)
-                {
-                    selectedAnswer = value;
-                }
-            }
-        }
-
 
         #endregion
 
         #region Commands
         public INavigation Navigation { get; set; }
-        public ICommand AnswerTappedCommand { get; set; }
 
         #region ScalesList
         public ICommand ScaleSetFavorite { get; set; }
@@ -258,7 +154,6 @@ namespace Skale_W_Praktyce.ViewModels
 
         #endregion
 
-        public ICommand GLASGOW_InfoCommand { get; }
         #endregion
 
         #region Methods
@@ -300,73 +195,6 @@ namespace Skale_W_Praktyce.ViewModels
 
         }
 
-        #endregion
-
-        #region GLASGOW
-        private void HandleSelectedAnswer()
-        {
-            if (SelectedAnswer.IsSelected == false)
-            {
-                foreach (var answer in ScaleQuestions[SelectedAnswer.QuestionID])
-                {
-                    if (answer.IsSelected == true)
-                    {
-                        answer.AnswerSelectedColor = Color.Transparent;
-                        answer.IsSelected = false;
-                        ScoreGLASGOW -= answer.QuestionAnswerPoints;
-                    }
-                }
-                ScoreGLASGOW += SelectedAnswer.QuestionAnswerPoints;
-                SelectedAnswer.AnswerSelectedColor = Color.FromHex("#F07167");
-                SelectedAnswer.IsSelected = true;
-                GLASGOW_CheckStatus();
-            }
-            else
-            {
-                ScoreGLASGOW -= SelectedAnswer.QuestionAnswerPoints;
-                SelectedAnswer.AnswerSelectedColor = Color.Transparent;
-                SelectedAnswer.IsSelected = false;
-                GLASGOW_CheckStatus();
-            }
-        }
-        private void GLASGOW_CheckStatus()
-        {
-            if (ScoreGLASGOW >= 13)
-            {
-                DiagnosisGLASGOW = "łagodne zaburzenia świadomości";
-            }
-            else if (ScoreGLASGOW >= 9 && ScoreGLASGOW <= 12)
-            {
-                DiagnosisGLASGOW = "umiarkowane zaburzenia świadomości";
-            }
-            else if (ScoreGLASGOW >= 6 && ScoreGLASGOW <= 8)
-            {
-                DiagnosisGLASGOW = "brak przytomności";
-            }
-            else if (ScoreGLASGOW == 5)
-            {
-                DiagnosisGLASGOW = "odkorowanie";
-            }
-            else if (ScoreGLASGOW == 4)
-            {
-                DiagnosisGLASGOW = "odmóżdżenie";
-            }
-            else if (ScoreGLASGOW == 3)
-            {
-                DiagnosisGLASGOW = "śmierć mózgu";
-            }
-        }
-        private async Task GLASGOW_InfoMethod()
-        {
-            // POPUP
-            await Application.Current.MainPage.DisplayAlert("Info",
-                "Skala Glasgow to skala pozwalająca określić poziom przytomności pacjenta, " +
-                "stosowana w medycynie, szczególnie w przypadku pacjentów po urazie głowy. " +
-                "Stosuje się ją zarówno w medycynie ratunkowej, " +
-                "jak i do oceny zmian w poziomie świadomości pacjenta w trakcie leczenia." +
-                "\nŹródło:\nhttps://www.medonet.pl/zdrowie,skala-glasgow---swiadomosc--ocena--przytomnosc,artykul,1731057.html", "OK");
-
-        }
         #endregion
 
         public void ScaleSetFavoriteMethod()
