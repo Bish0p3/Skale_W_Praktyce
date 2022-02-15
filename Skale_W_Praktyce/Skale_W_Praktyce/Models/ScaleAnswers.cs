@@ -13,6 +13,7 @@ namespace Skale_W_Praktyce.Models
         }
 
         #region Fields
+        private int questionID;
         private string questionAnswer;
         private int questionAnswerPoints;
         private bool isSelected = false;
@@ -20,6 +21,15 @@ namespace Skale_W_Praktyce.Models
         #endregion
 
         #region Properties
+        public int QuestionID
+        {
+            get => questionID;
+            set
+            {
+                if (questionID != value)
+                    questionID = value;
+            }
+        }
         public Color AnswerSelectedColor
         {
             get { return answerSelectedColor; }

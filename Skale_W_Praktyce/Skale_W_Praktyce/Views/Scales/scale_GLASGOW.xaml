@@ -5,12 +5,13 @@
              xmlns:behaviors="clr-namespace:Skale_W_Praktyce.Behaviors"
              >
 
-    <!-- TITLE -->
+    <!--#region TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
             <Label Text="Skala GLASGOW" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
+    <!--#endregion-->
 
     <StackLayout BackgroundColor="{StaticResource Background}">
 
