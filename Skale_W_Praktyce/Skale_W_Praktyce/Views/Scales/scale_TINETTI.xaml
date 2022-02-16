@@ -6,11 +6,11 @@
              >
 
     <!--#region TITLE -->
-    <NavigationPage.TitleView>
+    <!--<NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
             <Label Text="Skala TINETTI" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
-    </NavigationPage.TitleView>
+    </NavigationPage.TitleView>-->
     <!--#endregion-->
 
     <StackLayout BackgroundColor="{StaticResource Background}">

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Skale_W_Praktyce.Views.Scales.scale_GLASGOW"
+             x:Class="Skale_W_Praktyce.Views.Scales.scale_NORTON"
              xmlns:behaviors="clr-namespace:Skale_W_Praktyce.Behaviors"
              >
 
     <!--#region TITLE -->
     <!--<NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Label Text="Skala GLASGOW" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Label Text="Skala TINETTI" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>-->
     <!--#endregion-->

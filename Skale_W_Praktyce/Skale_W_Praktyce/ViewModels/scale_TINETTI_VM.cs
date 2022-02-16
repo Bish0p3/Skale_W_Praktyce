@@ -65,39 +65,43 @@ namespace Skale_W_Praktyce.ViewModels
             que10.Add(new ScaleAnswers() { QuestionID = 9, QuestionAnswer = "wahanie lub kilkakrotne próby ruszenia z miejsca", QuestionAnswerPoints = 0 });
             que10.Add(new ScaleAnswers() { QuestionID = 9, QuestionAnswer = "start bez wahania", QuestionAnswerPoints = 1 });
 
-            var que11 = new ScaleAnswersQuestion() { QuestionName = "Długość i wysokość kroku (zasięg ruchu prawej stopy):" };
+            var que11 = new ScaleAnswersQuestion() { QuestionName = "Długość kroku prawej stopy:" };
             que11.Add(new ScaleAnswers() { QuestionID = 10, QuestionAnswer = "nie przekracza miejsca stania lewej stopy", QuestionAnswerPoints = 0 });
             que11.Add(new ScaleAnswers() { QuestionID = 10, QuestionAnswer = "przekracza", QuestionAnswerPoints = 1 });
-            que11.Add(new ScaleAnswers() { QuestionID = 10, QuestionAnswer = "prawa stopa nie odrywa się całkowicie od podłogi", QuestionAnswerPoints = 0 });
-            que11.Add(new ScaleAnswers() { QuestionID = 10, QuestionAnswer = "odrywa się całkowicie", QuestionAnswerPoints = 1 });
 
+            var que12 = new ScaleAnswersQuestion() { QuestionName = "Wysokość kroku prawej stopy:" };
+            que12.Add(new ScaleAnswers() { QuestionID = 10, QuestionAnswer = "prawa stopa nie odrywa się całkowicie od podłogi", QuestionAnswerPoints = 0 });
+            que12.Add(new ScaleAnswers() { QuestionID = 10, QuestionAnswer = "odrywa się całkowicie", QuestionAnswerPoints = 1 });
 
-            var que12 = new ScaleAnswersQuestion() { QuestionName = "Długość i wysokość kroku (zasięg ruchu lewej stopy):" };
-            que12.Add(new ScaleAnswers() { QuestionID = 11, QuestionAnswer = "nie przekracza miejsca stania prawej stopy", QuestionAnswerPoints = 0 });
-            que12.Add(new ScaleAnswers() { QuestionID = 11, QuestionAnswer = "przekracza", QuestionAnswerPoints = 1 });
-            que12.Add(new ScaleAnswers() { QuestionID = 11, QuestionAnswer = "lewa stopa nie odrywa się całkowicie od podłogi", QuestionAnswerPoints = 2 });
+            var que13 = new ScaleAnswersQuestion() { QuestionName = "Długość kroku lewej stopy:" };
+            que13.Add(new ScaleAnswers() { QuestionID = 11, QuestionAnswer = "nie przekracza miejsca stania prawej stopy", QuestionAnswerPoints = 0 });
+            que13.Add(new ScaleAnswers() { QuestionID = 11, QuestionAnswer = "przekracza", QuestionAnswerPoints = 1 });
 
-            var que13 = new ScaleAnswersQuestion() { QuestionName = "Symetria kroku:" };
-            que13.Add(new ScaleAnswers() { QuestionID = 12, QuestionAnswer = "długość kroku obu stóp nie jest jednakowa", QuestionAnswerPoints = 0 });
-            que13.Add(new ScaleAnswers() { QuestionID = 12, QuestionAnswer = "długość kroku obu stóp wydaje się równa", QuestionAnswerPoints = 1 });
+            var que14 = new ScaleAnswersQuestion() { QuestionName = "Wysokość kroku lewej stopy:" };
+            que14.Add(new ScaleAnswers() { QuestionID = 11, QuestionAnswer = "lewa stopa nie odrywa się całkowicie od podłogi", QuestionAnswerPoints = 0 });
+            que14.Add(new ScaleAnswers() { QuestionID = 11, QuestionAnswer = "odrywa się całkowicie", QuestionAnswerPoints = 1 });
 
-            var que14 = new ScaleAnswersQuestion() { QuestionName = "Ciągłość chodu:" };
-            que14.Add(new ScaleAnswers() { QuestionID = 13, QuestionAnswer = "zatrzymywanie się pomiędzy poszczególnymi krokami, brak ciągłości chodu", QuestionAnswerPoints = 0 });
-            que14.Add(new ScaleAnswers() { QuestionID = 13, QuestionAnswer = "chód wydaje się ciągły", QuestionAnswerPoints = 1 });
+            var que15 = new ScaleAnswersQuestion() { QuestionName = "Symetria kroku:" };
+            que15.Add(new ScaleAnswers() { QuestionID = 12, QuestionAnswer = "długość kroku obu stóp nie jest jednakowa", QuestionAnswerPoints = 0 });
+            que15.Add(new ScaleAnswers() { QuestionID = 12, QuestionAnswer = "długość kroku obu stóp wydaje się równa", QuestionAnswerPoints = 1 });
 
-            var que15 = new ScaleAnswersQuestion() { QuestionName = "Ścieżka chodu oceniana na odcinku około 3 metrów:" };
-            que15.Add(new ScaleAnswers() { QuestionID = 14, QuestionAnswer = "wyraźne odchylenie od toru", QuestionAnswerPoints = 0 });
-            que15.Add(new ScaleAnswers() { QuestionID = 14, QuestionAnswer = "niewielkie odchylenie lub korzystanie z przyrządów pomocniczych", QuestionAnswerPoints = 1 });
-            que15.Add(new ScaleAnswers() { QuestionID = 14, QuestionAnswer = "prosta ścieżka, bez pomocy", QuestionAnswerPoints = 2 });
+            var que16 = new ScaleAnswersQuestion() { QuestionName = "Ciągłość chodu:" };
+            que16.Add(new ScaleAnswers() { QuestionID = 13, QuestionAnswer = "zatrzymywanie się pomiędzy poszczególnymi krokami, brak ciągłości chodu", QuestionAnswerPoints = 0 });
+            que16.Add(new ScaleAnswers() { QuestionID = 13, QuestionAnswer = "chód wydaje się ciągły", QuestionAnswerPoints = 1 });
 
-            var que16 = new ScaleAnswersQuestion() { QuestionName = "Tułów:" };
-            que16.Add(new ScaleAnswers() { QuestionID = 15, QuestionAnswer = "wyraźne kołysanie lub korzystanie z przyrządów pomocniczych", QuestionAnswerPoints = 0 });
-            que16.Add(new ScaleAnswers() { QuestionID = 15, QuestionAnswer = "brak kołysania, ale zginane są kolana lub plecy", QuestionAnswerPoints = 1 });
-            que16.Add(new ScaleAnswers() { QuestionID = 15, QuestionAnswer = "brak zginania kolan, pleców, nie korzysta z przyrządów pomocniczych", QuestionAnswerPoints = 2 });
+            var que17 = new ScaleAnswersQuestion() { QuestionName = "Ścieżka chodu oceniana na odcinku około 3 metrów:" };
+            que17.Add(new ScaleAnswers() { QuestionID = 14, QuestionAnswer = "wyraźne odchylenie od toru", QuestionAnswerPoints = 0 });
+            que17.Add(new ScaleAnswers() { QuestionID = 14, QuestionAnswer = "niewielkie odchylenie lub korzystanie z przyrządów pomocniczych", QuestionAnswerPoints = 1 });
+            que17.Add(new ScaleAnswers() { QuestionID = 14, QuestionAnswer = "prosta ścieżka, bez pomocy", QuestionAnswerPoints = 2 });
 
-            var que17 = new ScaleAnswersQuestion() { QuestionName = "Pozycja podczas chodzenia:" };
-            que17.Add(new ScaleAnswers() { QuestionID = 16, QuestionAnswer = "rozstawione pięty", QuestionAnswerPoints = 0 });
-            que17.Add(new ScaleAnswers() { QuestionID = 16, QuestionAnswer = "pięty prawie się stykają w trakcie chodzenia", QuestionAnswerPoints = 1 });
+            var que18 = new ScaleAnswersQuestion() { QuestionName = "Tułów:" };
+            que18.Add(new ScaleAnswers() { QuestionID = 15, QuestionAnswer = "wyraźne kołysanie lub korzystanie z przyrządów pomocniczych", QuestionAnswerPoints = 0 });
+            que18.Add(new ScaleAnswers() { QuestionID = 15, QuestionAnswer = "brak kołysania, ale zginane są kolana lub plecy", QuestionAnswerPoints = 1 });
+            que18.Add(new ScaleAnswers() { QuestionID = 15, QuestionAnswer = "brak zginania kolan, pleców, nie korzysta z przyrządów pomocniczych", QuestionAnswerPoints = 2 });
+
+            var que19 = new ScaleAnswersQuestion() { QuestionName = "Pozycja podczas chodzenia:" };
+            que19.Add(new ScaleAnswers() { QuestionID = 16, QuestionAnswer = "rozstawione pięty", QuestionAnswerPoints = 0 });
+            que19.Add(new ScaleAnswers() { QuestionID = 16, QuestionAnswer = "pięty prawie się stykają w trakcie chodzenia", QuestionAnswerPoints = 1 });
 
 
 
@@ -119,6 +123,8 @@ namespace Skale_W_Praktyce.ViewModels
             ScaleQuestions.Add(que15);
             ScaleQuestions.Add(que16);
             ScaleQuestions.Add(que17);
+            ScaleQuestions.Add(que18);
+            ScaleQuestions.Add(que19);
 
             InfoCommand = new Command(async () => await InfoMethod());
 

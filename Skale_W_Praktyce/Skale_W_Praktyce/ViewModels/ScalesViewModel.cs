@@ -34,7 +34,7 @@ namespace Skale_W_Praktyce.ViewModels
             #endregion
 
             #region Scales List
-            ScaleSetFavorite = new Command(ScaleSetFavoriteMethod);
+            BookmarkScaleCommand = new Command(BookmarkScaleMethod);
 
             // Lista skal
             ScalesList = new ObservableCollection<Scale>
@@ -53,7 +53,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Skala Norton",
                         ScaleDesc = "Służy do oceny ryzyka postawnia odlezyn u pacjenta przewlekle chorego.",
                         ScaleTags = "Ogólne",
-                        ScaleViewName = typeof(MainPage_Flyout)},
+                        ScaleViewName = typeof(scale_NORTON)},
                     new Scale(){
                         ScaleName = "Skala Baxtera",
                         ScaleDesc = "WYSZUKAJ NA NECIE BO NIE MA I DOPISZ DO DOKUMENTU",
@@ -98,10 +98,7 @@ namespace Skale_W_Praktyce.ViewModels
         #region Fields
         private ObservableCollection<Scale> scalesList;
         private ObservableCollection<Scale> scalesListCategory;
-        #region GLASGOW
-        private string diagnosisGLASGOW = "..";
-        private int scoreGLASGOW;
-        #endregion
+        private ImageSource bookmarkImgSrc = "bookmark.png";
 
         #endregion
 
@@ -131,14 +128,25 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
-
+        public ImageSource BookmarkImgSrc
+        {
+            get => bookmarkImgSrc;
+            set
+            {
+                if (bookmarkImgSrc != value)
+                {
+                    bookmarkImgSrc = value;
+                    OnPropertyChanged("BookmarkImgSrc");
+                }
+            }
+        }
         #endregion
 
         #region Commands
         public INavigation Navigation { get; set; }
 
         #region ScalesList
-        public ICommand ScaleSetFavorite { get; set; }
+        public ICommand BookmarkScaleCommand { get; set; }
 
         #endregion
 
@@ -197,9 +205,9 @@ namespace Skale_W_Praktyce.ViewModels
 
         #endregion
 
-        public void ScaleSetFavoriteMethod()
+        public void BookmarkScaleMethod()
         {
-
+            BookmarkImgSrc = "bookmark_saved.png";
         }
 
         #endregion

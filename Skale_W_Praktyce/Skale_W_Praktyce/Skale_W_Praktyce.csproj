@@ -45,6 +45,9 @@
     <Compile Update="Views\PatientsListPage.xaml.cs">
       <DependentUpon>PatientsListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Scales\scale_NORTON.xaml.cs">
+      <DependentUpon>scale_NORTON.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Scales\scale_TINETTI.xaml.cs">
       <DependentUpon>scale_TINETTI.xaml</DependentUpon>
     </Compile>

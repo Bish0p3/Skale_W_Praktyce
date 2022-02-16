@@ -47,15 +47,14 @@
                                          HorizontalOptions="EndAndExpand"
                                          VerticalOptions="Center">
 
-                                <Image Source="bookmark.png"
+                                <Image
                                    HeightRequest="30"
-                                   WidthRequest="30">
+                                   WidthRequest="30" Source="{Binding BookmarkImgSrc}">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer
-                                        Command="{Binding ScaleSetFavorite}"
-                                    CommandParameter="Image1"/>
+                                        Command="{Binding BookmarkScaleCommand}"
+                                        CommandParameter="Image1"/>
                                     </Image.GestureRecognizers>
-                                    <!--Command="{Binding ScaleFavButtonCommand}"-->
                                 </Image>
 
                                 <!--#endregion-->
