@@ -1,8 +1,10 @@
 ﻿using Skale_W_Praktyce.Models;
+using Skale_W_Praktyce.Views.Scales;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,8 +66,9 @@ namespace Skale_W_Praktyce.ViewModels
 
             AnswerTappedCommand = new Command(HandleSelectedAnswer);
 
+            BookmarkScaleCommand = new Command(BookmarkScaleMethod);
         }
-
+        public ObservableCollection<Scale> scales { get; set; }
         public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
 
         #region Fields
@@ -73,10 +76,24 @@ namespace Skale_W_Praktyce.ViewModels
         private ScaleAnswers selectedAnswer;
         private string diagnosis = "..";
         private int score;
-
+        private string bookmarkImgSrc = "bookmark.png";
+        private bool isBookmarked = false;
+        private INavigation navigation;
         #endregion
 
         #region Properties
+        public string BookmarkImgSrc
+        {
+            get => bookmarkImgSrc;
+            set
+            {
+                if (bookmarkImgSrc != value)
+                {
+                    bookmarkImgSrc = value;
+                    OnPropertyChanged("BookmarkImgSrc");
+                }
+            }
+        }
         public int Score
         {
             get => score;
@@ -134,6 +151,7 @@ namespace Skale_W_Praktyce.ViewModels
         public ICommand AnswerTappedCommand { get; set; }
         public ICommand InfoCommand { get; }
 
+        public ICommand BookmarkScaleCommand { get; set; }
         #endregion
 
         #region Methods
@@ -200,6 +218,25 @@ namespace Skale_W_Praktyce.ViewModels
                 "jak i do oceny zmian w poziomie świadomości pacjenta w trakcie leczenia." +
                 "\nŹródło:\nhttps://www.medonet.pl/zdrowie,skala-glasgow---swiadomosc--ocena--przytomnosc,artykul,1731057.html", "OK");
 
+        }
+
+        private void BookmarkScaleMethod()
+        {
+            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
+            if (isBookmarked)
+            {
+                scalesViewModel.ScalesList[0].IsFavorite = false;
+                //scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW)).Select(c => { c.IsFavorite = false; return c; }).ToList();
+                BookmarkImgSrc = "bookmark.png";
+                isBookmarked = false;
+            }
+            else
+            {
+                scalesViewModel.ScalesList[0].IsFavorite = true;
+                //scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW)).Select(c => { c.IsFavorite = true; return c; }).ToList();
+                BookmarkImgSrc = "bookmark_saved.png";
+                isBookmarked = true;
+            }
         }
         #endregion
 
