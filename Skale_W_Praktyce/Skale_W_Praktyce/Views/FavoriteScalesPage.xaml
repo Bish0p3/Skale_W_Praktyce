@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Skale_W_Praktyce.Views.Scales.ScalesListPage">
+             x:Class="Skale_W_Praktyce.Views.FavoriteScalesPage">
 
     <!-- TITLE -->
     <NavigationPage.TitleView>
@@ -12,13 +12,6 @@
 
     <!-- CONTENT -->
     <StackLayout BackgroundColor="{StaticResource Background}">
-
-        <!-- SEARCH BAR -->
-        <SearchBar Placeholder="Wyszukaj..."
-                   TextTransform="Lowercase"
-                   HorizontalTextAlignment="Start"
-                   FontSize="Medium"
-                   FontAttributes="Italic"/>
 
         <!-- SCALES LIST -->
         <ListView   ItemsSource="{Binding ScalesList}"
@@ -34,7 +27,8 @@
                                          Padding="0,0,0,0" 
                                          Spacing="0"  
                                          HorizontalOptions="Start">
-                                <Label Text="{Binding ScaleName}" 
+                                <Label x:Name="ScaleName" 
+                                    Text="{Binding ScaleName}" 
                                        Style="{StaticResource ScaleName}"/>
                                 <Label Text="{Binding ScaleDesc}" 
                                        Style="{StaticResource ScaleDesc}"/>
@@ -47,15 +41,7 @@
                                          HorizontalOptions="EndAndExpand"
                                          VerticalOptions="Center">
 
-                                <Image
-                                   HeightRequest="30"
-                                   WidthRequest="30" Source="{Binding BookmarkImgSrc}">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                        Command="{Binding BookmarkScaleCommand}"
-                                        CommandParameter="Image1"/>
-                                    </Image.GestureRecognizers>
-                                </Image>
+
 
                                 <!--#endregion-->
 

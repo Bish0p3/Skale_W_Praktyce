@@ -316,7 +316,7 @@ namespace Skale_W_Praktyce.ViewModels
         }
         public async Task PatientsButton_Method()
         {
-            await Navigation.PushAsync(new PatientsListPage());
+            await Navigation.PushAsync(new MainPage());
         }
         public void HelpButton_Method()
         {
