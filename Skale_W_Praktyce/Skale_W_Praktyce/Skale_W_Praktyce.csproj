@@ -24,9 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\AddPatientPage.xaml.cs">
-      <DependentUpon>AddPatientPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\Flyout\ScalesListPage_Flyout.xaml.cs">
       <DependentUpon>ScalesListPage_Flyout.xaml</DependentUpon>
     </Compile>
@@ -36,14 +33,14 @@
     <Compile Update="Views\Flyout\MainPage_Flyout.xaml.cs">
       <DependentUpon>MainPage_Flyout.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Scales\ScalesCategories.xaml.cs">
+    <Compile Update="Views\ScalesCategories.xaml.cs">
       <DependentUpon>ScalesCategories.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Scales\ScalesListPage.xaml.cs">
-      <DependentUpon>ScalesListPage.xaml</DependentUpon>
+    <Compile Update="Views\FavoriteScalesPage.xaml.cs">
+      <DependentUpon>FavoriteScalesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\PatientsListPage.xaml.cs">
-      <DependentUpon>PatientsListPage.xaml</DependentUpon>
+    <Compile Update="Views\ScalesListPage.xaml.cs">
+      <DependentUpon>ScalesListPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Scales\scale_NORTON.xaml.cs">
       <DependentUpon>scale_NORTON.xaml</DependentUpon>
@@ -54,9 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AddPatientPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Flyout\MainPage_Flyout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -69,16 +63,13 @@
     <EmbeddedResource Update="Views\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Scales\ScalesCategories.xaml">
+    <EmbeddedResource Update="Views\ScalesCategories.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Scales\ScalesListCategories.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Scales\ScalesListPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\PatientsListPage.xaml">
+    <EmbeddedResource Update="Views\ScalesListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Scales\scale_GLASGOW.xaml">
