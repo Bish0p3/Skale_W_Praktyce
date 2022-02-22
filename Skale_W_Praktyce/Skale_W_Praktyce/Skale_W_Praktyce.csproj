@@ -42,8 +42,17 @@
     <Compile Update="Views\ScalesListPage.xaml.cs">
       <DependentUpon>ScalesListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Scales\scale_GDS.xaml.cs">
+      <DependentUpon>scale_GDS.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Scales\scale_CRUSADE.xaml.cs">
+      <DependentUpon>scale_CRUSADE.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Scales\scale_NORTON.xaml.cs">
       <DependentUpon>scale_NORTON.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Scales\scale_APGAR.xaml.cs">
+      <DependentUpon>scale_APGAR.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Scales\scale_TINETTI.xaml.cs">
       <DependentUpon>scale_TINETTI.xaml</DependentUpon>

@@ -50,7 +50,7 @@ namespace Skale_W_Praktyce.ViewModels
                     new Scale(){
                         ScaleName = "Skala Norton",
                         ScaleDesc = "Służy do oceny ryzyka postawnia odlezyn u pacjenta przewlekle chorego.",
-                        ScaleTags = "Ogólne",
+                        ScaleTags = "Ogólne, Geriatria",
                         ScaleViewName = typeof(scale_NORTON)},
                     new Scale(){
                         ScaleName = "Skala Baxtera",
@@ -61,17 +61,17 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "APGAR",
                         ScaleDesc = "Skala używana w medycynie w celu określenia stanu noworodka zaraz po porodzie.",
                         ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
-                        ScaleViewName = typeof(MainPage_Flyout)},
+                        ScaleViewName = typeof(scale_APGAR)},
                     new Scale(){
-                        ScaleName = "BMI",
-                        ScaleDesc = "Wskaźnik masy ciała (ang. Body Mass Index)",
-                        ScaleTags = "Układ nerwowy",
-                        ScaleViewName = typeof(MainPage_Flyout)},
+                        ScaleName = "Geriatryczna Skala Depresji",
+                        ScaleDesc = "Geriatryczna skala oceny depresji (Geriatric Depression Scale – GDS)",
+                        ScaleTags = "Psychiatria, Geriatria",
+                        ScaleViewName = typeof(scale_GDS)},
                     new Scale(){
-                        ScaleName = "DOZ MIANIY",
-                        ScaleDesc = "LOREM IPSUM essasito essasito essasito essasito",
-                        ScaleTags = "Układ nerwowy",
-                        ScaleViewName = typeof(MainPage_Flyout)},
+                        ScaleName = "Skala CRUSADE",
+                        ScaleDesc = "Skala określająca ryzyko krwawienia.",
+                        ScaleTags = "Układ krążenia, Układ nerwowy",
+                        ScaleViewName = typeof(scale_CRUSADE)},
                     new Scale(){
                         ScaleName = "Trauma and Injury Severity Score",
                         ScaleDesc = "TRISS determine the propability of survival of a patient from the iss and rts score.",

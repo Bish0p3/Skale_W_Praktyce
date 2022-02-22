@@ -12,56 +12,41 @@ using static Skale_W_Praktyce.Models.ScaleAnswers;
 
 namespace Skale_W_Praktyce.ViewModels
 {
-    internal class scale_NORTON_VM : INotifyPropertyChanged
+    internal class scale_CRUSADE_VM : INotifyPropertyChanged
     {
-        public scale_NORTON_VM()
+        public scale_CRUSADE_VM()
         {
             #region questions and answers
             ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
-            var que1 = new ScaleAnswersQuestion() { QuestionName = "Wyjściowy hematokryt (%):" };
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "<31", QuestionAnswerPoints = 9 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "31-33.9", QuestionAnswerPoints = 7 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "34-36.9", QuestionAnswerPoints = 3 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "37-39.9", QuestionAnswerPoints = 2 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = ">=40", QuestionAnswerPoints = 0 });
+            var que1 = new ScaleAnswersQuestion() { QuestionName = "Stan fizyczny pacjenta:" };
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "bardzo ciężki", QuestionAnswerPoints = 1 });
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "średni", QuestionAnswerPoints = 2 });
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "dość dobry", QuestionAnswerPoints = 3 });
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "dobry", QuestionAnswerPoints = 4 });
 
+            var que2 = new ScaleAnswersQuestion() { QuestionName = "Stan świadomości:" };
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "stupor lub śpiączka", QuestionAnswerPoints = 1 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "zaburzona", QuestionAnswerPoints = 2 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "apatia", QuestionAnswerPoints = 3 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "pełna przytomność i świadomość", QuestionAnswerPoints = 4 });
 
-            var que2 = new ScaleAnswersQuestion() { QuestionName = "Klirens kreatyniny (ml/min):" };
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "<15", QuestionAnswerPoints = 39 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = ">15-30", QuestionAnswerPoints = 35 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = ">30-60", QuestionAnswerPoints = 28 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = ">60-90", QuestionAnswerPoints = 17 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = ">90-120", QuestionAnswerPoints = 7 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = ">=120", QuestionAnswerPoints = 0 });
+            var que3 = new ScaleAnswersQuestion() { QuestionName = "Aktywność lokomocyjna:" };
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "stale pozostaje w łóżku", QuestionAnswerPoints = 1 });
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "porusza się tylko na wózku inwalidzkim", QuestionAnswerPoints = 2 });
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "chodzi z pomocą", QuestionAnswerPoints = 3 });
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "chodzi samodzielnie", QuestionAnswerPoints = 4 });
 
-            var que3 = new ScaleAnswersQuestion() { QuestionName = "Częstotliwość rytmu serca/min:" };
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "<70", QuestionAnswerPoints = 0 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "71-80", QuestionAnswerPoints = 1 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "81-90", QuestionAnswerPoints = 3 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "91-100", QuestionAnswerPoints = 6 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "101-110", QuestionAnswerPoints = 8 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "111-120", QuestionAnswerPoints = 10 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = ">121", QuestionAnswerPoints = 11 });
+            var que4 = new ScaleAnswersQuestion() { QuestionName = "Stopień samodzielności zmian pozycji ciała:" };
+            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "całkowita niesprawność", QuestionAnswerPoints = 1 });
+            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "bardzo ograniczona", QuestionAnswerPoints = 2 });
+            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "lekko ograniczona", QuestionAnswerPoints = 3 });
+            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "pełna", QuestionAnswerPoints = 4 });
 
-            var que4 = new ScaleAnswersQuestion() { QuestionName = "Płeć:" };
-            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "Kobieta", QuestionAnswerPoints = 8 });
-            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "Mężczyzna", QuestionAnswerPoints = 0 });
-
-            var que5 = new ScaleAnswersQuestion() { QuestionName = "Objawy przedmiotowe niewydolności serca przy przyjęciu:" };
-            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "Nie", QuestionAnswerPoints = 0 });
-            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "Tak", QuestionAnswerPoints = 7 });
-
-            var que6 = new ScaleAnswersQuestion() { QuestionName = "Objawy przedmiotowe niewydolności serca przy przyjęciu:" };
-            que6.Add(new ScaleAnswers() { QuestionID = 5, QuestionAnswer = "Nie", QuestionAnswerPoints = 0 });
-            que6.Add(new ScaleAnswers() { QuestionID = 5, QuestionAnswer = "Tak", QuestionAnswerPoints = 7 });
-
-            var que7 = new ScaleAnswersQuestion() { QuestionName = "Objawy przedmiotowe niewydolności serca przy przyjęciu:" };
-            que7.Add(new ScaleAnswers() { QuestionID = 6, QuestionAnswer = "Nie", QuestionAnswerPoints = 0 });
-            que7.Add(new ScaleAnswers() { QuestionID = 6, QuestionAnswer = "Tak", QuestionAnswerPoints = 7 });
-
-            var que8 = new ScaleAnswersQuestion() { QuestionName = "Objawy przedmiotowe niewydolności serca przy przyjęciu:" };
-            que8.Add(new ScaleAnswers() { QuestionID = 7, QuestionAnswer = "Nie", QuestionAnswerPoints = 0 });
-            que8.Add(new ScaleAnswers() { QuestionID = 7, QuestionAnswer = "Tak", QuestionAnswerPoints = 7 });
+            var que5 = new ScaleAnswersQuestion() { QuestionName = "Czynność zwieraczy odbytu i cewki moczowej:" };
+            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "całkowite nieotrzymanie stolca", QuestionAnswerPoints = 1 });
+            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "zazwyczaj nieotrzymanie moczu", QuestionAnswerPoints = 2 });
+            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "sporadyczne moczenie się", QuestionAnswerPoints = 3 });
+            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "pełna sprawność zwieraczy", QuestionAnswerPoints = 4 });
 
 
 
@@ -70,10 +55,6 @@ namespace Skale_W_Praktyce.ViewModels
             ScaleQuestions.Add(que3);
             ScaleQuestions.Add(que4);
             ScaleQuestions.Add(que5);
-            ScaleQuestions.Add(que6);
-            ScaleQuestions.Add(que7);
-            ScaleQuestions.Add(que8);
-
 
             InfoCommand = new Command(async () => await InfoMethod());
 
