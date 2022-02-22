@@ -32,7 +32,7 @@ namespace Skale_W_Praktyce.ViewModels
             #region Main Page Commands
             BrowseScalesButton_Clicked = new Command(async () => await BrowseScalesButton_Method());
             CategoriesButton_Clicked = new Command(async () => await CategoriesButton_Method());
-            PatientsButton_Clicked = new Command(async () => await PatientsButton_Method());
+            FavoritesButton_Clicked = new Command(async () => await FavoritesButton_Method());
             HelpButton_Clicked = new Command(HelpButton_Method);
             LogoutButton_Clicked = new Command(async () => await LogoutButton_Method());
             #endregion
@@ -58,7 +58,7 @@ namespace Skale_W_Praktyce.ViewModels
         #region Main Page Commands
         public ICommand BrowseScalesButton_Clicked { get; set; }
         public ICommand CategoriesButton_Clicked { get; set; }
-        public ICommand PatientsButton_Clicked { get; set; }
+        public ICommand FavoritesButton_Clicked { get; set; }
         public ICommand HelpButton_Clicked { get; set; }
         public ICommand LogoutButton_Clicked { get; set; }
 
@@ -314,9 +314,9 @@ namespace Skale_W_Praktyce.ViewModels
         {
             await Navigation.PushAsync(new ScalesCategories());
         }
-        public async Task PatientsButton_Method()
+        public async Task FavoritesButton_Method()
         {
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new FavoriteScalesPage());
         }
         public void HelpButton_Method()
         {

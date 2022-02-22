@@ -70,7 +70,7 @@
                         <Button Style="{StaticResource DefaultButtonStyle}" 
                                 Text="Ulubione" 
                                 TextColor="{StaticResource OnSecondary}"
-                                Command="{Binding PatientsButton_Clicked}"/>
+                                Command="{Binding FavoritesButton_Clicked}"/>
                         <Button Style="{StaticResource DefaultButtonStyle}" 
                                 Text="Pomoc" 
                                 TextColor="{StaticResource OnSecondary}"

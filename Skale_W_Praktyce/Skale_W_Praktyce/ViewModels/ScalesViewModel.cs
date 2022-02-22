@@ -34,8 +34,6 @@ namespace Skale_W_Praktyce.ViewModels
             #endregion
 
             #region Scales List
-            BookmarkScaleCommand = new Command(BookmarkScaleMethod);
-
             // Lista skal
             ScalesList = new ObservableCollection<Scale>
                 {
@@ -68,7 +66,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "BMI",
                         ScaleDesc = "Wskaźnik masy ciała (ang. Body Mass Index)",
                         ScaleTags = "Układ nerwowy",
-                        ScaleViewName = typeof(PatientsListPage)},
+                        ScaleViewName = typeof(MainPage_Flyout)},
                     new Scale(){
                         ScaleName = "DOZ MIANIY",
                         ScaleDesc = "LOREM IPSUM essasito essasito essasito essasito",
@@ -97,8 +95,9 @@ namespace Skale_W_Praktyce.ViewModels
 
         #region Fields
         private ObservableCollection<Scale> scalesList;
+        private ObservableCollection<Scale> favoriteScalesList;
         private ObservableCollection<Scale> scalesListCategory;
-        private ImageSource bookmarkImgSrc = "bookmark.png";
+        private ImageSource bookmarkImgSrc;
 
         #endregion
 
@@ -113,6 +112,18 @@ namespace Skale_W_Praktyce.ViewModels
                 {
                     scalesList = value;
                     OnPropertyChanged("ScalesList");
+                }
+            }
+        }
+        public ObservableCollection<Scale> FavoriteScalesList
+        {
+            get { return favoriteScalesList; }
+            set
+            {
+                if (favoriteScalesList != value)
+                {
+                    favoriteScalesList = value;
+                    OnPropertyChanged("FavoriteScalesList");
                 }
             }
         }
@@ -205,10 +216,6 @@ namespace Skale_W_Praktyce.ViewModels
 
         #endregion
 
-        public void BookmarkScaleMethod()
-        {
-            BookmarkImgSrc = "bookmark_saved.png";
-        }
 
         #endregion
 

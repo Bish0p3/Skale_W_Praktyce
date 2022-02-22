@@ -13,8 +13,10 @@
     </NavigationPage.TitleView>-->
     <!--#endregion-->
 
-    <StackLayout BackgroundColor="{StaticResource Background}">
-
+    
+    <StackLayout BackgroundColor="{StaticResource Background}" Spacing="0">
+        
+        <!--#region QUESTIONS AND ANSWERS LIST -->
         <ListView IsGroupingEnabled="true"
                   GroupDisplayBinding="{Binding QuestionName}"
                   ItemsSource="{Binding ScaleQuestions}"
@@ -57,9 +59,16 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <!--#endregion-->
+        
+        <Label Text="{Binding BookmarkNotificationText}" 
+               IsVisible="{Binding BookmarkNotificationVisibility}" 
+               Style="{StaticResource ScaleDesc}" 
+               TextColor="{StaticResource OnError}" 
+               BackgroundColor="{StaticResource Error}"
+               HorizontalTextAlignment="Center"/>
 
-
-        <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="End" HeightRequest="75" Padding="10">
+        <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="End" HeightRequest="75" Padding="10" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>

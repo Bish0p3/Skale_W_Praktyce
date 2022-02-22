@@ -60,9 +60,21 @@ namespace Skale_W_Praktyce.ViewModels
             ScaleQuestions.Add(que2);
             ScaleQuestions.Add(que3);
 
-            InfoCommand = new Command(async () => await InfoMethod());
-
             #endregion
+
+            #region DODAJ DO BAZY
+            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
+            if (!scalesViewModel.ScalesList[0].IsFavorite)
+            {
+                BookmarkImgSrc = "bookmark.png";
+            }
+            else
+            {
+                BookmarkImgSrc = "Bookmark_saved.png";
+            }
+            #endregion
+
+            InfoCommand = new Command(async () => await InfoMethod());
 
             AnswerTappedCommand = new Command(HandleSelectedAnswer);
 
@@ -76,12 +88,32 @@ namespace Skale_W_Praktyce.ViewModels
         private ScaleAnswers selectedAnswer;
         private string diagnosis = "..";
         private int score;
-        private string bookmarkImgSrc = "bookmark.png";
+        private string bookmarkImgSrc;
         private bool isBookmarked = false;
         private INavigation navigation;
+        private string bookmarkNotificationText;
+        private bool bookmarkNotificationVisibility = false;
         #endregion
 
         #region Properties
+        public string BookmarkNotificationText
+        {
+            get { return bookmarkNotificationText; }
+            set
+            {
+                bookmarkNotificationText = value;
+                OnPropertyChanged("BookmarkNotificationText");
+            }
+        }
+        public bool BookmarkNotificationVisibility
+        {
+            get { return bookmarkNotificationVisibility; }
+            set
+            {
+                bookmarkNotificationVisibility = value;
+                OnPropertyChanged("BookmarkNotificationVisibility");
+            }
+        }
         public string BookmarkImgSrc
         {
             get => bookmarkImgSrc;
@@ -220,22 +252,52 @@ namespace Skale_W_Praktyce.ViewModels
 
         }
 
+        #region DODAJ DO BAZY
         private void BookmarkScaleMethod()
         {
+            // BAZA
             ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
-            if (isBookmarked)
+
+            if (scalesViewModel.ScalesList[0].IsFavorite)
             {
                 scalesViewModel.ScalesList[0].IsFavorite = false;
-                //scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW)).Select(c => { c.IsFavorite = false; return c; }).ToList();
+
+                scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
+                    .Select(c => { c.IsFavorite = false; return c; }).ToList();
+
                 BookmarkImgSrc = "bookmark.png";
-                isBookmarked = false;
+                //isBookmarked = false;
+                BookmarkNotificationTask(isBookmarked);
             }
             else
             {
                 scalesViewModel.ScalesList[0].IsFavorite = true;
-                //scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW)).Select(c => { c.IsFavorite = true; return c; }).ToList();
+
+                scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
+                    .Select(c => { c.IsFavorite = true; return c; }).ToList();
+
                 BookmarkImgSrc = "bookmark_saved.png";
-                isBookmarked = true;
+                //isBookmarked = true;
+                BookmarkNotificationTask(isBookmarked);
+            }
+        }
+        #endregion
+
+        private async Task BookmarkNotificationTask(bool IsEnabled)
+        {
+            if (IsEnabled)
+            {
+                BookmarkNotificationText = "Dodano do ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+            else
+            {
+                BookmarkNotificationText = "Usunięto z ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
             }
         }
         #endregion

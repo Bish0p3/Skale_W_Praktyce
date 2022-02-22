@@ -14,7 +14,7 @@
     <StackLayout BackgroundColor="{StaticResource Background}">
 
         <!-- SCALES LIST -->
-        <ListView   ItemsSource="{Binding ScalesList}"
+        <ListView   ItemsSource="{Binding FavoriteScalesList}"
                     ItemSelected="ListView_ItemSelected"
                     HasUnevenRows="True"
                     Margin="5">

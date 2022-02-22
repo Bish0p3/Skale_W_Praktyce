@@ -12,7 +12,7 @@ namespace Skale_W_Praktyce.Views
         public FavoriteScalesPage()
         {
             InitializeComponent();
-            BindingContext = new ScalesViewModel(Navigation);
+            BindingContext = new FavoriteScalesViewModel();
         }
 
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

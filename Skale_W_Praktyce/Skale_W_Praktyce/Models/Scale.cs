@@ -15,7 +15,7 @@ namespace Skale_W_Praktyce.Models
         private string scaleName;
         private string scaleDesc;
         private string scaleTags;
-        private bool isFavorite = false;
+        private bool isFavorite;
         #endregion
 
         #region Properties
@@ -63,7 +63,7 @@ namespace Skale_W_Praktyce.Models
 
         public bool IsFavorite
         {
-            get => isFavorite;
+            get { return isFavorite; }
             set
             {
                 if (isFavorite != value)
