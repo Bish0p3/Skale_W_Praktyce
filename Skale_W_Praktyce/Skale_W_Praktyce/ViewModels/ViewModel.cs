@@ -246,25 +246,34 @@ namespace Skale_W_Praktyce.ViewModels
 
                 ServerData server = new ServerData();
                 string connectionString = $"Data Source={server.srvrname}; Initial Catalog ={server.srvrdbname}; User ID={server.srvrusername};Password={server.srvrpassword};";
-                string queryString = $"SELECT [Username], [Password] FROM [skalewpraktyce_db].[dbo].[usersTable] WHERE [Username] = '{Login_LoginEntry}'";
-
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                string queryString = $"SELECT [username], [password] FROM [skalewpraktyce_db].[dbo].[users] WHERE [username] = '{Login_LoginEntry}'";
+                try
                 {
-                    SqlCommand command = new SqlCommand(queryString, sqlConnection);
-                    sqlConnection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    try
+                    using (SqlConnection sqlConnection = new SqlConnection(connectionString))
                     {
-                        // Check if SQL Query answer is not empty
-                        if (reader.Read())
+                        SqlCommand command = new SqlCommand(queryString, sqlConnection);
+                        sqlConnection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        try
                         {
-                            // Check if db password is the same as the one in the entry
-                            if (reader["Password"].ToString() == Login_PasswordEntry)
+                            // Check if SQL Query answer is not empty
+                            if (reader.Read())
                             {
-                                // Proceed to main page
-                                Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
-                                await Navigation.PopAsync();
+                                // Check if db password is the same as the one in the entry
+                                if (reader["Password"].ToString() == Login_PasswordEntry)
+                                {
+                                    // Proceed to main page
+                                    Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
+                                    await Navigation.PopAsync();
+                                }
+                                else
+                                {
+                                    // POPUP
+                                    await Application.Current.MainPage.DisplayAlert("Błąd",
+                                        "Błędny login lub hasło. \nSpróbuj ponownie.", "OK");
+                                }
                             }
+                            // If SQL Query answer is empty
                             else
                             {
                                 // POPUP
@@ -272,19 +281,18 @@ namespace Skale_W_Praktyce.ViewModels
                                     "Błędny login lub hasło. \nSpróbuj ponownie.", "OK");
                             }
                         }
-                        // If SQL Query answer is empty
-                        else
+                        finally
                         {
-                            // POPUP
-                            await Application.Current.MainPage.DisplayAlert("Błąd",
-                                "Błędny login lub hasło. \nSpróbuj ponownie.", "OK");
+                            // Always call Close when done reading.
+                            reader.Close();
                         }
                     }
-                    finally
-                    {
-                        // Always call Close when done reading.
-                        reader.Close();
-                    }
+                }
+                catch
+                {
+                    await Application.Current.MainPage.DisplayAlert("Uwaga",
+                       "Błąd połączenia z bazą danych.", "OK");
+
                 }
             }
             else
@@ -337,8 +345,8 @@ namespace Skale_W_Praktyce.ViewModels
             {
                 ServerData server = new ServerData();
                 string connectionString = $"Data Source={server.srvrname}; Initial Catalog ={server.srvrdbname}; User ID={server.srvrusername};Password={server.srvrpassword};";
-                string queryStringCheck = $"SELECT [Username], [Email] FROM [skalewpraktyce_db].[dbo].[usersTable] WHERE [Username] = '{Register_LoginEntry}' OR [Email] = '{Register_EmailEntry}'";
-                string queryStringRegister = $"INSERT INTO [dbo].[usersTable](Email, Username, Password) VALUES ('{Register_EmailEntry}', '{Register_LoginEntry}', '{register_PasswordEntry}')";
+                string queryStringCheck = $"SELECT [username], [email] FROM [skalewpraktyce_db].[dbo].[users] WHERE [username] = '{Register_LoginEntry}' OR [email] = '{Register_EmailEntry}'";
+                string queryStringRegister = $"INSERT INTO [dbo].[users](email, username, password) VALUES ('{Register_EmailEntry}', '{Register_LoginEntry}', '{register_PasswordEntry}')";
 
 
                 using (SqlConnection sqlConnection = new SqlConnection(connectionString))
