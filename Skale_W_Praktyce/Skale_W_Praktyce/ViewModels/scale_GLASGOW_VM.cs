@@ -64,13 +64,14 @@ namespace Skale_W_Praktyce.ViewModels
 
             #region DODAJ DO BAZY
             ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
-            if (!scalesViewModel.ScalesList[0].IsFavorite)
+            UserData userData = new UserData();
+            if (userData.Favorites.Contains("GLASGOW"))
             {
-                BookmarkImgSrc = "bookmark.png";
+                BookmarkImgSrc = "bookmark_saved.png";
             }
             else
             {
-                BookmarkImgSrc = "Bookmark_saved.png";
+                BookmarkImgSrc = "bookmark.png";
             }
             #endregion
 
@@ -257,27 +258,29 @@ namespace Skale_W_Praktyce.ViewModels
         {
             // BAZA
             ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
+            UserData userData = new UserData();
 
-            if (scalesViewModel.ScalesList[0].IsFavorite)
+            if (userData.Favorites.Contains("GLASGOW"))
             {
-                scalesViewModel.ScalesList[0].IsFavorite = false;
+                userData.Favorites.Remove("GLASGOW");
 
-                scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
-                    .Select(c => { c.IsFavorite = false; return c; }).ToList();
+                //scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
+                //    .Select(c => { c.IsFavorite = false; return c; }).ToList();
 
                 BookmarkImgSrc = "bookmark.png";
-                //isBookmarked = false;
+                isBookmarked = false;
                 BookmarkNotificationTask(isBookmarked);
             }
             else
             {
-                scalesViewModel.ScalesList[0].IsFavorite = true;
+                userData.Favorites.Add("GLASGOW");
+                //scalesViewModel.ScalesList[0].IsFavorite = true;
 
-                scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
-                    .Select(c => { c.IsFavorite = true; return c; }).ToList();
+                //scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
+                //    .Select(c => { c.IsFavorite = true; return c; }).ToList();
 
                 BookmarkImgSrc = "bookmark_saved.png";
-                //isBookmarked = true;
+                isBookmarked = true;
                 BookmarkNotificationTask(isBookmarked);
             }
         }
