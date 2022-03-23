@@ -10,11 +10,14 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using static Skale_W_Praktyce.Models.ScaleAnswers;
 using System.Linq;
+using System;
 
 namespace Skale_W_Praktyce.ViewModels
 {
     class ScalesViewModel : INotifyPropertyChanged
     {
+
+        #region Constructor
         public ScalesViewModel(INavigation navigation)
         {
             Navigation = navigation;
@@ -32,63 +35,11 @@ namespace Skale_W_Praktyce.ViewModels
 
             #region Scales List
             // Lista skal
-            ScalesList = new ObservableCollection<Scale>
-                {
-                    new Scale(){
-                        ScaleName = "Skala śpiączki Glasgow (dla dorosłych)",
-                        ScaleDesc = "GLASGOW Meningococcal Septicemia Prognostic Score (GMSPS).",
-                        ScaleTags = "Układ nerwowy",
-                        ScaleViewName = typeof(scale_GLASGOW)},
-                    new Scale(){
-                        ScaleName = "Skala TINETTI",
-                        ScaleDesc = "Służy do oceny równowagi i chodu.",
-                        ScaleTags = "Geriatria, Układ nerwowy",
-                        ScaleViewName = typeof(scale_TINETTI)},
-                    new Scale(){
-                        ScaleName = "Skala Norton",
-                        ScaleDesc = "Służy do oceny ryzyka postawnia odlezyn u pacjenta przewlekle chorego.",
-                        ScaleTags = "Ogólne, Geriatria",
-                        ScaleViewName = typeof(scale_NORTON)},
-                    new Scale(){
-                        ScaleName = "Skala Aldreta",
-                        ScaleDesc = "Skala kwalifikująca chorego po zabiegu chirurgicznym do przeniesienia go z sali budzeń na oddział zabiegowy.",
-                        ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
-                        ScaleViewName = typeof(MainPage_Flyout)},
-                    new Scale(){
-                        ScaleName = "APGAR",
-                        ScaleDesc = "Skala używana w medycynie w celu określenia stanu noworodka zaraz po porodzie.",
-                        ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
-                        ScaleViewName = typeof(scale_APGAR)},
-                    new Scale(){
-                        ScaleName = "Geriatryczna Skala Depresji",
-                        ScaleDesc = "Geriatryczna skala oceny depresji (Geriatric Depression Scale – GDS)",
-                        ScaleTags = "Psychiatria, Geriatria",
-                        ScaleViewName = typeof(scale_GDS)},
-                    new Scale(){
-                        ScaleName = "Skala CRUSADE",
-                        ScaleDesc = "Skala określająca ryzyko krwawienia.",
-                        ScaleTags = "Układ krążenia, Układ nerwowy",
-                        ScaleViewName = typeof(scale_CRUSADE)},
-                    new Scale(){
-                        ScaleName = "Skala CDR",
-                        ScaleDesc = "Badanie służące do Klinicznej Oceny Stopnia Otępienia (CDR)",
-                        ScaleTags = "Ogólne, Układ nerwowy, Geriatria",
-                        ScaleViewName = typeof(MainPage_Flyout)},
-                    new Scale(){
-                        ScaleName = "Mini-Mental State Examination (MMSE)",
-                        ScaleDesc = "Krótkie narzędzie przesiewowe do oceny otępień.",
-                        ScaleTags = "Ogólne, Geriatria, Psychiatria, Układ nerwowy",
-                        ScaleViewName = typeof(MainPage_Flyout)},
-                    new Scale(){
-                        ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test)",
-                        ScaleDesc = "Badanie identyfikujące osoby pijące w sposób ryzykowny i szkodliwy dla zdrowia, używane w terapii uzależnień alkoholowych",
-                        ScaleTags = "Ogólne, Psychiatria",
-                        ScaleViewName = typeof(MainPage_Flyout)},
-                };
+            ScalesListInit();
             #endregion
 
         }
-
+        #endregion
 
         #region Fields
         private ObservableCollection<Scale> scalesList;
@@ -142,8 +93,25 @@ namespace Skale_W_Praktyce.ViewModels
         public INavigation Navigation { get; set; }
 
         #region ScalesList
-        public ICommand BookmarkScaleCommand { get; set; }
+        private ICommand _searchCommand;
+        public ICommand SearchCommand => _searchCommand ?? (_searchCommand = new Command<string>((text) =>
+        {
+            if (text.Length >= 1)
+            {
+                ScalesList.Clear();
+                ScalesListInit();
+                var suggestions = ScalesList.Where(c => c.ScaleName.ToLower().Contains(text.ToLower())).ToList();
+                ScalesList.Clear();
+                foreach (var scale in suggestions)
+                    ScalesList.Add(scale);
 
+            }
+            else
+            {
+                ScalesListInit();
+            }
+
+        }));
         #endregion
 
         #region ScalesCategories
@@ -189,7 +157,63 @@ namespace Skale_W_Praktyce.ViewModels
         }
         #endregion
 
+        public void ScalesListInit()
+        {
+            ScalesList = new ObservableCollection<Scale>
+                {
+                    new Scale(){
+                        ScaleName = "Skala śpiączki Glasgow (dla dorosłych)",
+                        ScaleDesc = "GLASGOW Meningococcal Septicemia Prognostic Score (GMSPS).",
+                        ScaleTags = "Układ nerwowy",
+                        ScaleViewName = typeof(scale_GLASGOW)},
+                    new Scale(){
+                        ScaleName = "Skala TINETTI",
+                        ScaleDesc = "Służy do oceny równowagi i chodu.",
+                        ScaleTags = "Geriatria, Układ nerwowy",
+                        ScaleViewName = typeof(scale_TINETTI)},
+                    new Scale(){
+                        ScaleName = "Skala Norton",
+                        ScaleDesc = "Służy do oceny ryzyka postawnia odlezyn u pacjenta przewlekle chorego.",
+                        ScaleTags = "Ogólne, Geriatria",
+                        ScaleViewName = typeof(scale_NORTON)},
+                    new Scale(){
+                        ScaleName = "Skala Aldreta",
+                        ScaleDesc = "Skala kwalifikująca chorego po zabiegu chirurgicznym do przeniesienia go z sali budzeń na oddział zabiegowy.",
+                        ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
+                        ScaleViewName = typeof(MainPage_Flyout)},
+                    new Scale(){
+                        ScaleName = "APGAR",
+                        ScaleDesc = "Skala używana w medycynie w celu określenia stanu noworodka zaraz po porodzie.",
+                        ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
+                        ScaleViewName = typeof(scale_APGAR)},
+                    new Scale(){
+                        ScaleName = "Geriatryczna Skala Depresji",
+                        ScaleDesc = "Geriatryczna skala oceny depresji (Geriatric Depression Scale – GDS)",
+                        ScaleTags = "Psychiatria, Geriatria",
+                        ScaleViewName = typeof(scale_GDS)},
+                    new Scale(){
+                        ScaleName = "Skala CRUSADE",
+                        ScaleDesc = "Skala określająca ryzyko krwawienia.",
+                        ScaleTags = "Układ krążenia, Układ nerwowy",
+                        ScaleViewName = typeof(scale_CRUSADE)},
+                    new Scale(){
+                        ScaleName = "Skala CDR",
+                        ScaleDesc = "Badanie służące do Klinicznej Oceny Stopnia Otępienia (CDR)",
+                        ScaleTags = "Ogólne, Układ nerwowy, Geriatria",
+                        ScaleViewName = typeof(MainPage_Flyout)},
+                    new Scale(){
+                        ScaleName = "Mini-Mental State Examination (MMSE)",
+                        ScaleDesc = "Krótkie narzędzie przesiewowe do oceny otępień.",
+                        ScaleTags = "Ogólne, Geriatria, Psychiatria, Układ nerwowy",
+                        ScaleViewName = typeof(MainPage_Flyout)},
+                    new Scale(){
+                        ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test)",
+                        ScaleDesc = "Badanie identyfikujące osoby pijące w sposób ryzykowny i szkodliwy dla zdrowia, używane w terapii uzależnień alkoholowych",
+                        ScaleTags = "Ogólne, Psychiatria",
+                        ScaleViewName = typeof(MainPage_Flyout)},
+                };
 
+        }
         #endregion
 
         #region Helpers

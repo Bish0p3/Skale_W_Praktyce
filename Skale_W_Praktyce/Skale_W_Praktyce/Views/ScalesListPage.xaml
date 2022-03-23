@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Behaviors="clr-namespace:Skale_W_Praktyce.Behaviors"
              x:Class="Skale_W_Praktyce.Views.ScalesListPage">
 
     <!-- TITLE -->
@@ -14,6 +14,15 @@
     <StackLayout BackgroundColor="{StaticResource Background}">
 
         <!-- SCALES LIST -->
+        <SearchBar x:Name="SearchBar" 
+               Placeholder="Szukaj.." 
+               SearchCommand="{Binding SearchCommand}" 
+               SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
+               Text="{Binding SearchText, Mode=TwoWay}">
+            <SearchBar.Behaviors>
+                <Behaviors:TextChangedBehavior />
+            </SearchBar.Behaviors>
+        </SearchBar>
         <ListView   ItemsSource="{Binding ScalesList}"
                     ItemSelected="ListView_ItemSelected"
                     HasUnevenRows="True"
