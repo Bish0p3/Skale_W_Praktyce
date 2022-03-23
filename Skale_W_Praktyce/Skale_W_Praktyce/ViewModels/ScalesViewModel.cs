@@ -42,7 +42,7 @@ namespace Skale_W_Praktyce.ViewModels
                     new Scale(){
                         ScaleName = "Skala TINETTI",
                         ScaleDesc = "Służy do oceny równowagi i chodu.",
-                        ScaleTags = "Geriatria",
+                        ScaleTags = "Geriatria, Układ nerwowy",
                         ScaleViewName = typeof(scale_TINETTI)},
                     new Scale(){
                         ScaleName = "Skala Norton",
@@ -50,9 +50,9 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleTags = "Ogólne, Geriatria",
                         ScaleViewName = typeof(scale_NORTON)},
                     new Scale(){
-                        ScaleName = "Skala Baxtera",
-                        ScaleDesc = "WYSZUKAJ NA NECIE BO NIE MA I DOPISZ DO DOKUMENTU",
-                        ScaleTags = "Ogólne",
+                        ScaleName = "Skala Aldreta",
+                        ScaleDesc = "Skala kwalifikująca chorego po zabiegu chirurgicznym do przeniesienia go z sali budzeń na oddział zabiegowy.",
+                        ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
                         ScaleViewName = typeof(MainPage_Flyout)},
                     new Scale(){
                         ScaleName = "APGAR",
@@ -70,17 +70,17 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleTags = "Układ krążenia, Układ nerwowy",
                         ScaleViewName = typeof(scale_CRUSADE)},
                     new Scale(){
-                        ScaleName = "Trauma and Injury Severity Score",
-                        ScaleDesc = "TRISS determine the propability of survival of a patient from the iss and rts score.",
-                        ScaleTags = "Układ nerwowy",
+                        ScaleName = "Skala CDR",
+                        ScaleDesc = "Badanie służące do Klinicznej Oceny Stopnia Otępienia (CDR)",
+                        ScaleTags = "Ogólne, Układ nerwowy, Geriatria",
                         ScaleViewName = typeof(MainPage_Flyout)},
                     new Scale(){
                         ScaleName = "Mini-Mental State Examination (MMSE)",
                         ScaleDesc = "Krótkie narzędzie przesiewowe do oceny otępień.",
-                        ScaleTags = "Geriatria, Psychiatria, Układ nerwowy",
+                        ScaleTags = "Ogólne, Geriatria, Psychiatria, Układ nerwowy",
                         ScaleViewName = typeof(MainPage_Flyout)},
                     new Scale(){
-                        ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test",
+                        ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test)",
                         ScaleDesc = "Badanie identyfikujące osoby pijące w sposób ryzykowny i szkodliwy dla zdrowia, używane w terapii uzależnień alkoholowych",
                         ScaleTags = "Ogólne, Psychiatria",
                         ScaleViewName = typeof(MainPage_Flyout)},
