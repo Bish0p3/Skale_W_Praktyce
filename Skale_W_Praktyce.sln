@@ -1,18 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skale_W_Praktyce.Android", "Skale_W_Praktyce\Skale_W_Praktyce.Android\Skale_W_Praktyce.Android.csproj", "{D6B59EA7-A2DD-42A5-8641-CE5040FA6027}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skale_W_Praktyce.iOS", "Skale_W_Praktyce\Skale_W_Praktyce.iOS\Skale_W_Praktyce.iOS.csproj", "{966BCC71-66BD-47CF-9840-9D0DE0C1D69D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skale_W_Praktyce", "Skale_W_Praktyce\Skale_W_Praktyce\Skale_W_Praktyce.csproj", "{EDC037F4-1FD4-41DE-A5BF-3667CF1958C0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99C7461D-4657-4878-9030-FD00310D64BB}"
-	ProjectSection(SolutionItems) = preProject
-		Sciaga.txt = Sciaga.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

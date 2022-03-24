@@ -16,18 +16,6 @@ namespace Skale_W_Praktyce.ViewModels
             FavoriteScalesList = new ObservableCollection<Scale>();
 
             ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
-            UserData userData = new UserData();
-
-            for (int i = 0; i < userData.Favorites.Count; i++)
-            {
-                for (int j = 0; j < scalesViewModel.ScalesList.Count; j++)
-                {
-                    if (scalesViewModel.ScalesList[j].ScaleName.Contains(userData.Favorites[i]))
-                    {
-                        FavoriteScalesList.Add(scalesViewModel.ScalesList[j]);
-                    }
-                }
-            }
         }
 
 

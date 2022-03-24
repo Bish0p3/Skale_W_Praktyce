@@ -63,23 +63,14 @@ namespace Skale_W_Praktyce.ViewModels
             #endregion
 
             #region DODAJ DO BAZY
-            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
-            UserData userData = new UserData();
-            if (userData.Favorites.Contains("GLASGOW"))
-            {
-                BookmarkImgSrc = "bookmark_saved.png";
-            }
-            else
-            {
-                BookmarkImgSrc = "bookmark.png";
-            }
+            SetBookmarkImage();
             #endregion
 
             InfoCommand = new Command(async () => await InfoMethod());
 
             AnswerTappedCommand = new Command(HandleSelectedAnswer);
 
-            BookmarkScaleCommand = new Command(BookmarkScaleMethod);
+            BookmarkScaleCommand = new Command(async () => await BookmarkScaleMethodAsync());
         }
         public ObservableCollection<Scale> scales { get; set; }
         public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
@@ -253,19 +244,31 @@ namespace Skale_W_Praktyce.ViewModels
 
         }
 
+        private async Task SetBookmarkImage()
+        {
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
+            if (bookmarks.Any(x => x.ScaleName.Contains("Glasgow")))
+            {
+                BookmarkImgSrc = "bookmark_saved.png";
+
+            }
+            else
+            {
+                BookmarkImgSrc = "bookmark.png";
+            }
+
+        }
         #region DODAJ DO BAZY
-        private void BookmarkScaleMethod()
+        private async Task BookmarkScaleMethodAsync()
         {
             // BAZA
-            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
-            UserData userData = new UserData();
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
 
-            if (userData.Favorites.Contains("GLASGOW"))
+            if (bookmarks.Any(x => x.ScaleName.Contains("Glasgow")))
             {
-                userData.Favorites.Remove("GLASGOW");
-
-                //scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
-                //    .Select(c => { c.IsFavorite = false; return c; }).ToList();
+                //userData.Favorites.Remove("GLASGOW");
+                Bookmark x = await App.Database.GetBookmarkAsyncName("Glasgow");
+                await App.Database.DeleteBookmarkAsync(x);
 
                 BookmarkImgSrc = "bookmark.png";
                 isBookmarked = false;
@@ -273,11 +276,7 @@ namespace Skale_W_Praktyce.ViewModels
             }
             else
             {
-                userData.Favorites.Add("GLASGOW");
-                //scalesViewModel.ScalesList[0].IsFavorite = true;
-
-                //scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
-                //    .Select(c => { c.IsFavorite = true; return c; }).ToList();
+                await App.Database.SaveBookmarkAsync(new Bookmark { ScaleName = "Glasgow", UserID = 0 });
 
                 BookmarkImgSrc = "bookmark_saved.png";
                 isBookmarked = true;
