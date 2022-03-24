@@ -1,4 +1,5 @@
-﻿using Skale_W_Praktyce.Views;
+﻿using Skale_W_Praktyce.Data;
+using Skale_W_Praktyce.Views;
 using Skale_W_Praktyce.Views.Flyout;
 using Skale_W_Praktyce.Views.Scales;
 using System.ComponentModel;

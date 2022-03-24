@@ -1,4 +1,4 @@
-﻿namespace Skale_W_Praktyce
+﻿namespace Skale_W_Praktyce.Data
 {
     internal class ServerData
     {
