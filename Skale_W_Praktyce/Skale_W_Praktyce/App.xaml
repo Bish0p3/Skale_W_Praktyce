@@ -12,36 +12,36 @@
 
         <Color x:Key="Transparent">#50FBC1BC</Color>
         <!-- #region Colors -->
-            <Color x:Key="Primary">#0081A7</Color>
-            <Color x:Key="Secondary">#F07167</Color>
-            <Color x:Key="Background">#FDFCDC</Color>
-            <Color x:Key="Surface">#00AFB9</Color>
-            <Color x:Key="Error">#F07167</Color>
-            <Color x:Key="OnPrimary">#0B132B</Color>
-            <Color x:Key="OnSecondary">#0B132B</Color>
-            <Color x:Key="OnBackground">#0B132B</Color>
-            <Color x:Key="OnSurface">#FDFCDC</Color>
-            <Color x:Key="OnError">#0B132B</Color>
+        <Color x:Key="Primary">#0081A7</Color>
+        <Color x:Key="Secondary">#F07167</Color>
+        <Color x:Key="Background">#FDFCDC</Color>
+        <Color x:Key="Surface">#00AFB9</Color>
+        <Color x:Key="Error">#F07167</Color>
+        <Color x:Key="OnPrimary">#0B132B</Color>
+        <Color x:Key="OnSecondary">#0B132B</Color>
+        <Color x:Key="OnBackground">#0B132B</Color>
+        <Color x:Key="OnSurface">#FDFCDC</Color>
+        <Color x:Key="OnError">#0B132B</Color>
 
-            <Color x:Key="1">#0081A7</Color>
-            <Color x:Key="2">#00AFB9</Color>
-            <Color x:Key="3">#FDFCDC</Color>
-            <Color x:Key="4">#FED9B7</Color>
-            <Color x:Key="5">#F07167</Color>
-        
-            <!-- Dark theme -->
-            <Color x:Key="PrimaryAlt">#3A506B</Color>
-            <Color x:Key="SecondaryAlt">#7d532e</Color>
+        <Color x:Key="1">#0081A7</Color>
+        <Color x:Key="2">#00AFB9</Color>
+        <Color x:Key="3">#FDFCDC</Color>
+        <Color x:Key="4">#FED9B7</Color>
+        <Color x:Key="5">#F07167</Color>
 
-            <Color x:Key="old1">#0086e7</Color>
-            <Color x:Key="old2">#3fc9ef</Color>
-            <!--<Color x:Key="1">#0B132B</Color>
+        <!-- Dark theme -->
+        <Color x:Key="PrimaryAlt">#3A506B</Color>
+        <Color x:Key="SecondaryAlt">#7d532e</Color>
+
+        <Color x:Key="old1">#0086e7</Color>
+        <Color x:Key="old2">#3fc9ef</Color>
+        <!--<Color x:Key="1">#0B132B</Color>
             <Color x:Key="2">#1C2541</Color>
             <Color x:Key="3">#3A506B</Color>
             <Color x:Key="4">#5BC0BE</Color>
             <Color x:Key="5">#6FFFE9</Color>-->
-        
-            <!--<Color x:Key="1">#184E77</Color>
+
+        <!--<Color x:Key="1">#184E77</Color>
             <Color x:Key="2">#1E6091</Color>
             <Color x:Key="3">#1A759F</Color>
             <Color x:Key="4">#168AAD</Color>
@@ -71,20 +71,20 @@
             <Setter Property="VerticalOptions" Value="Center"/>
         </Style>
         <!--#endregion-->
-        
+
         <!-- #region Fonts -->
         <Style x:Key="ScaleName" TargetType="Label" >
             <Setter Property="FontSize" Value="17"/>
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
-        
+
         <Style x:Key="ScaleDesc" TargetType="Label" >
             <Setter Property="FontSize" Value="14"/>
         </Style>
 
         <Style x:Key="ScaleTags" TargetType="Label" >
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="TextColor" Value="LightGray"/>
+            <Setter Property="TextColor" Value="DarkGray"/>
             <Setter Property="FontAttributes" Value="Italic"/>
         </Style>
 

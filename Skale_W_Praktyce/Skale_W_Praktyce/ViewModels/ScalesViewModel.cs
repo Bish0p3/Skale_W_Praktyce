@@ -180,7 +180,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Skala Aldreta",
                         ScaleDesc = "Skala kwalifikująca chorego po zabiegu chirurgicznym do przeniesienia go z sali budzeń na oddział zabiegowy.",
                         ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
-                        ScaleViewName = typeof(MainPage_Flyout)},
+                        ScaleViewName = typeof(scale_ALDRET)},
                     new Scale(){
                         ScaleName = "APGAR",
                         ScaleDesc = "Skala używana w medycynie w celu określenia stanu noworodka zaraz po porodzie.",

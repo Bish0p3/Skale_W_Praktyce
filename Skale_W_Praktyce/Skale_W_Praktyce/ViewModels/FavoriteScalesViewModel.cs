@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Skale_W_Praktyce.ViewModels
@@ -14,11 +17,11 @@ namespace Skale_W_Praktyce.ViewModels
         public FavoriteScalesViewModel()
         {
             FavoriteScalesList = new ObservableCollection<Scale>();
-
-            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
+            InitAsync();
+            command = new Command(async () => await CheckBookmarksAsync());
         }
 
-
+        public ICommand command;
         private ObservableCollection<Scale> favoriteScalesList;
         private INavigation navigation;
 
@@ -35,7 +38,26 @@ namespace Skale_W_Praktyce.ViewModels
             }
         }
 
+        private async Task InitAsync()
+        {
+            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
 
+            Scale suggestion = (Scale)scalesViewModel.ScalesList.Where(scale => scale.ScaleName.Contains("glasgow"));
+            FavoriteScalesList.Add(suggestion);
+        }
+        private async Task CheckBookmarksAsync()
+        {
+
+
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
+
+
+            //foreach (var bookmark in bookmarks)
+            //{
+            //    var suggestion = scalesViewModel.ScalesList.Where(c => c.ScaleName.ToLower().Contains("glasgow"));
+            //    FavoriteScalesList.Add((Scale)suggestion);
+            //}
+        }
         #region Helpers
         public event PropertyChangedEventHandler PropertyChanged;
 

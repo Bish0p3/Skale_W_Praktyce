@@ -12,7 +12,7 @@
 
     <!-- CONTENT -->
     <StackLayout BackgroundColor="{StaticResource Background}">
-
+        <Button Text="SPRAWDZ" Command="{Binding command}"/>
         <!-- SCALES LIST -->
         <ListView   ItemsSource="{Binding FavoriteScalesList}"
                     ItemSelected="ListView_ItemSelected"
