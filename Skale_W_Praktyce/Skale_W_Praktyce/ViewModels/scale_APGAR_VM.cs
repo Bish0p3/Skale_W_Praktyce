@@ -14,77 +14,30 @@ using static Skale_W_Praktyce.Models.ScaleAnswers;
 
 namespace Skale_W_Praktyce.ViewModels
 {
-    internal class scale_APGAR_VM : INotifyPropertyChanged
+    internal class Scale_APGAR_VM : INotifyPropertyChanged
     {
-        public scale_APGAR_VM()
+        #region Constructor
+        public Scale_APGAR_VM()
         {
-            #region questions and answers
-            ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
-            var que1 = new ScaleAnswersQuestion() { QuestionName = "Kolor skóry:" };
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "sinica całego ciała", QuestionAnswerPoints = 0 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "tułów różowy, sinica części dystalnych kończyn", QuestionAnswerPoints = 1 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "całe ciało różowe", QuestionAnswerPoints = 2 });
+            Init();
 
+            SetBookmarkImage();
 
-            var que2 = new ScaleAnswersQuestion() { QuestionName = "Puls/na min.:" };
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "niewyczuwalny", QuestionAnswerPoints = 0 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "<100", QuestionAnswerPoints = 1 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = ">100", QuestionAnswerPoints = 2 });
-
-            var que3 = new ScaleAnswersQuestion() { QuestionName = "Reakcja na bodźce:" };
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "brak", QuestionAnswerPoints = 0 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "grymas twarzy", QuestionAnswerPoints = 1 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "kaszel lub kichanie", QuestionAnswerPoints = 2 });
-
-            var que4 = new ScaleAnswersQuestion() { QuestionName = "Napięcie mięśni:" };
-            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "brak napięcia, wiotkość ogólna", QuestionAnswerPoints = 0 });
-            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "napięcie obniżone, zgięte kończyny", QuestionAnswerPoints = 1 });
-            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "napięcie prawidłowe, samodzielne ruchy", QuestionAnswerPoints = 2 });
-
-            var que5 = new ScaleAnswersQuestion() { QuestionName = "Oddychanie:" };
-            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "brak oddechu", QuestionAnswerPoints = 0 });
-            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "wolny i nieregularny", QuestionAnswerPoints = 1 });
-            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "głośny płacz", QuestionAnswerPoints = 2 });
-
-
-
-            ScaleQuestions.Add(que1);
-            ScaleQuestions.Add(que2);
-            ScaleQuestions.Add(que3);
-            ScaleQuestions.Add(que4);
-            ScaleQuestions.Add(que5);
-
-            #endregion
-
-            #region DODAJ DO BAZY
-            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
-            if (!scalesViewModel.ScalesList[0].IsFavorite)
-            {
-                BookmarkImgSrc = "bookmark.png";
-            }
-            else
-            {
-                BookmarkImgSrc = "Bookmark_saved.png";
-            }
-            #endregion
+            BookmarkScaleCommand = new Command(async () => await BookmarkScaleMethodAsync());
 
             InfoCommand = new Command(async () => await InfoMethod());
 
             AnswerTappedCommand = new Command(HandleSelectedAnswer);
-
-            BookmarkScaleCommand = new Command(BookmarkScaleMethod);
         }
-        public ObservableCollection<Scale> scales { get; set; }
-        public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
+        #endregion
 
         #region Fields
-
+        private ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
         private ScaleAnswers selectedAnswer;
         private string diagnosis = "..";
         private int score;
         private string bookmarkImgSrc;
         private bool isBookmarked = false;
-        private INavigation navigation;
         private string bookmarkNotificationText;
         private bool bookmarkNotificationVisibility = false;
         #endregion
@@ -144,7 +97,6 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
-
         public ObservableCollection<ScaleAnswersQuestion> ScaleQuestions
         {
             get { return scaleQuestions; }
@@ -207,6 +159,73 @@ namespace Skale_W_Praktyce.ViewModels
                 CheckStatus();
             }
         }
+        private async Task BookmarkNotificationTask(bool IsEnabled)
+        {
+            if (IsEnabled)
+            {
+                BookmarkNotificationText = "Dodano do ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+            else
+            {
+                BookmarkNotificationText = "Usunięto z ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+        }
+        #endregion
+
+        #region Helpers
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Unique
+        private void Init()
+        {
+            ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
+            var que1 = new ScaleAnswersQuestion() { QuestionName = "Kolor skóry:" };
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "sinica całego ciała", QuestionAnswerPoints = 0 });
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "tułów różowy, sinica części dystalnych kończyn", QuestionAnswerPoints = 1 });
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "całe ciało różowe", QuestionAnswerPoints = 2 });
+
+
+            var que2 = new ScaleAnswersQuestion() { QuestionName = "Puls/na min.:" };
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "niewyczuwalny", QuestionAnswerPoints = 0 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "<100", QuestionAnswerPoints = 1 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = ">100", QuestionAnswerPoints = 2 });
+
+            var que3 = new ScaleAnswersQuestion() { QuestionName = "Reakcja na bodźce:" };
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "brak", QuestionAnswerPoints = 0 });
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "grymas twarzy", QuestionAnswerPoints = 1 });
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "kaszel lub kichanie", QuestionAnswerPoints = 2 });
+
+            var que4 = new ScaleAnswersQuestion() { QuestionName = "Napięcie mięśni:" };
+            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "brak napięcia, wiotkość ogólna", QuestionAnswerPoints = 0 });
+            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "napięcie obniżone, zgięte kończyny", QuestionAnswerPoints = 1 });
+            que4.Add(new ScaleAnswers() { QuestionID = 3, QuestionAnswer = "napięcie prawidłowe, samodzielne ruchy", QuestionAnswerPoints = 2 });
+
+            var que5 = new ScaleAnswersQuestion() { QuestionName = "Oddychanie:" };
+            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "brak oddechu", QuestionAnswerPoints = 0 });
+            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "wolny i nieregularny", QuestionAnswerPoints = 1 });
+            que5.Add(new ScaleAnswers() { QuestionID = 4, QuestionAnswer = "głośny płacz", QuestionAnswerPoints = 2 });
+
+
+
+            ScaleQuestions.Add(que1);
+            ScaleQuestions.Add(que2);
+            ScaleQuestions.Add(que3);
+            ScaleQuestions.Add(que4);
+            ScaleQuestions.Add(que5);
+        }
         private void CheckStatus()
         {
             if (Score >= 9)
@@ -233,69 +252,45 @@ namespace Skale_W_Praktyce.ViewModels
                "Skala Apgar to skala używana w medycynie w celu określenia stanu noworodka zaraz po porodzie: w 1., 5.i 15.minucie życia. \n" +
                "Wprowadziła ją w 1953 Virginia Apgar, absolwentka Mount Holyoke College(Massachusetts, USA), akronim powstał zaś 10 lat później.Dziecko minimalnie może dostać 0, a maksymalnie 10 punktów." +
                 "\nŹródło:\nhttps://pl.wikipedia.org/wiki/Skala_Apgar", "OK");
+        }
+        private async Task SetBookmarkImage()
+        {
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
+            if (bookmarks.Any(x => x.ScaleName.Contains("Apgar")))
+            {
+                BookmarkImgSrc = "bookmark_saved.png";
+
+            }
+            else
+            {
+                BookmarkImgSrc = "bookmark.png";
+            }
 
         }
-
-        #region DODAJ DO BAZY
-        private void BookmarkScaleMethod()
+        private async Task BookmarkScaleMethodAsync()
         {
             // BAZA
-            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
 
-            if (scalesViewModel.ScalesList[0].IsFavorite)
+            if (bookmarks.Any(x => x.ScaleName.Contains("Apgar")))
             {
-                scalesViewModel.ScalesList[0].IsFavorite = false;
-
-                scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
-                    .Select(c => { c.IsFavorite = false; return c; }).ToList();
+                //userData.Favorites.Remove("GLASGOW");
+                Bookmark x = await App.Database.GetBookmarkAsyncName("Apgar");
+                await App.Database.DeleteBookmarkAsync(x);
 
                 BookmarkImgSrc = "bookmark.png";
-                //isBookmarked = false;
+                isBookmarked = false;
                 BookmarkNotificationTask(isBookmarked);
             }
             else
             {
-                scalesViewModel.ScalesList[0].IsFavorite = true;
-
-                scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
-                    .Select(c => { c.IsFavorite = true; return c; }).ToList();
+                await App.Database.SaveBookmarkAsync(new Bookmark { ScaleName = "Apgar", UserID = 0 });
 
                 BookmarkImgSrc = "bookmark_saved.png";
-                //isBookmarked = true;
+                isBookmarked = true;
                 BookmarkNotificationTask(isBookmarked);
             }
         }
-        #endregion
-
-        private async Task BookmarkNotificationTask(bool IsEnabled)
-        {
-            if (IsEnabled)
-            {
-                BookmarkNotificationText = "Dodano do ulubionych";
-                BookmarkNotificationVisibility = true;
-                await Task.Delay(2000);
-                BookmarkNotificationVisibility = false;
-            }
-            else
-            {
-                BookmarkNotificationText = "Usunięto z ulubionych";
-                BookmarkNotificationVisibility = true;
-                await Task.Delay(2000);
-                BookmarkNotificationVisibility = false;
-            }
-        }
-        #endregion
-
-
-
-        #region Helpers
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         #endregion
 
     }

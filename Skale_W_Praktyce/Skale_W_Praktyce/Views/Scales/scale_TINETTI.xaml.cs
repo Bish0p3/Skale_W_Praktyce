@@ -10,7 +10,7 @@ namespace Skale_W_Praktyce.Views.Scales
         public scale_TINETTI()
         {
             InitializeComponent();
-            BindingContext = new scale_TINETTI_VM();
+            BindingContext = new Scale_TINETTI_VM();
 
         }
 

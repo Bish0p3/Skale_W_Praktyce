@@ -1,12 +1,9 @@
 ﻿using Skale_W_Praktyce.Models;
-using Skale_W_Praktyce.Views.Scales;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -14,75 +11,30 @@ using static Skale_W_Praktyce.Models.ScaleAnswers;
 
 namespace Skale_W_Praktyce.ViewModels
 {
-    internal class scale_GLASGOW_VM : INotifyPropertyChanged
+    internal class Scale_GLASGOW_VM : INotifyPropertyChanged
     {
-        public scale_GLASGOW_VM()
+        #region Constructor
+        public Scale_GLASGOW_VM()
         {
-            #region questions and answers
-            ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
-            var que1 = new ScaleAnswersQuestion() { QuestionName = "Otwieranie oczu:" };
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "spontaniczne", QuestionAnswerPoints = 4 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "na polecenie", QuestionAnswerPoints = 3 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "na bodźce bólowe", QuestionAnswerPoints = 2 });
-            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "nie otwiera oczu", QuestionAnswerPoints = 1 });
+            Init();
 
-
-            var que2 = new ScaleAnswersQuestion() { QuestionName = "Kontakt słowny:" };
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź logiczna, pacjent zorientowany co do miejsca, czasu i własnej osoby", QuestionAnswerPoints = 5 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź splątana, pacjent zdezorientowany", QuestionAnswerPoints = 4 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź nieadekwatna, nie na temat lub krzyk", QuestionAnswerPoints = 3 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "niezrozumiałe dźwięki, pojękiwanie", QuestionAnswerPoints = 2 });
-            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "bez reakcji", QuestionAnswerPoints = 1 });
-
-            var que3 = new ScaleAnswersQuestion() { QuestionName = "Reakcja ruchowa:" };
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "Spełnianie ruchowych poleceń słownych, migowych", QuestionAnswerPoints = 6 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "ruchy celowe, pacjent lokalizuje bodziec bólowy", QuestionAnswerPoints = 5 });
-            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "reakcja obronna na ból, wycofanie, próba usunięcia bodźca bólowego", QuestionAnswerPoints = 4 });
-            que3.Add(new ScaleAnswers()
-            {
-                QuestionID = 2,
-                QuestionAnswer = "patologiczna reakcja zgięciowa, odkorowanie (przywiedzenie ramion, zgięcie w stawach łokciowych" +
-                "i ręki, przeprost w stawach kończyn dolnych)",
-                QuestionAnswerPoints = 3
-            });
-            que3.Add(new ScaleAnswers()
-            {
-                QuestionID = 2,
-                QuestionAnswer = "patologiczna reakcja wyprostna, odmóżdżenie (odwiedzenie i obrót ramion do wewnątrz, wyprost w stawach" +
-                "łokciowych, nawrócenie przedramion i zgięcie stawów ręki, przeprost w stawach kończyn dolnych, odwrócenie stopy)",
-                QuestionAnswerPoints = 2
-            });
-            que3.Add(new ScaleAnswers()
-            { QuestionID = 2, QuestionAnswer = "brak reakcji", QuestionAnswerPoints = 1 });
-
-
-            ScaleQuestions.Add(que1);
-            ScaleQuestions.Add(que2);
-            ScaleQuestions.Add(que3);
-
-            #endregion
-
-            #region DODAJ DO BAZY
             SetBookmarkImage();
-            #endregion
+
+            BookmarkScaleCommand = new Command(async () => await BookmarkScaleMethodAsync());
 
             InfoCommand = new Command(async () => await InfoMethod());
 
             AnswerTappedCommand = new Command(HandleSelectedAnswer);
-
-            BookmarkScaleCommand = new Command(async () => await BookmarkScaleMethodAsync());
         }
-        public ObservableCollection<Scale> scales { get; set; }
-        public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
+        #endregion
 
         #region Fields
-
+        private ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
         private ScaleAnswers selectedAnswer;
         private string diagnosis = "..";
         private int score;
         private string bookmarkImgSrc;
         private bool isBookmarked = false;
-        private INavigation navigation;
         private string bookmarkNotificationText;
         private bool bookmarkNotificationVisibility = false;
         #endregion
@@ -142,7 +94,6 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
-
         public ObservableCollection<ScaleAnswersQuestion> ScaleQuestions
         {
             get { return scaleQuestions; }
@@ -205,6 +156,79 @@ namespace Skale_W_Praktyce.ViewModels
                 CheckStatus();
             }
         }
+        private async Task BookmarkNotificationTask(bool IsEnabled)
+        {
+            if (IsEnabled)
+            {
+                BookmarkNotificationText = "Dodano do ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+            else
+            {
+                BookmarkNotificationText = "Usunięto z ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+        }
+        #endregion
+
+        #region Helpers
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Unique
+        private void Init()
+        {
+            ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
+            var que1 = new ScaleAnswersQuestion() { QuestionName = "Otwieranie oczu:" };
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "spontaniczne", QuestionAnswerPoints = 4 });
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "na polecenie", QuestionAnswerPoints = 3 });
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "na bodźce bólowe", QuestionAnswerPoints = 2 });
+            que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "nie otwiera oczu", QuestionAnswerPoints = 1 });
+
+
+            var que2 = new ScaleAnswersQuestion() { QuestionName = "Kontakt słowny:" };
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź logiczna, pacjent zorientowany co do miejsca, czasu i własnej osoby", QuestionAnswerPoints = 5 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź splątana, pacjent zdezorientowany", QuestionAnswerPoints = 4 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "odpowiedź nieadekwatna, nie na temat lub krzyk", QuestionAnswerPoints = 3 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "niezrozumiałe dźwięki, pojękiwanie", QuestionAnswerPoints = 2 });
+            que2.Add(new ScaleAnswers() { QuestionID = 1, QuestionAnswer = "bez reakcji", QuestionAnswerPoints = 1 });
+
+            var que3 = new ScaleAnswersQuestion() { QuestionName = "Reakcja ruchowa:" };
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "Spełnianie ruchowych poleceń słownych, migowych", QuestionAnswerPoints = 6 });
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "ruchy celowe, pacjent lokalizuje bodziec bólowy", QuestionAnswerPoints = 5 });
+            que3.Add(new ScaleAnswers() { QuestionID = 2, QuestionAnswer = "reakcja obronna na ból, wycofanie, próba usunięcia bodźca bólowego", QuestionAnswerPoints = 4 });
+            que3.Add(new ScaleAnswers()
+            {
+                QuestionID = 2,
+                QuestionAnswer = "patologiczna reakcja zgięciowa, odkorowanie (przywiedzenie ramion, zgięcie w stawach łokciowych" +
+                "i ręki, przeprost w stawach kończyn dolnych)",
+                QuestionAnswerPoints = 3
+            });
+            que3.Add(new ScaleAnswers()
+            {
+                QuestionID = 2,
+                QuestionAnswer = "patologiczna reakcja wyprostna, odmóżdżenie (odwiedzenie i obrót ramion do wewnątrz, wyprost w stawach" +
+                "łokciowych, nawrócenie przedramion i zgięcie stawów ręki, przeprost w stawach kończyn dolnych, odwrócenie stopy)",
+                QuestionAnswerPoints = 2
+            });
+            que3.Add(new ScaleAnswers()
+            { QuestionID = 2, QuestionAnswer = "brak reakcji", QuestionAnswerPoints = 1 });
+
+
+            ScaleQuestions.Add(que1);
+            ScaleQuestions.Add(que2);
+            ScaleQuestions.Add(que3);
+        }
         private void CheckStatus()
         {
             if (Score >= 13)
@@ -243,7 +267,6 @@ namespace Skale_W_Praktyce.ViewModels
                 "\nŹródło:\nhttps://www.medonet.pl/zdrowie,skala-glasgow---swiadomosc--ocena--przytomnosc,artykul,1731057.html", "OK");
 
         }
-
         private async Task SetBookmarkImage()
         {
             List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
@@ -258,7 +281,6 @@ namespace Skale_W_Praktyce.ViewModels
             }
 
         }
-        #region DODAJ DO BAZY
         private async Task BookmarkScaleMethodAsync()
         {
             // BAZA
@@ -284,37 +306,5 @@ namespace Skale_W_Praktyce.ViewModels
             }
         }
         #endregion
-
-        private async Task BookmarkNotificationTask(bool IsEnabled)
-        {
-            if (IsEnabled)
-            {
-                BookmarkNotificationText = "Dodano do ulubionych";
-                BookmarkNotificationVisibility = true;
-                await Task.Delay(2000);
-                BookmarkNotificationVisibility = false;
-            }
-            else
-            {
-                BookmarkNotificationText = "Usunięto z ulubionych";
-                BookmarkNotificationVisibility = true;
-                await Task.Delay(2000);
-                BookmarkNotificationVisibility = false;
-            }
-        }
-        #endregion
-
-
-
-        #region Helpers
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
-
     }
 }

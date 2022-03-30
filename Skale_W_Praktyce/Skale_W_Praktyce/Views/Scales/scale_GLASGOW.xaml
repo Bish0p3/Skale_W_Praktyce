@@ -13,9 +13,9 @@
     </NavigationPage.TitleView>-->
     <!--#endregion-->
 
-    
+
     <StackLayout BackgroundColor="{StaticResource Background}" Spacing="0">
-        
+
         <!--#region QUESTIONS AND ANSWERS LIST -->
         <ListView IsGroupingEnabled="true"
                   GroupDisplayBinding="{Binding QuestionName}"
@@ -60,7 +60,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <!--#endregion-->
-        
+
         <Label Text="{Binding BookmarkNotificationText}" 
                IsVisible="{Binding BookmarkNotificationVisibility}" 
                Style="{StaticResource ScaleDesc}" 

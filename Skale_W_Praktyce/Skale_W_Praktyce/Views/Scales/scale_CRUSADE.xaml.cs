@@ -10,7 +10,7 @@ namespace Skale_W_Praktyce.Views.Scales
         public scale_CRUSADE()
         {
             InitializeComponent();
-            BindingContext = new scale_CRUSADE_VM();
+            BindingContext = new Scale_CRUSADE_VM();
 
         }
 

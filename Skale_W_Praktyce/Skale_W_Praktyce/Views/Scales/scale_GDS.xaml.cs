@@ -10,7 +10,7 @@ namespace Skale_W_Praktyce.Views.Scales
         public scale_GDS()
         {
             InitializeComponent();
-            BindingContext = new scale_GDS_VM();
+            BindingContext = new Scale_GDS_VM();
 
         }
 

@@ -1,10 +1,9 @@
 ﻿using Skale_W_Praktyce.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -12,11 +11,183 @@ using static Skale_W_Praktyce.Models.ScaleAnswers;
 
 namespace Skale_W_Praktyce.ViewModels
 {
-    internal class scale_TINETTI_VM : INotifyPropertyChanged
+    internal class Scale_TINETTI_VM : INotifyPropertyChanged
     {
-        public scale_TINETTI_VM()
+        #region Constructor
+        public Scale_TINETTI_VM()
         {
-            #region questions and answers
+            Init();
+
+            SetBookmarkImage();
+
+            BookmarkScaleCommand = new Command(async () => await BookmarkScaleMethodAsync());
+
+            InfoCommand = new Command(async () => await InfoMethod());
+
+            AnswerTappedCommand = new Command(HandleSelectedAnswer);
+        }
+        #endregion
+
+        #region Fields
+        private ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
+        private ScaleAnswers selectedAnswer;
+        private string diagnosis = "..";
+        private int score;
+        private string bookmarkImgSrc;
+        private bool isBookmarked = false;
+        private string bookmarkNotificationText;
+        private bool bookmarkNotificationVisibility = false;
+        #endregion
+
+        #region Properties
+        public string BookmarkNotificationText
+        {
+            get { return bookmarkNotificationText; }
+            set
+            {
+                bookmarkNotificationText = value;
+                OnPropertyChanged("BookmarkNotificationText");
+            }
+        }
+        public bool BookmarkNotificationVisibility
+        {
+            get { return bookmarkNotificationVisibility; }
+            set
+            {
+                bookmarkNotificationVisibility = value;
+                OnPropertyChanged("BookmarkNotificationVisibility");
+            }
+        }
+        public string BookmarkImgSrc
+        {
+            get => bookmarkImgSrc;
+            set
+            {
+                if (bookmarkImgSrc != value)
+                {
+                    bookmarkImgSrc = value;
+                    OnPropertyChanged("BookmarkImgSrc");
+                }
+            }
+        }
+        public int Score
+        {
+            get => score;
+            set
+            {
+                if (score != value)
+                {
+                    score = value;
+                    OnPropertyChanged("Score");
+                }
+            }
+        }
+        public string Diagnosis
+        {
+            get => diagnosis;
+            set
+            {
+                if (diagnosis != value)
+                {
+                    diagnosis = value;
+                    OnPropertyChanged("Diagnosis");
+                }
+            }
+        }
+        public ObservableCollection<ScaleAnswersQuestion> ScaleQuestions
+        {
+            get { return scaleQuestions; }
+            set
+            {
+                if (scaleQuestions != value)
+                {
+                    scaleQuestions = value;
+                    OnPropertyChanged("ScaleQuestions");
+                }
+            }
+        }
+
+
+        public ScaleAnswers SelectedAnswer
+        {
+            get { return selectedAnswer; }
+            set
+            {
+                if (selectedAnswer != value)
+                {
+                    selectedAnswer = value;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Commands
+        public ICommand AnswerTappedCommand { get; set; }
+        public ICommand InfoCommand { get; }
+
+        public ICommand BookmarkScaleCommand { get; set; }
+        #endregion
+
+        #region Methods
+        private void HandleSelectedAnswer()
+        {
+            if (SelectedAnswer.IsSelected == false)
+            {
+                foreach (var answer in ScaleQuestions[SelectedAnswer.QuestionID])
+                {
+                    if (answer.IsSelected == true)
+                    {
+                        answer.AnswerSelectedColor = Color.Transparent;
+                        answer.IsSelected = false;
+                        Score -= answer.QuestionAnswerPoints;
+                    }
+                }
+                Score += SelectedAnswer.QuestionAnswerPoints;
+                SelectedAnswer.AnswerSelectedColor = Color.FromHex("#F07167");
+                SelectedAnswer.IsSelected = true;
+                CheckStatus();
+            }
+            else
+            {
+                Score -= SelectedAnswer.QuestionAnswerPoints;
+                SelectedAnswer.AnswerSelectedColor = Color.Transparent;
+                SelectedAnswer.IsSelected = false;
+                CheckStatus();
+            }
+        }
+        private async Task BookmarkNotificationTask(bool IsEnabled)
+        {
+            if (IsEnabled)
+            {
+                BookmarkNotificationText = "Dodano do ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+            else
+            {
+                BookmarkNotificationText = "Usunięto z ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+        }
+        #endregion
+
+        #region Helpers
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Unique
+        private void Init()
+        {
             ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
             var que1 = new ScaleAnswersQuestion() { QuestionName = "Równowaga podczas siedzenia:" };
             que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "pochyla się lub ześlizguje z krzesła", QuestionAnswerPoints = 0 });
@@ -125,111 +296,6 @@ namespace Skale_W_Praktyce.ViewModels
             ScaleQuestions.Add(que17);
             ScaleQuestions.Add(que18);
             ScaleQuestions.Add(que19);
-
-            InfoCommand = new Command(async () => await InfoMethod());
-
-            #endregion
-
-            AnswerTappedCommand = new Command(HandleSelectedAnswer);
-
-        }
-
-        public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
-
-        #region Fields
-
-        private ScaleAnswers selectedAnswer;
-        private string diagnosis = "..";
-        private int score;
-
-        #endregion
-
-        #region Properties
-        public int Score
-        {
-            get => score;
-            set
-            {
-                if (score != value)
-                {
-                    score = value;
-                    OnPropertyChanged("Score");
-                }
-            }
-        }
-        public string Diagnosis
-        {
-            get => diagnosis;
-            set
-            {
-                if (diagnosis != value)
-                {
-                    diagnosis = value;
-                    OnPropertyChanged("Diagnosis");
-                }
-            }
-        }
-
-        public ObservableCollection<ScaleAnswersQuestion> ScaleQuestions
-        {
-            get { return scaleQuestions; }
-            set
-            {
-                if (scaleQuestions != value)
-                {
-                    scaleQuestions = value;
-                    OnPropertyChanged("ScaleQuestions");
-                }
-            }
-        }
-
-
-        public ScaleAnswers SelectedAnswer
-        {
-            get { return selectedAnswer; }
-            set
-            {
-                if (selectedAnswer != value)
-                {
-                    selectedAnswer = value;
-                }
-            }
-        }
-
-        #endregion
-
-        #region Commands
-        public ICommand AnswerTappedCommand { get; set; }
-        public ICommand InfoCommand { get; }
-
-        #endregion
-
-        #region Methods
-        private void HandleSelectedAnswer()
-        {
-            if (SelectedAnswer.IsSelected == false)
-            {
-                foreach (var answer in ScaleQuestions[SelectedAnswer.QuestionID])
-                {
-                    if (answer.IsSelected == true)
-                    {
-                        answer.AnswerSelectedColor = Color.Transparent;
-                        answer.IsSelected = false;
-                        Score -= answer.QuestionAnswerPoints;
-                    }
-                }
-                Score += SelectedAnswer.QuestionAnswerPoints;
-                SelectedAnswer.AnswerSelectedColor = Color.FromHex("#F07167");
-                SelectedAnswer.IsSelected = true;
-                CheckStatus();
-            }
-            else
-            {
-                Score -= SelectedAnswer.QuestionAnswerPoints;
-                SelectedAnswer.AnswerSelectedColor = Color.Transparent;
-                SelectedAnswer.IsSelected = false;
-                CheckStatus();
-            }
         }
         private void CheckStatus()
         {
@@ -252,21 +318,45 @@ namespace Skale_W_Praktyce.ViewModels
             await Application.Current.MainPage.DisplayAlert("Info",
                 "Skala Tinetti jest powszechnie stosowana przy całościowej ocenie geriatrycznej, jednakże znajduje zastosowanie bardzo często na oddziałach neurologicznych czy ortopedycznych. Służy do oceny ryzyka upadków. \nPacjent może uzyskać w części dotyczącej równowagi maksymalnie 16 punktów, a w części dotyczącej chodu – 12 punktów. Łącznie daje to sumę 28 punktów. Wynik poniżej 26 punktów oznacza istnienie problemu. Natomiast uzyskanie mniej niż 19 punktów oznacza, że pacjent ma 5 - krotnie wyższe ryzyko upadku niż osoba, która uzyskała 28 punktów. Ponadto uzyskanie przynajmniej jednego „0” lub dwóch „1” (gdzie nie jest to najwyższa liczba punktów do zdobycia) stanowi wskazanie do konsultacji z fizjoterapeutą.." +
                 "\nŹródło:\nhttps://fizjoterapeuty.pl/testy-funkcjonalne/skala-tinetti.html", "OK");
-
         }
-        #endregion
-
-
-
-        #region Helpers
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private async Task SetBookmarkImage()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
+            if (bookmarks.Any(x => x.ScaleName.Contains("Tinetti")))
+            {
+                BookmarkImgSrc = "bookmark_saved.png";
+
+            }
+            else
+            {
+                BookmarkImgSrc = "bookmark.png";
+            }
+
         }
+        private async Task BookmarkScaleMethodAsync()
+        {
+            // BAZA
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
 
+            if (bookmarks.Any(x => x.ScaleName.Contains("Tinetti")))
+            {
+                //userData.Favorites.Remove("GLASGOW");
+                Bookmark x = await App.Database.GetBookmarkAsyncName("Tinetti");
+                await App.Database.DeleteBookmarkAsync(x);
+
+                BookmarkImgSrc = "bookmark.png";
+                isBookmarked = false;
+                BookmarkNotificationTask(isBookmarked);
+            }
+            else
+            {
+                await App.Database.SaveBookmarkAsync(new Bookmark { ScaleName = "Tinetti", UserID = 0 });
+
+                BookmarkImgSrc = "bookmark_saved.png";
+                isBookmarked = true;
+                BookmarkNotificationTask(isBookmarked);
+            }
+        }
         #endregion
-
     }
 }

@@ -10,7 +10,7 @@ namespace Skale_W_Praktyce.Views.Scales
         public scale_APGAR()
         {
             InitializeComponent();
-            BindingContext = new scale_APGAR_VM();
+            BindingContext = new Scale_APGAR_VM();
 
         }
 

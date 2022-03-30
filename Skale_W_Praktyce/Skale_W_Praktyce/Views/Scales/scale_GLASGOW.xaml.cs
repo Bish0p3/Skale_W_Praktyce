@@ -10,7 +10,7 @@ namespace Skale_W_Praktyce.Views.Scales
         public scale_GLASGOW()
         {
             InitializeComponent();
-            BindingContext = new scale_GLASGOW_VM();
+            BindingContext = new Scale_GLASGOW_VM();
 
         }
 

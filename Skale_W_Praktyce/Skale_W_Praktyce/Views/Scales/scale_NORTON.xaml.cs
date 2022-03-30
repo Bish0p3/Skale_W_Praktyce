@@ -10,7 +10,7 @@ namespace Skale_W_Praktyce.Views.Scales
         public scale_NORTON()
         {
             InitializeComponent();
-            BindingContext = new scale_NORTON_VM();
+            BindingContext = new Scale_NORTON_VM();
 
         }
 

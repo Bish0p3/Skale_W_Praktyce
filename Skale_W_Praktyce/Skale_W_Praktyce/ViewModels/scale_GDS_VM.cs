@@ -14,11 +14,183 @@ using static Skale_W_Praktyce.Models.ScaleAnswers;
 
 namespace Skale_W_Praktyce.ViewModels
 {
-    internal class scale_GDS_VM : INotifyPropertyChanged
+    internal class Scale_GDS_VM : INotifyPropertyChanged
     {
-        public scale_GDS_VM()
+        #region Constructor
+        public Scale_GDS_VM()
         {
-            #region questions and answers
+            Init();
+
+            SetBookmarkImage();
+
+            BookmarkScaleCommand = new Command(async () => await BookmarkScaleMethodAsync());
+
+            InfoCommand = new Command(async () => await InfoMethod());
+
+            AnswerTappedCommand = new Command(HandleSelectedAnswer);
+        }
+        #endregion
+
+        #region Fields
+        private ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
+        private ScaleAnswers selectedAnswer;
+        private string diagnosis = "..";
+        private int score;
+        private string bookmarkImgSrc;
+        private bool isBookmarked = false;
+        private string bookmarkNotificationText;
+        private bool bookmarkNotificationVisibility = false;
+        #endregion
+
+        #region Properties
+        public string BookmarkNotificationText
+        {
+            get { return bookmarkNotificationText; }
+            set
+            {
+                bookmarkNotificationText = value;
+                OnPropertyChanged("BookmarkNotificationText");
+            }
+        }
+        public bool BookmarkNotificationVisibility
+        {
+            get { return bookmarkNotificationVisibility; }
+            set
+            {
+                bookmarkNotificationVisibility = value;
+                OnPropertyChanged("BookmarkNotificationVisibility");
+            }
+        }
+        public string BookmarkImgSrc
+        {
+            get => bookmarkImgSrc;
+            set
+            {
+                if (bookmarkImgSrc != value)
+                {
+                    bookmarkImgSrc = value;
+                    OnPropertyChanged("BookmarkImgSrc");
+                }
+            }
+        }
+        public int Score
+        {
+            get => score;
+            set
+            {
+                if (score != value)
+                {
+                    score = value;
+                    OnPropertyChanged("Score");
+                }
+            }
+        }
+        public string Diagnosis
+        {
+            get => diagnosis;
+            set
+            {
+                if (diagnosis != value)
+                {
+                    diagnosis = value;
+                    OnPropertyChanged("Diagnosis");
+                }
+            }
+        }
+        public ObservableCollection<ScaleAnswersQuestion> ScaleQuestions
+        {
+            get { return scaleQuestions; }
+            set
+            {
+                if (scaleQuestions != value)
+                {
+                    scaleQuestions = value;
+                    OnPropertyChanged("ScaleQuestions");
+                }
+            }
+        }
+
+
+        public ScaleAnswers SelectedAnswer
+        {
+            get { return selectedAnswer; }
+            set
+            {
+                if (selectedAnswer != value)
+                {
+                    selectedAnswer = value;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Commands
+        public ICommand AnswerTappedCommand { get; set; }
+        public ICommand InfoCommand { get; }
+
+        public ICommand BookmarkScaleCommand { get; set; }
+        #endregion
+
+        #region Methods
+        private void HandleSelectedAnswer()
+        {
+            if (SelectedAnswer.IsSelected == false)
+            {
+                foreach (var answer in ScaleQuestions[SelectedAnswer.QuestionID])
+                {
+                    if (answer.IsSelected == true)
+                    {
+                        answer.AnswerSelectedColor = Color.Transparent;
+                        answer.IsSelected = false;
+                        Score -= answer.QuestionAnswerPoints;
+                    }
+                }
+                Score += SelectedAnswer.QuestionAnswerPoints;
+                SelectedAnswer.AnswerSelectedColor = Color.FromHex("#F07167");
+                SelectedAnswer.IsSelected = true;
+                CheckStatus();
+            }
+            else
+            {
+                Score -= SelectedAnswer.QuestionAnswerPoints;
+                SelectedAnswer.AnswerSelectedColor = Color.Transparent;
+                SelectedAnswer.IsSelected = false;
+                CheckStatus();
+            }
+        }
+        private async Task BookmarkNotificationTask(bool IsEnabled)
+        {
+            if (IsEnabled)
+            {
+                BookmarkNotificationText = "Dodano do ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+            else
+            {
+                BookmarkNotificationText = "Usunięto z ulubionych";
+                BookmarkNotificationVisibility = true;
+                await Task.Delay(2000);
+                BookmarkNotificationVisibility = false;
+            }
+        }
+        #endregion
+
+        #region Helpers
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Unique
+        private void Init()
+        {
             ScaleQuestions = new ObservableCollection<ScaleAnswersQuestion>();
             var que1 = new ScaleAnswersQuestion() { QuestionName = "Myśląc o całym swoim życiu, czy jest Pan(i) z niego zadowolony(a)?" };
             que1.Add(new ScaleAnswers() { QuestionID = 0, QuestionAnswer = "NIE", QuestionAnswerPoints = 1 });
@@ -172,159 +344,6 @@ namespace Skale_W_Praktyce.ViewModels
             ScaleQuestions.Add(que28);
             ScaleQuestions.Add(que29);
             ScaleQuestions.Add(que30);
-
-            #endregion
-
-            #region DODAJ DO BAZY
-            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
-            if (!scalesViewModel.ScalesList[0].IsFavorite)
-            {
-                BookmarkImgSrc = "bookmark.png";
-            }
-            else
-            {
-                BookmarkImgSrc = "Bookmark_saved.png";
-            }
-            #endregion
-
-            InfoCommand = new Command(async () => await InfoMethod());
-
-            AnswerTappedCommand = new Command(HandleSelectedAnswer);
-
-            BookmarkScaleCommand = new Command(BookmarkScaleMethod);
-        }
-        public ObservableCollection<Scale> scales { get; set; }
-        public ObservableCollection<ScaleAnswersQuestion> scaleQuestions;
-
-        #region Fields
-
-        private ScaleAnswers selectedAnswer;
-        private string diagnosis = "..";
-        private int score;
-        private string bookmarkImgSrc;
-        private bool isBookmarked = false;
-        private INavigation navigation;
-        private string bookmarkNotificationText;
-        private bool bookmarkNotificationVisibility = false;
-        #endregion
-
-        #region Properties
-        public string BookmarkNotificationText
-        {
-            get { return bookmarkNotificationText; }
-            set
-            {
-                bookmarkNotificationText = value;
-                OnPropertyChanged("BookmarkNotificationText");
-            }
-        }
-        public bool BookmarkNotificationVisibility
-        {
-            get { return bookmarkNotificationVisibility; }
-            set
-            {
-                bookmarkNotificationVisibility = value;
-                OnPropertyChanged("BookmarkNotificationVisibility");
-            }
-        }
-        public string BookmarkImgSrc
-        {
-            get => bookmarkImgSrc;
-            set
-            {
-                if (bookmarkImgSrc != value)
-                {
-                    bookmarkImgSrc = value;
-                    OnPropertyChanged("BookmarkImgSrc");
-                }
-            }
-        }
-        public int Score
-        {
-            get => score;
-            set
-            {
-                if (score != value)
-                {
-                    score = value;
-                    OnPropertyChanged("Score");
-                }
-            }
-        }
-        public string Diagnosis
-        {
-            get => diagnosis;
-            set
-            {
-                if (diagnosis != value)
-                {
-                    diagnosis = value;
-                    OnPropertyChanged("Diagnosis");
-                }
-            }
-        }
-
-        public ObservableCollection<ScaleAnswersQuestion> ScaleQuestions
-        {
-            get { return scaleQuestions; }
-            set
-            {
-                if (scaleQuestions != value)
-                {
-                    scaleQuestions = value;
-                    OnPropertyChanged("ScaleQuestions");
-                }
-            }
-        }
-
-
-        public ScaleAnswers SelectedAnswer
-        {
-            get { return selectedAnswer; }
-            set
-            {
-                if (selectedAnswer != value)
-                {
-                    selectedAnswer = value;
-                }
-            }
-        }
-
-        #endregion
-
-        #region Commands
-        public ICommand AnswerTappedCommand { get; set; }
-        public ICommand InfoCommand { get; }
-
-        public ICommand BookmarkScaleCommand { get; set; }
-        #endregion
-
-        #region Methods
-        private void HandleSelectedAnswer()
-        {
-            if (SelectedAnswer.IsSelected == false)
-            {
-                foreach (var answer in ScaleQuestions[SelectedAnswer.QuestionID])
-                {
-                    if (answer.IsSelected == true)
-                    {
-                        answer.AnswerSelectedColor = Color.Transparent;
-                        answer.IsSelected = false;
-                        Score -= answer.QuestionAnswerPoints;
-                    }
-                }
-                Score += SelectedAnswer.QuestionAnswerPoints;
-                SelectedAnswer.AnswerSelectedColor = Color.FromHex("#F07167");
-                SelectedAnswer.IsSelected = true;
-                CheckStatus();
-            }
-            else
-            {
-                Score -= SelectedAnswer.QuestionAnswerPoints;
-                SelectedAnswer.AnswerSelectedColor = Color.Transparent;
-                SelectedAnswer.IsSelected = false;
-                CheckStatus();
-            }
         }
         private void CheckStatus()
         {
@@ -352,68 +371,44 @@ namespace Skale_W_Praktyce.ViewModels
                 "\nŹródło:\nhttps://www.centrumdobrejterapii.pl/materialy/geriatryczna-skala-oceny-depresji/", "OK");
 
         }
+        private async Task SetBookmarkImage()
+        {
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
+            if (bookmarks.Any(x => x.ScaleName.Contains("GDS")))
+            {
+                BookmarkImgSrc = "bookmark_saved.png";
 
-        #region DODAJ DO BAZY
-        private void BookmarkScaleMethod()
+            }
+            else
+            {
+                BookmarkImgSrc = "bookmark.png";
+            }
+
+        }
+        private async Task BookmarkScaleMethodAsync()
         {
             // BAZA
-            ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
 
-            if (scalesViewModel.ScalesList[0].IsFavorite)
+            if (bookmarks.Any(x => x.ScaleName.Contains("GDS")))
             {
-                scalesViewModel.ScalesList[0].IsFavorite = false;
-
-                scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
-                    .Select(c => { c.IsFavorite = false; return c; }).ToList();
+                //userData.Favorites.Remove("GLASGOW");
+                Bookmark x = await App.Database.GetBookmarkAsyncName("GDS");
+                await App.Database.DeleteBookmarkAsync(x);
 
                 BookmarkImgSrc = "bookmark.png";
-                //isBookmarked = false;
+                isBookmarked = false;
                 BookmarkNotificationTask(isBookmarked);
             }
             else
             {
-                scalesViewModel.ScalesList[0].IsFavorite = true;
-
-                scalesViewModel.ScalesList.Where(x => x.ScaleViewName == typeof(scale_GLASGOW))
-                    .Select(c => { c.IsFavorite = true; return c; }).ToList();
+                await App.Database.SaveBookmarkAsync(new Bookmark { ScaleName = "GDS", UserID = 0 });
 
                 BookmarkImgSrc = "bookmark_saved.png";
-                //isBookmarked = true;
+                isBookmarked = true;
                 BookmarkNotificationTask(isBookmarked);
             }
         }
         #endregion
-
-        private async Task BookmarkNotificationTask(bool IsEnabled)
-        {
-            if (IsEnabled)
-            {
-                BookmarkNotificationText = "Dodano do ulubionych";
-                BookmarkNotificationVisibility = true;
-                await Task.Delay(2000);
-                BookmarkNotificationVisibility = false;
-            }
-            else
-            {
-                BookmarkNotificationText = "Usunięto z ulubionych";
-                BookmarkNotificationVisibility = true;
-                await Task.Delay(2000);
-                BookmarkNotificationVisibility = false;
-            }
-        }
-        #endregion
-
-
-
-        #region Helpers
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
-
     }
 }
