@@ -17,7 +17,7 @@ namespace Skale_W_Praktyce
             {
                 if (database == null)
                 {
-                    database = new BookmarkDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Bookmarks.db3"));
+                    database = new BookmarkDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Bookmarks.db"));
                 }
                 return database;
             }
