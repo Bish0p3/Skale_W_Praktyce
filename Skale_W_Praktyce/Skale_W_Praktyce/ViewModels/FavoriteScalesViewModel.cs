@@ -39,10 +39,20 @@ namespace Skale_W_Praktyce.ViewModels
         private async Task InitAsync()
         {
             ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
+            foreach (Scale scale in scalesViewModel.ScalesList)
+            {
+                foreach (Bookmark bookmark in bookmarks)
+                {
+                    if (scale.ScaleName.ToLower().Contains(bookmark.ScaleName.ToLower()))
+                    {
+                        FavoriteScalesList.Add(scale);
+                    }
+                }
 
-            Scale suggestion = (Scale)scalesViewModel.ScalesList.Where(scale => scale.ScaleName.Contains("glasgow"));
-            FavoriteScalesList.Add(suggestion);
+            }
         }
+
         #region Helpers
         public event PropertyChangedEventHandler PropertyChanged;
 
