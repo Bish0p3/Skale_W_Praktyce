@@ -200,7 +200,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Skala CDR",
                         ScaleDesc = "Badanie służące do Klinicznej Oceny Stopnia Otępienia (CDR)",
                         ScaleTags = "Ogólne, Układ nerwowy, Geriatria",
-                        ScaleViewName = typeof(MainPage_Flyout)},
+                        ScaleViewName = typeof(scale_CDR)},
                     new Scale(){
                         ScaleName = "Mini-Mental State Examination (MMSE)",
                         ScaleDesc = "Krótkie narzędzie przesiewowe do oceny otępień.",

@@ -18,10 +18,8 @@ namespace Skale_W_Praktyce.ViewModels
         {
             FavoriteScalesList = new ObservableCollection<Scale>();
             InitAsync();
-            command = new Command(async () => await CheckBookmarksAsync());
         }
 
-        public ICommand command;
         private ObservableCollection<Scale> favoriteScalesList;
         private INavigation navigation;
 
@@ -44,19 +42,6 @@ namespace Skale_W_Praktyce.ViewModels
 
             Scale suggestion = (Scale)scalesViewModel.ScalesList.Where(scale => scale.ScaleName.Contains("glasgow"));
             FavoriteScalesList.Add(suggestion);
-        }
-        private async Task CheckBookmarksAsync()
-        {
-
-
-            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
-
-
-            //foreach (var bookmark in bookmarks)
-            //{
-            //    var suggestion = scalesViewModel.ScalesList.Where(c => c.ScaleName.ToLower().Contains("glasgow"));
-            //    FavoriteScalesList.Add((Scale)suggestion);
-            //}
         }
         #region Helpers
         public event PropertyChangedEventHandler PropertyChanged;
