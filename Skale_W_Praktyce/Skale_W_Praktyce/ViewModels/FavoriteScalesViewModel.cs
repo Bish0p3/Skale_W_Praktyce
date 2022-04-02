@@ -18,8 +18,10 @@ namespace Skale_W_Praktyce.ViewModels
         {
             FavoriteScalesList = new ObservableCollection<Scale>();
             InitAsync();
+            command = new Command(async () => await CheckBookmarksAsync());
         }
 
+        public ICommand command;
         private ObservableCollection<Scale> favoriteScalesList;
         private INavigation navigation;
 
@@ -39,20 +41,23 @@ namespace Skale_W_Praktyce.ViewModels
         private async Task InitAsync()
         {
             ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
-            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
-            foreach (Scale scale in scalesViewModel.ScalesList)
-            {
-                foreach (Bookmark bookmark in bookmarks)
-                {
-                    if (scale.ScaleName.ToLower().Contains(bookmark.ScaleName.ToLower()))
-                    {
-                        FavoriteScalesList.Add(scale);
-                    }
-                }
 
-            }
+            Scale suggestion = (Scale)scalesViewModel.ScalesList.Where(scale => scale.ScaleName.Contains("glasgow"));
+            FavoriteScalesList.Add(suggestion);
         }
+        private async Task CheckBookmarksAsync()
+        {
 
+
+            List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
+
+
+            //foreach (var bookmark in bookmarks)
+            //{
+            //    var suggestion = scalesViewModel.ScalesList.Where(c => c.ScaleName.ToLower().Contains("glasgow"));
+            //    FavoriteScalesList.Add((Scale)suggestion);
+            //}
+        }
         #region Helpers
         public event PropertyChangedEventHandler PropertyChanged;
 
