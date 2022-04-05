@@ -21,6 +21,8 @@ namespace Skale_W_Praktyce.ViewModels
             Navigation = navigation;
 
             TestCommand = new Command(PerformEditorTestMethod);
+            FirstRun();
+
 
             #region Login Page Commands
 
@@ -402,7 +404,15 @@ namespace Skale_W_Praktyce.ViewModels
             OnPropertyChanged(nameof(LabelText));
             OnPropertyChanged(nameof(EditorText));
         }
-
+        public async Task FirstRun()
+        {
+            if (Settings.FirstRun)
+            {
+                await Application.Current.MainPage.DisplayAlert("Info", "Witaj w aplikacji Skale medyczne, jeśli potrzebujesz pomocy w poruszaniu się po aplikacji kliknij w opcję 'POMOC'. Znajdziesz tam również informacje jak korzystać ze skal.", "OK");
+                // Perform an action such as a "Pop-Up".
+                Settings.FirstRun = false;
+            }
+        }
         #endregion
 
         #region Helpers
