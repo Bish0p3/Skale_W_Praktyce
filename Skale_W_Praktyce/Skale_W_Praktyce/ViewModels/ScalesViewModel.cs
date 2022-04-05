@@ -189,7 +189,7 @@ namespace Skale_W_Praktyce.ViewModels
                     new Scale(){
                         ScaleName = "Geriatryczna Skala Depresji",
                         ScaleDesc = "Geriatryczna skala oceny depresji (Geriatric Depression Scale – GDS)",
-                        ScaleTags = "Psychiatria, Geriatria",
+                        ScaleTags = "Psychologia, Geriatria",
                         ScaleViewName = typeof(scale_GDS)},
                     new Scale(){
                         ScaleName = "Skala CRUSADE",
@@ -204,12 +204,12 @@ namespace Skale_W_Praktyce.ViewModels
                     new Scale(){
                         ScaleName = "Mini-Mental State Examination (MMSE)",
                         ScaleDesc = "Krótkie narzędzie przesiewowe do oceny otępień.",
-                        ScaleTags = "Ogólne, Geriatria, Psychiatria, Układ nerwowy",
+                        ScaleTags = "Ogólne, Geriatria, Psychologia, Układ nerwowy",
                         ScaleViewName = typeof(MainPage_Flyout)},
                     new Scale(){
                         ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test)",
                         ScaleDesc = "Badanie identyfikujące osoby pijące w sposób ryzykowny i szkodliwy dla zdrowia, używane w terapii uzależnień alkoholowych",
-                        ScaleTags = "Ogólne, Psychiatria",
+                        ScaleTags = "Ogólne, Psychologia",
                         ScaleViewName = typeof(MainPage_Flyout)},
                 };
 

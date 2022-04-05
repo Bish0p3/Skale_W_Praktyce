@@ -88,7 +88,7 @@
                                         CommandParameter="Image1" />
                             </Image.GestureRecognizers>
                         </Image>
-                        <Label Text="Psychiatria" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="Psychologia" HorizontalOptions="Center" VerticalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
 
