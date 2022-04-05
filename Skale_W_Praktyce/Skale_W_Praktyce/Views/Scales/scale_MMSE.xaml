@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Skale_W_Praktyce.Views.Scales.scale_MMSE"
+             xmlns:behaviors="clr-namespace:Skale_W_Praktyce.Behaviors">
+
+    <!--#region TITLE -->
+    <!--<NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Skala GLASGOW" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>-->
+    <!--#endregion-->
+
+
+    <StackLayout BackgroundColor="{StaticResource Background}" Spacing="0">
+
+        <!--#region QUESTIONS AND ANSWERS LIST -->
+        <ListView IsGroupingEnabled="true"
+                  GroupDisplayBinding="{Binding QuestionName}"
+                  ItemsSource="{Binding ScaleQuestions}"
+                  HasUnevenRows="True"
+                  SelectedItem="{Binding SelectedAnswer}">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding AnswerTappedCommand}"/>
+            </ListView.Behaviors>
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding QuestionName}" 
+                               Style="{StaticResource ScaleName}" 
+                               HorizontalOptions="StartAndExpand"
+                               Margin="10"
+                               TextColor="{StaticResource OnBackground}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal"
+                                     BackgroundColor="{Binding AnswerSelectedColor, Mode=TwoWay}" Padding="5">
+                            <Label Text="{Binding QuestionAnswer}"
+                                   Style="{StaticResource ScaleDesc}"
+                                   TextColor="{StaticResource OnBackground}"
+                                   VerticalOptions = "Center"
+                                   HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding QuestionAnswerPoints}"
+                                   Style="{StaticResource ScaleDesc}"
+                                   TextColor="{StaticResource OnBackground}"
+                                   VerticalOptions = "Center"
+                                   HorizontalOptions="End"
+                                   FontAttributes="Bold"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--#endregion-->
+
+        <Label Text="{Binding BookmarkNotificationText}" 
+               IsVisible="{Binding BookmarkNotificationVisibility}" 
+               Style="{StaticResource ScaleDesc}" 
+               TextColor="{StaticResource OnError}" 
+               BackgroundColor="{StaticResource Error}"
+               HorizontalTextAlignment="Center"/>
+
+        <Grid BackgroundColor="{StaticResource Surface}" VerticalOptions="End" HeightRequest="75" Padding="10" Margin="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- WYNIK I PUNKTY -->
+            <StackLayout Grid.Column="0"
+                         Margin="10, 0, 10, 0"
+                         Orientation="Vertical" 
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center">
+                <!-- LEFT TOP RIGHT BOTTOM -->
+                <Label Text="Wynik:" HorizontalOptions="Center" LineBreakMode="NoWrap"
+                   Style="{StaticResource ScaleDesc}"
+                   Margin="0" 
+                   Padding="0"/>
+                <Label Text="{Binding Score}" HorizontalOptions="Center" 
+                   Style="{StaticResource ScaleName}"
+                   Margin="0" 
+                   Padding="0"/>
+            </StackLayout>
+            <BoxView Grid.Column="1"  HorizontalOptions="Start" BackgroundColor="Black" 
+                     WidthRequest="2" HeightRequest="20"/>
+
+            <!-- DIAGNOZA I INFO -->
+            <ScrollView Grid.Column="2">
+                <StackLayout 
+                         Orientation="Vertical" 
+                         VerticalOptions="Center"
+                         Spacing="0"
+                         Margin="10, 0, 10, 0">
+                    <Label Text="Diagnoza:" Style="{StaticResource ScaleDesc}"/>
+
+                    <Label Text="{Binding Diagnosis}" Style="{StaticResource InScaleFont}" FontAttributes="Bold"/>
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout
+                HorizontalOptions="End"
+                VerticalOptions="Center" 
+                Grid.Column="3" 
+                Orientation="Horizontal" 
+                Spacing="0">
+                <Image
+                    HorizontalOptions="Start"
+                    HeightRequest="40"
+                    WidthRequest="40" 
+                    Source="{Binding BookmarkImgSrc}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                        Command="{Binding BookmarkScaleCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <Image 
+                   Source="guide.png" 
+                   HeightRequest="40" 
+                   WidthRequest="40" 
+                   HorizontalOptions="End">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                        Command="{Binding InfoCommand}"
+                                        CommandParameter="Image1" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+
+        </Grid>
+    </StackLayout>
+</ContentPage>

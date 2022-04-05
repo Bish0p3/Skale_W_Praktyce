@@ -30,6 +30,12 @@ namespace Skale_W_Praktyce
         public INavigation Navigation { get; set; }
         protected override void OnStart()
         {
+            if (Settings.FirstRun)
+            {
+                Application.Current.MainPage.DisplayAlert("Info", "APlikacja nie jset medyczna", "ROZUMIEM");
+                // Perform an action such as a "Pop-Up".
+                Settings.FirstRun = false;
+            }
         }
 
         protected override void OnSleep()

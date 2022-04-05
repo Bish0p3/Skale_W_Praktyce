@@ -205,7 +205,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Mini-Mental State Examination (MMSE)",
                         ScaleDesc = "Krótkie narzędzie przesiewowe do oceny otępień.",
                         ScaleTags = "Ogólne, Geriatria, Psychologia, Układ nerwowy",
-                        ScaleViewName = typeof(MainPage_Flyout)},
+                        ScaleViewName = typeof(scale_MMSE)},
                     new Scale(){
                         ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test)",
                         ScaleDesc = "Badanie identyfikujące osoby pijące w sposób ryzykowny i szkodliwy dla zdrowia, używane w terapii uzależnień alkoholowych",
