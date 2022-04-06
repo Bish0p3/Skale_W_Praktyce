@@ -187,7 +187,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
                         ScaleViewName = typeof(scale_APGAR)},
                     new Scale(){
-                        ScaleName = "Geriatryczna Skala Depresji",
+                        ScaleName = "Geriatryczna Skala Depresji (GDS)",
                         ScaleDesc = "Geriatryczna skala oceny depresji (Geriatric Depression Scale – GDS)",
                         ScaleTags = "Psychologia, Geriatria",
                         ScaleViewName = typeof(scale_GDS)},

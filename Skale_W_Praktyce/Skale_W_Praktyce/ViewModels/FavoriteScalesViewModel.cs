@@ -3,11 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Skale_W_Praktyce.ViewModels
@@ -40,17 +37,39 @@ namespace Skale_W_Praktyce.ViewModels
         {
             ScalesViewModel scalesViewModel = new ScalesViewModel(navigation);
             List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
-            foreach (Scale scale in scalesViewModel.ScalesList)
+            List<Bookmark> userBookmarks = new List<Bookmark>();
+            foreach (Bookmark bookmark in bookmarks)
             {
-                foreach (Bookmark bookmark in bookmarks)
+                if (bookmark.UserID == Settings.CurrentUserID)
                 {
-                    if (scale.ScaleName.ToLower().Contains(bookmark.ScaleName.ToLower()))
+                    userBookmarks.Add(bookmark);
+                }
+            }
+
+            foreach (Bookmark bookmark in userBookmarks)
+            {
+                foreach(Scale scale in scalesViewModel.ScalesList)
+                {
+                    if (scale.ScaleName.Contains(bookmark.ScaleName))
                     {
                         FavoriteScalesList.Add(scale);
                     }
                 }
 
             }
+
+
+            //foreach (Scale scale in scalesViewModel.ScalesList)
+            //{
+            //    foreach (Bookmark bookmark in bookmarks)
+            //    {
+            //        if (scale.ScaleName.ToLower().Contains(bookmark.ScaleName.ToLower()))
+            //        {
+            //            FavoriteScalesList.Add(scale);
+            //        }
+            //    }
+
+            //}
         }
 
         #region Helpers

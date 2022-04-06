@@ -270,7 +270,9 @@ namespace Skale_W_Praktyce.ViewModels
         private async Task SetBookmarkImage()
         {
             List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
-            if (bookmarks.Any(x => x.ScaleName.Contains("Glasgow")))
+            //Bookmark x = await App.Database.GetBookmarkAsyncUserIDAndName(Settings.CurrentUserID, "Glasgow");
+
+            if (bookmarks.Any(x => x.UserID == Settings.CurrentUserID && x.ScaleName.Contains("Glasgow")))
             {
                 BookmarkImgSrc = "bookmark_saved.png";
 
@@ -285,11 +287,18 @@ namespace Skale_W_Praktyce.ViewModels
         {
             // BAZA
             List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
-
-            if (bookmarks.Any(x => x.ScaleName.Contains("Glasgow")))
+            List<Bookmark> userBookmarks = new List<Bookmark>();
+            foreach(Bookmark bookmark in bookmarks)
             {
-                //userData.Favorites.Remove("GLASGOW");
-                Bookmark x = await App.Database.GetBookmarkAsyncName("Glasgow");
+                if(bookmark.UserID == Settings.CurrentUserID)
+                {
+                    userBookmarks.Add(bookmark);
+                }
+            }
+
+            if (userBookmarks.Any(x => x.ScaleName.Contains("Glasgow")))
+            {
+                Bookmark x = await App.Database.GetBookmarkAsyncUserIDAndName(Settings.CurrentUserID, "Glasgow");
                 await App.Database.DeleteBookmarkAsync(x);
 
                 BookmarkImgSrc = "bookmark.png";
@@ -298,7 +307,7 @@ namespace Skale_W_Praktyce.ViewModels
             }
             else
             {
-                await App.Database.SaveBookmarkAsync(new Bookmark { ScaleName = "Glasgow", UserID = 0 });
+                await App.Database.SaveBookmarkAsync(new Bookmark { ScaleName = "Glasgow", UserID = Settings.CurrentUserID });
 
                 BookmarkImgSrc = "bookmark_saved.png";
                 isBookmarked = true;

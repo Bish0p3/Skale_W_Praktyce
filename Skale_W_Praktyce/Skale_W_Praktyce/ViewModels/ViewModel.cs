@@ -76,6 +76,7 @@ namespace Skale_W_Praktyce.ViewModels
         private ObservableCollection<User> users;
         private string userNotificationText;
         private bool usernameNotificationVisibility;
+        private User selectedUser;
         #region Register Page
         private string addUser_UsernameEntry;
         private string addUser_UserImage;
@@ -96,7 +97,18 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
-
+        public User SelectedUser
+        {
+            get { return selectedUser; }
+            set
+            {
+                if(selectedUser != value)
+                {
+                    selectedUser = value;
+                    OnPropertyChanged("SelectedUser");
+                }
+            }
+        }
         // Navigation
         public INavigation Navigation { get; set; }
 
@@ -148,6 +160,7 @@ namespace Skale_W_Praktyce.ViewModels
         }
         public async Task Login_SelectUser_Method()
         {
+            Settings.CurrentUserID = SelectedUser.ID;
             Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
             await Navigation.PopAsync();
         }
@@ -188,7 +201,7 @@ namespace Skale_W_Praktyce.ViewModels
                     Username = AddUser_UsernameEntry,
                     UserImage = AddUser_UserImage
                 });
-                await Navigation.PopAsync();
+                await Navigation.PushAsync(new LogInPage());
             }
             else
             {

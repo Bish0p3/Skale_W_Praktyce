@@ -41,6 +41,14 @@ namespace Skale_W_Praktyce.Data
                             .Where(i => i.ID == id)
                             .FirstOrDefaultAsync();
         }
+        public Task<Bookmark> GetBookmarkAsyncUserIDAndName(int Userid, string scaleName)
+        {
+            // Get a specific bookamrk.
+            return database.Table<Bookmark>()
+                            .Where(i => i.UserID == Userid && i.ScaleName.Contains(scaleName))
+                            .FirstOrDefaultAsync();
+        }
+
         public Task<User> GetUserAsyncName(string name)
         {
             // Get a specific bookamrk.
