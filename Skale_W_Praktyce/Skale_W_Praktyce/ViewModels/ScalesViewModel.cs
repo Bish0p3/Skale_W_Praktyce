@@ -210,7 +210,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test)",
                         ScaleDesc = "Badanie identyfikujące osoby pijące w sposób ryzykowny i szkodliwy dla zdrowia, używane w terapii uzależnień alkoholowych",
                         ScaleTags = "Ogólne, Psychologia",
-                        ScaleViewName = typeof(MainPage_Flyout)},
+                        ScaleViewName = typeof(scale_AUDIT)},
                 };
 
         }
