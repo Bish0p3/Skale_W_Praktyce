@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Skale_W_Praktyce.Views.LogInPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+              xmlns:behaviors="clr-namespace:Skale_W_Praktyce.Behaviors">
 
 
     <!-- MAIN CONTENT -->
 
     <ContentPage.Content>
         <Grid>
-
             <!-- #region FRAME -->
             <Frame>
                 <Frame.Background>
@@ -37,52 +37,38 @@
                 </Frame.Background>
             </Frame>
             <!--#endregion-->
-
             <!-- #region CONTENT -->
             <Grid>
-                <StackLayout VerticalOptions="Center" Margin="50" FlowDirection="RightToLeft">
-                    <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
+                <StackLayout VerticalOptions="Center" Margin="50">
                     <Image Source="logo4.png" Margin="0, -50, 0, 0"/>
                     <Label Text="Skale W Praktyce" Margin="0,-50,0,30" FontSize="Large" FontAttributes="Bold"  HorizontalOptions="Center"/>
-                    <Frame CornerRadius="10" Padding="3" Margin="3">
-                        <Entry x:Name="Login" Style="{StaticResource DefaultEntryStyle}"
-                       Placeholder="Nazwa Użytkownika"
-                       MaxLength="50" 
-                       Keyboard="Email" 
-                       ReturnType="Next" 
-                       Completed="LoginEntry_Completed"
-                       Text="{Binding Login_LoginEntry}"/>
-                    </Frame>
 
-                    <Frame CornerRadius="10" Padding="3" Margin="3">
-                        <Entry x:Name="Password" 
-                           Style="{StaticResource DefaultEntryStyle}"
-                           IsPassword="True" 
-                           Placeholder="Hasło"
-                           MaxLength="50"  
-                           Keyboard="Plain" 
-                           ReturnType="Send"
-                           Text="{Binding Login_PasswordEntry}"/>
-                    </Frame>
+                    <Label Text="Użytkownicy:" TextColor="{StaticResource OnBackground}"/>
+                    <ContentView>
 
-                    <Label HorizontalOptions="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Jeżeli zapomniałeś hasła, kliknij " />
-                                <Span Text="tutaj"
-                                      TextColor="Blue"
-                                      TextDecorations="Underline">
-                                    <Span.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Gateway_Clicked}"/>
-                                    </Span.GestureRecognizers>
-                                </Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
 
-                    <Button Text="ZALOGUJ" Command="{Binding LogInButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
-                    <Button Text="REJESTRACJA" Command="{Binding RegisterButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
-                    <ActivityIndicator x:Name="LoadingCircle" IsVisible="{Binding IsBusy, Mode=TwoWay}" IsRunning="{Binding IsBusy, Mode=TwoWay}" Color="{StaticResource PrimaryAlt}"/>
+                        <ScrollView HeightRequest="200" VerticalScrollBarVisibility="Always">
+                            <ListView ItemsSource="{Binding Users}" HasUnevenRows="True">
+                                <ListView.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                    EventName="ItemTapped"
+                                    Command="{Binding Login_SelectUser_Clicked}"/>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="5">
+                                                <Image Source="{Binding UserImage}" WidthRequest="70" HeightRequest="60"/>
+                                                <Label Text="{Binding Username}" VerticalTextAlignment="Center" Style="{StaticResource ScaleName}" TextColor="{StaticResource OnBackground}"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ScrollView>
+                    </ContentView>
+
+                    <Button Text="Dodaj użytkownika" Command="{Binding Login_AddUserButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
                 </StackLayout>
             </Grid>
             <!--#endregion-->

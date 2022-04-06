@@ -3,19 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel"
              x:Class="Skale_W_Praktyce.Views.RegisterPage">
-    
+
     <!-- NAV BAR -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
             <Label Text="Rejestracja" TextColor="{StaticResource Background}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
-    
+
     <!-- MAIN CONTENT -->
     <ContentPage.Content>
         <Grid>
-            <!-- FRAME -->
-            <Frame Opacity="0.5" BorderColor="{StaticResource Background}">
+            <!-- #region FRAME -->
+            <Frame>
                 <Frame.Background>
                     <LinearGradientBrush StartPoint="0,0"
                              EndPoint="1,0">
@@ -40,46 +40,35 @@
                     </LinearGradientBrush>
                 </Frame.Background>
             </Frame>
-
-
+            <!--#endregion-->
             <StackLayout VerticalOptions="Center" Margin="50">
-                <!-- Pojawia sie klawiatura dla wpisania maila | returntype => wyglad przycisku enter -->
                 <Image Source="logo4.png" Margin="0, -100, 0, 0" Scale="1"/>
-                
-                <Frame CornerRadius="10" Padding="3" Margin="3">
-                    <Entry x:Name="EmailEntry" 
-                       Text="{Binding Register_EmailEntry}"
-                       Style="{StaticResource DefaultEntryStyle}"
-                       Placeholder="Adres E-Mail"
-                       MaxLength="50" 
-                       Keyboard="Email" 
-                       ReturnType="Next" 
-                       Completed="EmailEntry_Completed"/>
-                </Frame>
-                
+
+                <Label Text="Wybierz ikonę: " HorizontalOptions="Center"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,20" Spacing="15">
+                    <Image Source="userm.png" WidthRequest="60" HeightRequest="60">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddUser_MaleIcon_Clicked}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="userf.png" WidthRequest="60" HeightRequest="60">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddUser_FemaleIcon_Clicked}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
                 <Frame CornerRadius="10" Padding="3" Margin="3">
                     <Entry x:Name="LoginEntry" 
-                       Text="{Binding Register_LoginEntry}"
+                       Text="{Binding AddUser_UsernameEntry}"
                        Style="{StaticResource DefaultEntryStyle}"
                        Placeholder="Nazwa Użytkownika"
                        MaxLength="50" 
                        Keyboard="Plain" 
-                       ReturnType="Next" 
-                       Completed="LoginEntry_Completed"/>
+                       ReturnType="Send" />
                 </Frame>
 
-                <Frame CornerRadius="10" Padding="3" Margin="3">
-                    <Entry x:Name="PasswordEntry" 
-                           Text="{Binding Register_PasswordEntry}"
-                           Style="{StaticResource DefaultEntryStyle}"
-                           IsPassword="True" 
-                           Placeholder="Hasło"
-                           MaxLength="50"  
-                           Keyboard="Plain" 
-                           ReturnType="Send"/>
-                </Frame>
-
-                <Button Text="ZAREJESTRUJ" Command="{Binding RegisterSendButton_Clicked}" 
+                <Button Text="DODAJ" Command="{Binding AddUser_AddUserButton_Clicked}" 
                         Style="{StaticResource DefaultButtonStyle}"/>
 
             </StackLayout>

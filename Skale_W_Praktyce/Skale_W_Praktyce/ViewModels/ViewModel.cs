@@ -1,7 +1,10 @@
 ﻿using Skale_W_Praktyce.Data;
+using Skale_W_Praktyce.Models;
 using Skale_W_Praktyce.Views;
 using Skale_W_Praktyce.Views.Flyout;
 using Skale_W_Praktyce.Views.Scales;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
@@ -15,21 +18,20 @@ namespace Skale_W_Praktyce.ViewModels
     {
 
         #region Constructor
-
         public ViewModel(INavigation navigation)
         {
             Navigation = navigation;
 
-            TestCommand = new Command(PerformEditorTestMethod);
+            Users = new ObservableCollection<User>() { };
+
             FirstRun();
+            InitUsersAsync();
+
 
 
             #region Login Page Commands
-
-            LogInButton_Clicked = new Command(async () => await LogInButton_Method());
-            RegisterButton_Clicked = new Command(async () => await RegisterButton_Method());
-            Gateway_Clicked = new Command(async () => await Gateway_Method());
-
+            Login_SelectUser_Clicked = new Command(async () => await Login_SelectUser_Method());
+            Login_AddUserButton_Clicked = new Command(async () => await Login_AddUserButton_Method());
             #endregion
 
             #region Main Page Commands
@@ -41,21 +43,17 @@ namespace Skale_W_Praktyce.ViewModels
             #endregion
 
             #region Register Page Commands
-            RegisterSendButton_Clicked = new Command(async () => await RegisterSendButton_Method());
+            AddUser_AddUserButton_Clicked = new Command(async () => await AddUser_AddUserButton_Method());
+            AddUser_MaleIcon_Clicked = new Command(async () => await AddUser_MaleIcon_Method());
+            AddUser_FemaleIcon_Clicked = new Command(async () => await AddUser_FemaleIcon_Method());
             #endregion
         }
-
         #endregion
 
         #region Commands
-
-        public ICommand TestCommand { get; set; }
-
         #region Login Page Commands
-        public ICommand LogInButton_Clicked { get; set; }
-        public ICommand RegisterButton_Clicked { get; set; }
-        public ICommand Gateway_Clicked { get; set; }
-
+        public ICommand Login_SelectUser_Clicked { get; set; }
+        public ICommand Login_AddUserButton_Clicked { get; set; }
         #endregion
 
         #region Main Page Commands
@@ -68,170 +66,74 @@ namespace Skale_W_Praktyce.ViewModels
         #endregion
 
         #region Register Page Commands
-        public ICommand RegisterSendButton_Clicked { get; set; }
+        public ICommand AddUser_AddUserButton_Clicked { get; set; }
+        public ICommand AddUser_MaleIcon_Clicked { get; set; }
+        public ICommand AddUser_FemaleIcon_Clicked { get; set; }
         #endregion
-
         #endregion
 
         #region Fields
-
-        private string editorText;
-        private string labelText;
-        private bool isEnabledEditor = true;
-
-        #region Login page
-        private bool isBusy = false;
-        private string login_LoginEntry;
-        private string login_PasswordEntry;
-        #endregion
-
+        private ObservableCollection<User> users;
+        private string userNotificationText;
+        private bool usernameNotificationVisibility;
         #region Register Page
-        private string register_EmailEntry;
-        private string register_PasswordEntry;
-        private string register_LoginEntry;
+        private string addUser_UsernameEntry;
+        private string addUser_UserImage;
         #endregion
 
         #endregion
 
         #region Properties
+        public ObservableCollection<User> Users
+        {
+            get { return users; }
+            set
+            {
+                if (users != value)
+                {
+                    users = value;
+                    OnPropertyChanged("Users");
+                }
+            }
+        }
+
         // Navigation
         public INavigation Navigation { get; set; }
 
         //PropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool IsEnabledEditor
-        {
-            set
-            {
-                isEnabledEditor = value;
-                OnPropertyChanged("IsEnabledEditor");
-            }
-            get
-            {
-                return isEnabledEditor;
-            }
-        }
-        public string EditorText
-        {
-            set
-            {
-                if (editorText != value)
-                {
-                    editorText = value;
-                    OnPropertyChanged("EditorText");
-                    OnPropertyChanged("LabelText");
-                }
-            }
-            get
-            {
-                return editorText;
-            }
-        }
-        public string LabelText
-        {
-            set
-            {
-                if (labelText != value)
-                {
-                    labelText = value;
-                    OnPropertyChanged("LabelText");
-                }
-            }
-            get
-            {
-                return labelText;
-            }
-        }
-
-        #region Login page properties
-        public bool IsBusy
-        {
-            get { return isBusy; }
-            set { isBusy = value; OnPropertyChanged("IsBusy"); }
-        }
-
-        public string Login_LoginEntry
-        {
-            set
-            {
-                if (login_LoginEntry != value)
-                {
-                    login_LoginEntry = value;
-                    OnPropertyChanged("Login_LoginEntry");
-                }
-            }
-            get
-            {
-                return login_LoginEntry;
-            }
-        }
-
-        public string Login_PasswordEntry
-        {
-            set
-            {
-                if (login_PasswordEntry != value)
-                {
-                    login_PasswordEntry = value;
-                    OnPropertyChanged("Login_PasswordEntry");
-                }
-            }
-            get
-            {
-                return login_PasswordEntry;
-            }
-        }
-        #endregion
-
         #region Register Page properties
-        public string Register_EmailEntry
+        public string AddUser_UsernameEntry
         {
             set
             {
-                if (register_EmailEntry != value)
+                if (addUser_UsernameEntry != value)
                 {
-                    register_EmailEntry = value;
-                    OnPropertyChanged("Register_EmailEntry");
+                    addUser_UsernameEntry = value;
+                    OnPropertyChanged("AddUser_UsernameEntry");
                 }
             }
             get
             {
-                return register_EmailEntry;
+                return addUser_UsernameEntry;
             }
 
         }
-        public string Register_LoginEntry
+        public string UserNotificationText
         {
-            set
-            {
-                if (register_LoginEntry != value)
-                {
-                    register_LoginEntry = value;
-                    OnPropertyChanged("Register_EmailEntry");
-                }
-            }
-            get
-            {
-                return register_LoginEntry;
-            }
-
+            get { return userNotificationText; }
+            set { userNotificationText = value; OnPropertyChanged("UserNotificationText"); }
         }
-        public string Register_PasswordEntry
+        public bool UserNotificationVisibility
         {
-            set
-            {
-                if (register_PasswordEntry != value)
-                {
-                    register_PasswordEntry = value;
-                    OnPropertyChanged("Register_EmailEntry");
-                }
-            }
-            get
-            {
-                return register_PasswordEntry;
-            }
-
+            get { return usernameNotificationVisibility; }
+            set { usernameNotificationVisibility = value; OnPropertyChanged("UserNotificationVisibility"); }
+        }
+        public string AddUser_UserImage
+        {
+            get { return addUser_UserImage; }
+            set { addUser_UserImage = value; OnPropertyChanged("AddUser_UserImage"); }
         }
         #endregion
 
@@ -240,76 +142,11 @@ namespace Skale_W_Praktyce.ViewModels
         #region Methods
 
         #region Login page
-        public async Task LogInButton_Method()
-        {
-            if (!string.IsNullOrWhiteSpace(Login_PasswordEntry) && !string.IsNullOrWhiteSpace(Login_LoginEntry))
-            {
-                // Loading Circle (activityIndicator)
-                IsBusy = true;
-
-                ServerData server = new ServerData();
-                string connectionString = $"Data Source={server.srvrname}; Initial Catalog ={server.srvrdbname}; User ID={server.srvrusername};Password={server.srvrpassword};";
-                string queryString = $"SELECT [username], [password] FROM [skalewpraktyce_db].[dbo].[users] WHERE [username] = '{Login_LoginEntry}'";
-                try
-                {
-                    using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                    {
-                        SqlCommand command = new SqlCommand(queryString, sqlConnection);
-                        sqlConnection.Open();
-                        SqlDataReader reader = command.ExecuteReader();
-                        try
-                        {
-                            // Check if SQL Query answer is not empty
-                            if (reader.Read())
-                            {
-                                // Check if db password is the same as the one in the entry
-                                if (reader["Password"].ToString() == Login_PasswordEntry)
-                                {
-                                    // Proceed to main page
-                                    Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
-                                    await Navigation.PopAsync();
-                                }
-                                else
-                                {
-                                    // POPUP
-                                    await Application.Current.MainPage.DisplayAlert("Błąd",
-                                        "Błędny login lub hasło. \nSpróbuj ponownie.", "OK");
-                                }
-                            }
-                            // If SQL Query answer is empty
-                            else
-                            {
-                                // POPUP
-                                await Application.Current.MainPage.DisplayAlert("Błąd",
-                                    "Błędny login lub hasło. \nSpróbuj ponownie.", "OK");
-                            }
-                        }
-                        finally
-                        {
-                            // Always call Close when done reading.
-                            reader.Close();
-                        }
-                    }
-                }
-                catch
-                {
-                    await Application.Current.MainPage.DisplayAlert("Uwaga",
-                       "Błąd połączenia z bazą danych.", "OK");
-
-                }
-            }
-            else
-            {
-                // POPUP
-                await Application.Current.MainPage.DisplayAlert("Uwaga",
-                    "Uzupełnij wszystkie pola i spróbuj ponownie.", "OK");
-            }
-        }
-        public async Task RegisterButton_Method()
+        public async Task Login_AddUserButton_Method()
         {
             await Navigation.PushAsync(new RegisterPage());
         }
-        public async Task Gateway_Method()
+        public async Task Login_SelectUser_Method()
         {
             Application.Current.MainPage = new NavigationPage(new MainPage_Flyout());
             await Navigation.PopAsync();
@@ -342,68 +179,43 @@ namespace Skale_W_Praktyce.ViewModels
         #endregion
 
         #region Register Page methods
-        public async Task RegisterSendButton_Method()
+        public async Task AddUser_AddUserButton_Method()
         {
-            if (!string.IsNullOrWhiteSpace(Register_PasswordEntry) && !string.IsNullOrWhiteSpace(Register_LoginEntry) && !string.IsNullOrWhiteSpace(Register_EmailEntry))
+            if (!string.IsNullOrWhiteSpace(AddUser_UsernameEntry) || !string.IsNullOrWhiteSpace(AddUser_UserImage))
             {
-                ServerData server = new ServerData();
-                string connectionString = $"Data Source={server.srvrname}; Initial Catalog ={server.srvrdbname}; User ID={server.srvrusername};Password={server.srvrpassword};";
-                string queryStringCheck = $"SELECT [username], [email] FROM [skalewpraktyce_db].[dbo].[users] WHERE [username] = '{Register_LoginEntry}' OR [email] = '{Register_EmailEntry}'";
-                string queryStringRegister = $"INSERT INTO [dbo].[users](email, username, password) VALUES ('{Register_EmailEntry}', '{Register_LoginEntry}', '{register_PasswordEntry}')";
-
-
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                await App.Database.SaveUserAsync(new User()
                 {
-                    SqlCommand commandCheck = new SqlCommand(queryStringCheck, sqlConnection);
-                    SqlCommand commandRegister = new SqlCommand(queryStringRegister, sqlConnection);
-                    sqlConnection.Open();
-                    SqlDataReader CheckReader = commandCheck.ExecuteReader();
-                    bool checkBool = CheckReader.Read();
-                    CheckReader.Close();
-                    try
-                    {
-                        // Check if entry data is alerady in the db (login, email)
-                        if (checkBool)
-                        {
-                            // POPUP
-                            await Application.Current.MainPage.DisplayAlert("Rejestracja",
-                                "Wprowadzony Email lub nazwa użytkownika istnieje lub w bazie \nSpróbuj ponownie.", "OK");
-                        }
-                        // If not, enter entry data to database, display popup and go to login page
-                        else
-                        {
-                            SqlDataReader RegisterReader = commandRegister.ExecuteReader();
-                            RegisterReader.Close();
-                            // POPUP
-                            await Application.Current.MainPage.DisplayAlert("Rejestracja",
-                                "Zostałeś zarejestrowany, na adres email została wysłana wiadomość z danymi logowania. \nMożesz się teraz zalogować.", "OK");
-                            await Navigation.PopAsync();
-                        }
-                    }
-                    finally
-                    {
-
-                    }
-                }
+                    Username = AddUser_UsernameEntry,
+                    UserImage = AddUser_UserImage
+                });
+                await Navigation.PopAsync();
             }
             else
             {
                 // POPUP
                 await Application.Current.MainPage.DisplayAlert("Uwaga",
-                    "Uzupełnij wszystkie pola i spróbuj ponownie.", "OK");
+                    "Uzupełnij wszystkie pola, wybierz opcje i spróbuj ponownie.", "OK");
+            }
+        }
+        #endregion
+        private async Task AddedUserNotification(bool IsAdded)
+        {
+            if (IsAdded)
+            {
+                UserNotificationText = "Dodano Użytkownika";
+                UserNotificationVisibility = true;
+                await Task.Delay(2000);
+                UserNotificationVisibility = false;
+            }
+            else
+            {
+                UserNotificationText = "Usunięto Użytkownika";
+                UserNotificationVisibility = true;
+                await Task.Delay(2000);
+                UserNotificationVisibility = false;
             }
         }
 
-        #endregion
-
-        public void PerformEditorTestMethod()
-        {
-            IsEnabledEditor = false;
-            LabelText = EditorText;
-            OnPropertyChanged(nameof(IsEnabledEditor));
-            OnPropertyChanged(nameof(LabelText));
-            OnPropertyChanged(nameof(EditorText));
-        }
         public async Task FirstRun()
         {
             if (Settings.FirstRun)
@@ -412,6 +224,27 @@ namespace Skale_W_Praktyce.ViewModels
                 // Perform an action such as a "Pop-Up".
                 Settings.FirstRun = false;
             }
+        }
+
+        private async Task InitUsersAsync()
+        {
+            List<User> usersDB = await App.Database.GetUsersAsync();
+            foreach (User user in usersDB)
+            {
+                Users.Add(user);
+            }
+            if (usersDB.Count == 0)
+            {
+                //pozniej dodaj napis brak uzyt
+            }
+        }
+        private async Task AddUser_MaleIcon_Method()
+        {
+            AddUser_UserImage = "userm";
+        }
+        private async Task AddUser_FemaleIcon_Method()
+        {
+            AddUser_UserImage = "userf";
         }
         #endregion
 

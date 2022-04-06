@@ -13,14 +13,5 @@ namespace Skale_W_Praktyce.Views
             InitializeComponent();
             BindingContext = new ViewModel(Navigation);
         }
-
-        private void EmailEntry_Completed(object sender, EventArgs e)
-        {
-            LoginEntry.Focus();
-        }
-        private void LoginEntry_Completed(object sender, EventArgs e)
-        {
-            PasswordEntry.Focus();
-        }
     }
 }
