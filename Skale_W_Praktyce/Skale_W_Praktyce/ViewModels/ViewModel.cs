@@ -88,6 +88,9 @@ namespace Skale_W_Praktyce.ViewModels
         #region Register Page
         private string addUser_UsernameEntry;
         private string addUser_UserImage;
+        private string registerUserIconSrcF = "userf_bw.png";
+        private string registerUserIconSrcM = "userm_bw.png";
+        private bool isMaleSelected;
         #endregion
 
         #endregion
@@ -179,6 +182,16 @@ namespace Skale_W_Praktyce.ViewModels
         {
             get { return addUser_UserImage; }
             set { addUser_UserImage = value; OnPropertyChanged("AddUser_UserImage"); }
+        }
+        public string RegisterUserIconSrcF
+        {
+            get { return registerUserIconSrcF; }
+            set { registerUserIconSrcF = value; OnPropertyChanged("RegisterUserIconSrcF"); }
+        }
+        public string RegisterUserIconSrcM
+        {
+            get { return registerUserIconSrcM; }
+            set { registerUserIconSrcM = value; OnPropertyChanged("RegisterUserIconSrcM"); }
         }
         #endregion
 
@@ -279,7 +292,6 @@ namespace Skale_W_Praktyce.ViewModels
                 UserNotificationVisibility = false;
             }
         }
-
         public async Task FirstRun()
         {
             if (Settings.FirstRun)
@@ -289,7 +301,6 @@ namespace Skale_W_Praktyce.ViewModels
                 Settings.FirstRun = false;
             }
         }
-
         private async Task InitUsersAsync()
         {
             List<User> usersDB = await App.Database.GetUsersAsync();
@@ -305,10 +316,22 @@ namespace Skale_W_Praktyce.ViewModels
         private async Task AddUser_MaleIcon_Method()
         {
             AddUser_UserImage = "userm";
+            if (!isMaleSelected)
+            {
+                RegisterUserIconSrcF = "userf_bw.png";
+            }
+            RegisterUserIconSrcM = "userm.png";
+            isMaleSelected = true;
         }
         private async Task AddUser_FemaleIcon_Method()
         {
             AddUser_UserImage = "userf";
+            if (isMaleSelected)
+            {
+                RegisterUserIconSrcM = "userm_bw.png";
+            }
+            RegisterUserIconSrcF = "userf.png";
+            isMaleSelected = false;
         }
         #endregion
 

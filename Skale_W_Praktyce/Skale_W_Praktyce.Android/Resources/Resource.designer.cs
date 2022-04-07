@@ -11872,7 +11872,13 @@ namespace Skale_W_Praktyce.Droid
 			public const int userf = 2131165353;
 			
 			// aapt resource value: 0x7F0700AA
-			public const int userm = 2131165354;
+			public const int userf_bw = 2131165354;
+			
+			// aapt resource value: 0x7F0700AB
+			public const int userm = 2131165355;
+			
+			// aapt resource value: 0x7F0700AC
+			public const int userm_bw = 2131165356;
 			
 			static Drawable()
 			{
