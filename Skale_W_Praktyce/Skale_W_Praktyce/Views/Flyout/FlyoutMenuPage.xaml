@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Skale_W_Praktyce.Views.Flyout.FlyoutMenuPage"
              Title="Flyout">
-    <StackLayout>
+    <StackLayout BackgroundColor="{StaticResource Background}">
         <ListView x:Name="MenuItemsListView"
               HasUnevenRows="True"
               SeparatorVisibility="None"

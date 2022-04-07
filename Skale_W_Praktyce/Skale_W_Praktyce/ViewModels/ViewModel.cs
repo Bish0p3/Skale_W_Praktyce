@@ -40,6 +40,10 @@ namespace Skale_W_Praktyce.ViewModels
             FavoritesButton_Clicked = new Command(async () => await FavoritesButton_Method());
             HelpButton_Clicked = new Command(HelpButton_Method);
             LogoutButton_Clicked = new Command(async () => await LogoutButton_Method());
+
+            DeleteAccountButton = new Command(DeleteAccountButton_Method);
+            DeleteAccountConfirm = new Command(async () => await DeleteAccountConfirm_Method());
+            DeleteAccountBack = new Command(DeleteAccountBack_Method);
             #endregion
 
             #region Register Page Commands
@@ -62,7 +66,9 @@ namespace Skale_W_Praktyce.ViewModels
         public ICommand FavoritesButton_Clicked { get; set; }
         public ICommand HelpButton_Clicked { get; set; }
         public ICommand LogoutButton_Clicked { get; set; }
-
+        public ICommand DeleteAccountButton { get; set; }
+        public ICommand DeleteAccountConfirm { get; set; }
+        public ICommand DeleteAccountBack { get; set; }
         #endregion
 
         #region Register Page Commands
@@ -77,6 +83,8 @@ namespace Skale_W_Praktyce.ViewModels
         private string userNotificationText;
         private bool usernameNotificationVisibility;
         private User selectedUser;
+        private bool forSureVisibility = false;
+        private bool forSureVisibilityDeleteButton = true;
         #region Register Page
         private string addUser_UsernameEntry;
         private string addUser_UserImage;
@@ -102,13 +110,38 @@ namespace Skale_W_Praktyce.ViewModels
             get { return selectedUser; }
             set
             {
-                if(selectedUser != value)
+                if (selectedUser != value)
                 {
                     selectedUser = value;
                     OnPropertyChanged("SelectedUser");
                 }
             }
         }
+        public bool ForSureVisibility
+        {
+            get
+            {
+                return forSureVisibility;
+            }
+            set
+            {
+                forSureVisibility = value;
+                OnPropertyChanged("ForSureVisibility");
+            }
+        }
+        public bool ForSureVisibilityDeleteButton
+        {
+            get
+            {
+                return forSureVisibilityDeleteButton;
+            }
+            set
+            {
+                forSureVisibilityDeleteButton = value;
+                OnPropertyChanged("ForSureVisibilityDeleteButton");
+            }
+        }
+
         // Navigation
         public INavigation Navigation { get; set; }
 
@@ -187,6 +220,24 @@ namespace Skale_W_Praktyce.ViewModels
         {
             Application.Current.MainPage = new NavigationPage(new LogInPage());
             await Navigation.PopAsync();
+        }
+        public void DeleteAccountButton_Method()
+        {
+            ForSureVisibility = true;
+            ForSureVisibilityDeleteButton = false;
+        }
+        public async Task DeleteAccountConfirm_Method()
+        {
+            User x = await App.Database.GetUserAsyncID(Settings.CurrentUserID);
+            await App.Database.DeleteUserAsync(x);
+            ForSureVisibility = false;
+            Application.Current.MainPage = new NavigationPage(new LogInPage());
+            await Navigation.PopAsync();
+        }
+        public void DeleteAccountBack_Method()
+        {
+            ForSureVisibility = false;
+            ForSureVisibilityDeleteButton = true;
         }
 
         #endregion

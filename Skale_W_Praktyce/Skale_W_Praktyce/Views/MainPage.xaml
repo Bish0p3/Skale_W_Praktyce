@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Skale_W_Praktyce.Views.MainPage"
-             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views" xmlns:viewmodels="clr-namespace:Skale_W_Praktyce.ViewModels" x:DataType="viewmodels:ViewModel">
+             xmlns:pages="clr-namespace:Skale_W_Praktyce.Views">
 
     <!-- TITLE -->
     <NavigationPage.TitleView>
@@ -76,12 +76,39 @@
                                 TextColor="{StaticResource OnSecondary}"
                                 Command="{Binding HelpButton_Clicked}"/>
                         <Button Style="{StaticResource DefaultButtonStyle}" 
-                                Text="Wyloguj"  
+                                Text="Zmień użytkownika"  
                                 TextColor="{StaticResource OnSecondary}"
                                 Command="{Binding LogoutButton_Clicked}"/>
                     </StackLayout>
                 </Frame>
+
+                <StackLayout 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    IsVisible="True">
+                    <Label Text="Czy na pewno?" HorizontalOptions="Center" IsVisible="{Binding ForSureVisibility}" Margin="0" Padding="0"/>
+                    <StackLayout Margin="0" Padding="0" Spacing="5" HeightRequest="40" Orientation="Horizontal" HorizontalOptions="Center" IsVisible="{Binding ForSureVisibility}">
+                        <Button Text="Tak" Command="{Binding DeleteAccountConfirm}" Style="{StaticResource DefaultButtonStyle}"/>
+                        <Button Text="Nie" Command="{Binding DeleteAccountBack}" Style="{StaticResource DefaultButtonStyle}" BackgroundColor="Gray"/>
+                    </StackLayout>
+                </StackLayout>
+                <Button Grid.Row="2" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HeightRequest="35"
+                        Text="USUŃ UŻYTKOWNIKA" 
+                        Style="{StaticResource DefaultButtonStyle}" 
+                        TextColor="{StaticResource OnSecondary}" 
+                        FontSize="11"   
+                        Margin="5" 
+                        Command="{Binding DeleteAccountButton}"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="End"
+                        IsVisible="{Binding ForSureVisibilityDeleteButton}"/>
             </Grid>
+
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
