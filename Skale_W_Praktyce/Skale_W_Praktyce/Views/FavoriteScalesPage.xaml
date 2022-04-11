@@ -6,7 +6,7 @@
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Label Text="Przeglądanie skal" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Label Text="Ulubione" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
 

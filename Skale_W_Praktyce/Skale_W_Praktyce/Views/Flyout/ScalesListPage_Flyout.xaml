@@ -5,6 +5,11 @@
              xmlns:flyoutpages="clr-namespace:Skale_W_Praktyce.Views.Flyout"
              xmlns:pages="clr-namespace:Skale_W_Praktyce.Views"
              NavigationPage.HasNavigationBar="False">
+    <FlyoutPage.Resources>
+        <ResourceDictionary>
+
+        </ResourceDictionary>
+    </FlyoutPage.Resources>
     <FlyoutPage.Flyout>
         <flyoutpages:FlyoutMenuPage x:Name="FlyoutPage" />
     </FlyoutPage.Flyout>

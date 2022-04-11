@@ -20,14 +20,14 @@ namespace Skale_W_Praktyce.Views.Flyout
                 return;
 
             var page = (Page)Activator.CreateInstance(item.TargetType);
-            if (item.Title == "Wyloguj")
+            if (item.Title == "Zmień użytkownika")
             {
                 Application.Current.MainPage = new NavigationPage(new LogInPage());
                 await Navigation.PopAsync();
             }
             page.Title = item.Title;
             Detail = new NavigationPage(page);
-            IsPresented = false;
+            IsPresented = true;
 
             FlyoutPage.ListView.SelectedItem = null;
         }

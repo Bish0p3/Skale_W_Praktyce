@@ -7,7 +7,7 @@
     <!-- TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Label Text="Skale medyczne w praktyce" TextColor="{StaticResource 3}" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Label Text="Skale medyczne w praktyce" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
     </NavigationPage.TitleView>
 

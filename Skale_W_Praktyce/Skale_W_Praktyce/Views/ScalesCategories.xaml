@@ -7,7 +7,7 @@
     <!--#region TITLE -->
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
-            <Label Text="Kategorie Skal" TextColor="{StaticResource OnSurface}" FontSize="20" FontAttributes="Bold"/>
+            <Label Text="Kategorie Skal" TextColor="White" FontAttributes="Bold" FontSize="18" HorizontalOptions="StartAndExpand"/>
         </StackLayout>
     </NavigationPage.TitleView>
     <!--#endregion-->

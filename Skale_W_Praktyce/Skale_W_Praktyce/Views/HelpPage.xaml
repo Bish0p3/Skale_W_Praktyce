@@ -1,40 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Skale_W_Praktyce.Views.HelpPage">
+             x:Class="Skale_W_Praktyce.Views.HelpPage" BackgroundColor="{StaticResource Background}">
+
+    <!-- TITLE -->
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Pomoc" FontSize="18" TextColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
 
-        <Grid>
-
-            <!-- #region FRAME -->
-            <Frame>
-                <Frame.Background>
-                    <LinearGradientBrush StartPoint="0,0"
-                             EndPoint="1,0">
-                        <GradientStop Color="{StaticResource 1}" Offset="1"/>
-                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
-                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
-                        <GradientStop Color="{StaticResource 2}" Offset="0.0"/>
-                        <GradientStop Color="{StaticResource 1}" Offset="0.0"/>
-                    </LinearGradientBrush>
-                </Frame.Background>
-            </Frame>
-            <Frame Opacity="0.5" BorderColor="LightGray">
-                <Frame.Background>
-                    <LinearGradientBrush StartPoint="0,0"
-                             EndPoint="0,1">
-                        <GradientStop Color="{StaticResource 1}"
-                          Offset="0.0"/>
-                        <GradientStop Color="{StaticResource 1}"
-                          Offset="0.0"/>
-                        <GradientStop Color="{StaticResource 2}"
-                          Offset="0.3"/>
-                    </LinearGradientBrush>
-                </Frame.Background>
-            </Frame>
-            <!--#endregion-->
-
-
-        </Grid>
+        <ScrollView>
+            <StackLayout Margin="10">
+                <Label Text="MENU GŁÓWNE" Style="{StaticResource ScaleName}"/>
+                <Label Text="W menu głównym znajdziesz:"/>
+                <Label Text="1) PRZEGLĄDAJ SKALE - tu znajdziesz wszystkie skale które są zawarte w aplikacji."/>
+                <Label Text="2) KATEGORIE - tu możesz wybierać skale, szukając ich po kateroriach."/>
+                <Label Text="3) ULUBIONE - po wybraniu ulubionych skal, pojawią się one w tej zakładce."/>
+                <Label Text="4) POMOC - w tym momencie tu jesteś :)"/>
+                <Label Text="5) WYLOGUJ/ZMIANA UŻYTKOWNIKA - ten przycisk przeniesie cię spowrotem do wyboru użytkownika."/>
+                <Frame BackgroundColor="Black">
+                    <Image Source="menu_help.jpg"/>
+                </Frame>
+                <Label Text="PODRĘCZNE MENU - W każdym momencie możesz użyć wysuwanego menu, wystarczy, że przesuniesz palcem od lewej krawędzi w prawą stronę."/>
+                <Frame BackgroundColor="Black">
+                    <Image Source="slide_menu_trim.jpg"/>
+                </Frame>
+                <Label Text="WYSZUKIWANIE SKAL PO NAZWIE - po wejsciu w listę skal, możesz wyszukać je po nazwie, wystarczy, że wpiszesz nazwę w pole 'Szukaj..'."/>
+                <Frame BackgroundColor="Black">
+                    <Image Source="wybor_skali_trim.jpg"/>
+                </Frame>
+                <Label Text="KORZYSTANIE ZE SKAL"/>
+                <Label Text="1) Ankieta - zgodnie z kategorią / pytaniem, wybierz prawidłowe odpowiedzi."/>
+                <Label Text="2) Diagnoza - podczas wybierania odpowiedzi w tym miejscu powinien się pojawić wynik i diagnoza na jego podstawie."/>
+                <Label Text="3) Zakładka oraz Informacje - po wybraniu zakładki, skala której obecnie używasz doda się do 'Ulubionych'. Będziesz tam mógł znaleźć wszystkie skale które zapiszesz w ten sposób. Klikając w książkę, możesz poznać dokładniejszy opis skali oraz źródła."/>
+                <Frame BackgroundColor="Black">
+                    <Image Source="w_skali_cale.jpg"/>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
