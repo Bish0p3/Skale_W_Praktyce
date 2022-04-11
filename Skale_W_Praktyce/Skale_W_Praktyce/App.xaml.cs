@@ -1,8 +1,8 @@
-﻿using Skale_W_Praktyce.Views;
-using Xamarin.Forms;
-using Skale_W_Praktyce.Data;
-using System.IO;
+﻿using Skale_W_Praktyce.Data;
+using Skale_W_Praktyce.Views;
 using System;
+using System.IO;
+using Xamarin.Forms;
 
 namespace Skale_W_Praktyce
 {

@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace Skale_W_Praktyce.Helpers
 {
     public class CommandHandler : ICommand
     {
-        private Action<object> _action;
-        private bool _canExecute;
+        private readonly Action<object> _action;
+        private readonly bool _canExecute;
         public CommandHandler(Action<object> action, bool canExecute)
         {
             _action = action;

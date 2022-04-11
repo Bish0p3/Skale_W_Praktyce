@@ -1,12 +1,9 @@
 ﻿using Skale_W_Praktyce.Models;
-using Skale_W_Praktyce.Views.Scales;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -289,7 +286,7 @@ namespace Skale_W_Praktyce.ViewModels
 
                 BookmarkImgSrc = "bookmark.png";
                 isBookmarked = false;
-                BookmarkNotificationTask(isBookmarked);
+                await BookmarkNotificationTask(isBookmarked);
             }
             else
             {
@@ -297,7 +294,7 @@ namespace Skale_W_Praktyce.ViewModels
 
                 BookmarkImgSrc = "bookmark_saved.png";
                 isBookmarked = true;
-                BookmarkNotificationTask(isBookmarked);
+                await BookmarkNotificationTask(isBookmarked);
             }
         }
         #endregion

@@ -1,16 +1,13 @@
 ﻿using Skale_W_Praktyce.Models;
 using Skale_W_Praktyce.Views;
-using Skale_W_Praktyce.Views.Flyout;
 using Skale_W_Praktyce.Views.Scales;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using static Skale_W_Praktyce.Models.ScaleAnswers;
-using System.Linq;
-using System;
 
 namespace Skale_W_Praktyce.ViewModels
 {
@@ -180,7 +177,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Skala Aldreta",
                         ScaleDesc = "Skala kwalifikująca chorego po zabiegu chirurgicznym do przeniesienia go z sali budzeń na oddział zabiegowy.",
                         ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
-                        ScaleViewName = typeof(scale_ALDRET)},
+                        ScaleViewName = typeof(Scale_ALDRET)},
                     new Scale(){
                         ScaleName = "APGAR",
                         ScaleDesc = "Skala używana w medycynie w celu określenia stanu noworodka zaraz po porodzie.",
@@ -205,7 +202,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Mini-Mental State Examination (MMSE)",
                         ScaleDesc = "Krótkie narzędzie przesiewowe do oceny otępień.",
                         ScaleTags = "Ogólne, Geriatria, Psychologia, Układ nerwowy",
-                        ScaleViewName = typeof(scale_MMSE)},
+                        ScaleViewName = typeof(Scale_MMSE)},
                     new Scale(){
                         ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test)",
                         ScaleDesc = "Badanie identyfikujące osoby pijące w sposób ryzykowny i szkodliwy dla zdrowia, używane w terapii uzależnień alkoholowych",

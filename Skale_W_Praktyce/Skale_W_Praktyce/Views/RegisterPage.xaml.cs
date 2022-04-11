@@ -1,5 +1,4 @@
 ﻿using Skale_W_Praktyce.ViewModels;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

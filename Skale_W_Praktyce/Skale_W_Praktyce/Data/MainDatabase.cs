@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Skale_W_Praktyce.Models;
 using SQLite;
-using Skale_W_Praktyce.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Skale_W_Praktyce.Data
 {

@@ -1,11 +1,9 @@
 ﻿using Skale_W_Praktyce.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -147,14 +145,14 @@ namespace Skale_W_Praktyce.ViewModels
                         {
                             if (poziom_ryzyka > 0)
                             {
-                                poziom_ryzyka = poziom_ryzyka - 1;
+                                poziom_ryzyka--;
                             }
                         }
                     }
                 }
                 if (SelectedAnswer.QuestionID < 3 && SelectedAnswer.QuestionAnswerPoints > 2)
                 {
-                    poziom_ryzyka = poziom_ryzyka + 1;
+                    poziom_ryzyka++;
                 }
                 Score += SelectedAnswer.QuestionAnswerPoints;
                 SelectedAnswer.AnswerSelectedColor = Color.FromHex("#F07167");
@@ -296,7 +294,7 @@ namespace Skale_W_Praktyce.ViewModels
 
             if (poziom_ryzyka > 3 && ryzyko == false)
             {
-                Diagnosis = Diagnosis + " UWAGA: prawdopodobnie pijesz w sposób ryzykowny, dowiedz się więcej na ten temat";
+                Diagnosis += " UWAGA: prawdopodobnie pijesz w sposób ryzykowny, dowiedz się więcej na ten temat";
                 ryzyko = true;
             }
             if (poziom_ryzyka < 3 && ryzyko == true)
@@ -350,7 +348,7 @@ namespace Skale_W_Praktyce.ViewModels
 
                 BookmarkImgSrc = "bookmark.png";
                 isBookmarked = false;
-                BookmarkNotificationTask(isBookmarked);
+                await BookmarkNotificationTask(isBookmarked);
             }
             else
             {
@@ -358,7 +356,7 @@ namespace Skale_W_Praktyce.ViewModels
 
                 BookmarkImgSrc = "bookmark_saved.png";
                 isBookmarked = true;
-                BookmarkNotificationTask(isBookmarked);
+                await BookmarkNotificationTask(isBookmarked);
             }
         }
         #endregion

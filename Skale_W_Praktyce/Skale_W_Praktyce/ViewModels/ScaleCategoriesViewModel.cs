@@ -1,10 +1,7 @@
 ﻿using Skale_W_Praktyce.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Skale_W_Praktyce.ViewModels
@@ -26,7 +23,7 @@ namespace Skale_W_Praktyce.ViewModels
 
         }
         private ObservableCollection<Scale> scalesListCategory;
-        private INavigation navigation;
+        private readonly INavigation navigation;
 
         public ObservableCollection<Scale> ScalesListCategory
         {

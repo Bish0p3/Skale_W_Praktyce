@@ -288,9 +288,9 @@ namespace Skale_W_Praktyce.ViewModels
             // BAZA
             List<Bookmark> bookmarks = await App.Database.GetBookmarksAsync();
             List<Bookmark> userBookmarks = new List<Bookmark>();
-            foreach(Bookmark bookmark in bookmarks)
+            foreach (Bookmark bookmark in bookmarks)
             {
-                if(bookmark.UserID == Settings.CurrentUserID)
+                if (bookmark.UserID == Settings.CurrentUserID)
                 {
                     userBookmarks.Add(bookmark);
                 }
@@ -303,7 +303,7 @@ namespace Skale_W_Praktyce.ViewModels
 
                 BookmarkImgSrc = "bookmark.png";
                 isBookmarked = false;
-                BookmarkNotificationTask(isBookmarked);
+                await BookmarkNotificationTask(isBookmarked);
             }
             else
             {
@@ -311,7 +311,7 @@ namespace Skale_W_Praktyce.ViewModels
 
                 BookmarkImgSrc = "bookmark_saved.png";
                 isBookmarked = true;
-                BookmarkNotificationTask(isBookmarked);
+                await BookmarkNotificationTask(isBookmarked);
             }
         }
         #endregion

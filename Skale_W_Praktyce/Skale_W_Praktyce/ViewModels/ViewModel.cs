@@ -1,12 +1,9 @@
-﻿using Skale_W_Praktyce.Data;
-using Skale_W_Praktyce.Models;
+﻿using Skale_W_Praktyce.Models;
 using Skale_W_Praktyce.Views;
 using Skale_W_Praktyce.Views.Flyout;
-using Skale_W_Praktyce.Views.Scales;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -48,8 +45,8 @@ namespace Skale_W_Praktyce.ViewModels
 
             #region Register Page Commands
             AddUser_AddUserButton_Clicked = new Command(async () => await AddUser_AddUserButton_Method());
-            AddUser_MaleIcon_Clicked = new Command(async () => await AddUser_MaleIcon_Method());
-            AddUser_FemaleIcon_Clicked = new Command(async () => await AddUser_FemaleIcon_Method());
+            AddUser_MaleIcon_Clicked = new Command(AddUser_MaleIcon_Method);
+            AddUser_FemaleIcon_Clicked = new Command(AddUser_FemaleIcon_Method);
             #endregion
         }
         #endregion
@@ -80,8 +77,6 @@ namespace Skale_W_Praktyce.ViewModels
 
         #region Fields
         private ObservableCollection<User> users;
-        private string userNotificationText;
-        private bool usernameNotificationVisibility;
         private User selectedUser;
         private bool forSureVisibility = false;
         private bool forSureVisibilityDeleteButton = true;
@@ -167,16 +162,6 @@ namespace Skale_W_Praktyce.ViewModels
                 return addUser_UsernameEntry;
             }
 
-        }
-        public string UserNotificationText
-        {
-            get { return userNotificationText; }
-            set { userNotificationText = value; OnPropertyChanged("UserNotificationText"); }
-        }
-        public bool UserNotificationVisibility
-        {
-            get { return usernameNotificationVisibility; }
-            set { usernameNotificationVisibility = value; OnPropertyChanged("UserNotificationVisibility"); }
         }
         public string AddUser_UserImage
         {
@@ -266,6 +251,7 @@ namespace Skale_W_Praktyce.ViewModels
                     UserImage = AddUser_UserImage
                 });
                 await Navigation.PushAsync(new LogInPage());
+
             }
             else
             {
@@ -275,28 +261,11 @@ namespace Skale_W_Praktyce.ViewModels
             }
         }
         #endregion
-        private async Task AddedUserNotification(bool IsAdded)
-        {
-            if (IsAdded)
-            {
-                UserNotificationText = "Dodano Użytkownika";
-                UserNotificationVisibility = true;
-                await Task.Delay(2000);
-                UserNotificationVisibility = false;
-            }
-            else
-            {
-                UserNotificationText = "Usunięto Użytkownika";
-                UserNotificationVisibility = true;
-                await Task.Delay(2000);
-                UserNotificationVisibility = false;
-            }
-        }
-        public async Task FirstRun()
+        public void FirstRun()
         {
             if (Settings.FirstRun)
             {
-                await Application.Current.MainPage.DisplayAlert("Info", "Witaj w aplikacji Skale medyczne, jeśli potrzebujesz pomocy w poruszaniu się po aplikacji kliknij w opcję 'POMOC'. Znajdziesz tam również informacje jak korzystać ze skal.", "OK");
+                Application.Current.MainPage.DisplayAlert("Info", "Witaj w aplikacji Skale medyczne, jeśli potrzebujesz pomocy w poruszaniu się po aplikacji kliknij w opcję 'POMOC'. Znajdziesz tam również informacje jak korzystać ze skal.", "OK");
                 // Perform an action such as a "Pop-Up".
                 Settings.FirstRun = false;
             }
@@ -313,7 +282,7 @@ namespace Skale_W_Praktyce.ViewModels
                 //pozniej dodaj napis brak uzyt
             }
         }
-        private async Task AddUser_MaleIcon_Method()
+        private void AddUser_MaleIcon_Method()
         {
             AddUser_UserImage = "userm";
             if (!isMaleSelected)
@@ -323,7 +292,7 @@ namespace Skale_W_Praktyce.ViewModels
             RegisterUserIconSrcM = "userm.png";
             isMaleSelected = true;
         }
-        private async Task AddUser_FemaleIcon_Method()
+        private void AddUser_FemaleIcon_Method()
         {
             AddUser_UserImage = "userf";
             if (isMaleSelected)

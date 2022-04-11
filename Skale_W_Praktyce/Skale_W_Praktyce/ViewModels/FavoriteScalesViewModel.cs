@@ -1,5 +1,4 @@
 ﻿using Skale_W_Praktyce.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -18,7 +17,7 @@ namespace Skale_W_Praktyce.ViewModels
         }
 
         private ObservableCollection<Scale> favoriteScalesList;
-        private INavigation navigation;
+        private readonly INavigation navigation;
 
         public ObservableCollection<Scale> FavoriteScalesList
         {
@@ -48,7 +47,7 @@ namespace Skale_W_Praktyce.ViewModels
 
             foreach (Bookmark bookmark in userBookmarks)
             {
-                foreach(Scale scale in scalesViewModel.ScalesList)
+                foreach (Scale scale in scalesViewModel.ScalesList)
                 {
                     if (scale.ScaleName.Contains(bookmark.ScaleName))
                     {

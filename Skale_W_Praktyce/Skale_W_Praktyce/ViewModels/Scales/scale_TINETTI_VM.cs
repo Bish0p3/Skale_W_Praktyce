@@ -355,7 +355,7 @@ namespace Skale_W_Praktyce.ViewModels
 
                 BookmarkImgSrc = "bookmark.png";
                 isBookmarked = false;
-                BookmarkNotificationTask(isBookmarked);
+                await BookmarkNotificationTask(isBookmarked);
             }
             else
             {
@@ -363,7 +363,7 @@ namespace Skale_W_Praktyce.ViewModels
 
                 BookmarkImgSrc = "bookmark_saved.png";
                 isBookmarked = true;
-                BookmarkNotificationTask(isBookmarked);
+                await BookmarkNotificationTask(isBookmarked);
             }
         }
         #endregion

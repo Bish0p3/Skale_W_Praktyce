@@ -1,5 +1,4 @@
-﻿using System;
-using SQLite;
+﻿using SQLite;
 
 namespace Skale_W_Praktyce.Models
 {
