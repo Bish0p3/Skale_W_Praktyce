@@ -39,46 +39,37 @@
             <!--#endregion-->
             <!-- #region CONTENT -->
             <Grid Margin="0" Padding="0">
-                <StackLayout>
+                <StackLayout VerticalOptions="Center" Margin="50">
+                    <Image Source="logo4.png" Margin="0, -50, 0, 0"/>
+                    <Label Text="Skale W Praktyce" Margin="0,-50,0,30" FontSize="Large" FontAttributes="Bold"  HorizontalOptions="Center"/>
 
-                    <StackLayout VerticalOptions="Center" Margin="50">
-                        <Image Source="logo4.png" Margin="0, -50, 0, 0"/>
-                        <Label Text="Skale W Praktyce" Margin="0,-50,0,30" FontSize="Large" FontAttributes="Bold"  HorizontalOptions="Center"/>
-
-                        <Label Text="Wybierz użytkownika:" TextColor="{StaticResource OnBackground}"/>
-                        <ContentView>
+                    <Label Text="Wybierz użytkownika:" TextColor="{StaticResource OnBackground}"/>
+                    <ContentView>
 
 
-                            <ListView ItemsSource="{Binding Users}" HasUnevenRows="True" SelectedItem="{Binding SelectedUser}">
-                                <ListView.Behaviors>
-                                    <behaviors:EventToCommandBehavior
+                        <ListView ItemsSource="{Binding Users}" HasUnevenRows="True" SelectedItem="{Binding SelectedUser}">
+                            <ListView.Behaviors>
+                                <behaviors:EventToCommandBehavior
                                     EventName="ItemTapped"
                                     Command="{Binding Login_SelectUser_Clicked}"/>
-                                </ListView.Behaviors>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <Frame BackgroundColor="{StaticResource Secondary}" CornerRadius="20" Margin="0,5,0,0" Padding="0">
-                                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="5">
-                                                    <Image Source="{Binding UserImage}" WidthRequest="70" HeightRequest="60"/>
-                                                    <Label Text="{Binding Username}" VerticalTextAlignment="Center" Style="{StaticResource ScaleName}" TextColor="{StaticResource OnBackground}"/>
-                                                </StackLayout>
-                                            </Frame>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </ContentView>
+                            </ListView.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame BackgroundColor="{StaticResource Secondary}" CornerRadius="20" Margin="0,5,0,0" Padding="0">
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="5">
+                                                <Image Source="{Binding UserImage}" WidthRequest="70" HeightRequest="60"/>
+                                                <Label Text="{Binding Username}" VerticalTextAlignment="Center" Style="{StaticResource ScaleName}" TextColor="{StaticResource OnBackground}"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ContentView>
 
-                        <Button Text="Dodaj użytkownika" Command="{Binding Login_AddUserButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
+                    <Button Text="Dodaj użytkownika" Command="{Binding Login_AddUserButton_Clicked}" Style="{StaticResource DefaultButtonStyle}"/>
 
-                    </StackLayout>
-                    <Label Margin="0" Grid.Row="1" Text="{Binding UserNotificationText}" 
-                       IsVisible="{Binding UserNotificationVisibility}" 
-                       Style="{StaticResource ScaleDesc}" 
-                       TextColor="{StaticResource OnError}" 
-                       BackgroundColor="{StaticResource Error}"
-                       HorizontalTextAlignment="Center"/>
                 </StackLayout>
 
 

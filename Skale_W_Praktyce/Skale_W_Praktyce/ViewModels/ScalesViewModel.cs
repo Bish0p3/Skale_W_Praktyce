@@ -162,17 +162,17 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Skala śpiączki Glasgow (dla dorosłych)",
                         ScaleDesc = "GLASGOW Meningococcal Septicemia Prognostic Score (GMSPS).",
                         ScaleTags = "Układ nerwowy",
-                        ScaleViewName = typeof(scale_GLASGOW)},
+                        ScaleViewName = typeof(Scale_GLASGOW)},
                     new Scale(){
                         ScaleName = "Skala TINETTI",
                         ScaleDesc = "Służy do oceny równowagi i chodu.",
                         ScaleTags = "Geriatria, Układ nerwowy",
-                        ScaleViewName = typeof(scale_TINETTI)},
+                        ScaleViewName = typeof(Scale_TINETTI)},
                     new Scale(){
                         ScaleName = "Skala Norton",
                         ScaleDesc = "Służy do oceny ryzyka postawnia odlezyn u pacjenta przewlekle chorego.",
                         ScaleTags = "Ogólne, Geriatria",
-                        ScaleViewName = typeof(scale_NORTON)},
+                        ScaleViewName = typeof(Scale_NORTON)},
                     new Scale(){
                         ScaleName = "Skala Aldreta",
                         ScaleDesc = "Skala kwalifikująca chorego po zabiegu chirurgicznym do przeniesienia go z sali budzeń na oddział zabiegowy.",
@@ -182,22 +182,22 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "APGAR",
                         ScaleDesc = "Skala używana w medycynie w celu określenia stanu noworodka zaraz po porodzie.",
                         ScaleTags = "Układ krążenia, Układ nerwowy, Układ oddechowy",
-                        ScaleViewName = typeof(scale_APGAR)},
+                        ScaleViewName = typeof(Scale_APGAR)},
                     new Scale(){
                         ScaleName = "Geriatryczna Skala Depresji (GDS)",
                         ScaleDesc = "Geriatryczna skala oceny depresji (Geriatric Depression Scale – GDS)",
                         ScaleTags = "Psychologia, Geriatria",
-                        ScaleViewName = typeof(scale_GDS)},
+                        ScaleViewName = typeof(Scale_GDS)},
                     new Scale(){
                         ScaleName = "Skala CRUSADE",
                         ScaleDesc = "Skala określająca ryzyko krwawienia.",
                         ScaleTags = "Układ krążenia, Układ nerwowy",
-                        ScaleViewName = typeof(scale_CRUSADE)},
+                        ScaleViewName = typeof(Scale_CRUSADE)},
                     new Scale(){
                         ScaleName = "Skala CDR",
                         ScaleDesc = "Badanie służące do Klinicznej Oceny Stopnia Otępienia (CDR)",
                         ScaleTags = "Ogólne, Układ nerwowy, Geriatria",
-                        ScaleViewName = typeof(scale_CDR)},
+                        ScaleViewName = typeof(Scale_CDR)},
                     new Scale(){
                         ScaleName = "Mini-Mental State Examination (MMSE)",
                         ScaleDesc = "Krótkie narzędzie przesiewowe do oceny otępień.",
@@ -207,7 +207,7 @@ namespace Skale_W_Praktyce.ViewModels
                         ScaleName = "Test AUDIT (The Alcohol Use Disorders Identification Test)",
                         ScaleDesc = "Badanie identyfikujące osoby pijące w sposób ryzykowny i szkodliwy dla zdrowia, używane w terapii uzależnień alkoholowych",
                         ScaleTags = "Ogólne, Psychologia",
-                        ScaleViewName = typeof(scale_AUDIT)},
+                        ScaleViewName = typeof(Scale_AUDIT)},
                 };
 
         }

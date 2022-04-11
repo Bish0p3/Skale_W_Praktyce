@@ -32,7 +32,7 @@ namespace Skale_W_Praktyce.ViewModels
             BrowseScalesButton_Clicked = new Command(async () => await BrowseScalesButton_Method());
             CategoriesButton_Clicked = new Command(async () => await CategoriesButton_Method());
             FavoritesButton_Clicked = new Command(async () => await FavoritesButton_Method());
-            HelpButton_Clicked = new Command(HelpButton_Method);
+            HelpButton_Clicked = new Command(async () => await HelpButton_Method());
             LogoutButton_Clicked = new Command(async () => await LogoutButton_Method());
 
             DeleteAccountButton = new Command(DeleteAccountButton_Method);
@@ -207,9 +207,9 @@ namespace Skale_W_Praktyce.ViewModels
         {
             await Navigation.PushAsync(new FavoriteScalesPage());
         }
-        public void HelpButton_Method()
+        public async Task HelpButton_Method()
         {
-            //await Navigation.PushAsync(new PatientsListPage());
+            await Navigation.PushAsync(new HelpPage());
         }
         public async Task LogoutButton_Method()
         {

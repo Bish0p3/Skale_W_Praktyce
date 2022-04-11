@@ -35,22 +35,6 @@
 
         <Color x:Key="old1">#0086e7</Color>
         <Color x:Key="old2">#3fc9ef</Color>
-        <!--<Color x:Key="1">#0B132B</Color>
-            <Color x:Key="2">#1C2541</Color>
-            <Color x:Key="3">#3A506B</Color>
-            <Color x:Key="4">#5BC0BE</Color>
-            <Color x:Key="5">#6FFFE9</Color>-->
-
-        <!--<Color x:Key="1">#184E77</Color>
-            <Color x:Key="2">#1E6091</Color>
-            <Color x:Key="3">#1A759F</Color>
-            <Color x:Key="4">#168AAD</Color>
-            <Color x:Key="5">#34A0A4</Color>
-            <Color x:Key="6">#52B69A</Color>
-            <Color x:Key="7">#76C893</Color>
-            <Color x:Key="8">#99D98C</Color>
-            <Color x:Key="9">#B5E48C</Color>
-            <Color x:Key="10">#D9ED92</Color>-->
         <!--#endregion-->
 
         <!--#region Styles -->

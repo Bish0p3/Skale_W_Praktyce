@@ -6,9 +6,9 @@ using Xamarin.Forms.Xaml;
 namespace Skale_W_Praktyce.Views.Scales
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class scale_AUDIT : ContentPage
+    public partial class Scale_AUDIT : ContentPage
     {
-        public scale_AUDIT()
+        public Scale_AUDIT()
         {
             InitializeComponent();
             BindingContext = new Scale_AUDIT_VM();

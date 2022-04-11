@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace Skale_W_Praktyce.Views.Scales
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class scale_CRUSADE : ContentPage
+    public partial class Scale_CRUSADE : ContentPage
     {
-        public scale_CRUSADE()
+        public Scale_CRUSADE()
         {
             InitializeComponent();
             BindingContext = new Scale_CRUSADE_VM();
