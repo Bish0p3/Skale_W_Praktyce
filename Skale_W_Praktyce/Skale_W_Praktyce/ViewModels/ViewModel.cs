@@ -21,10 +21,7 @@ namespace Skale_W_Praktyce.ViewModels
 
             Users = new ObservableCollection<User>() { };
 
-            FirstRun();
             InitUsersAsync();
-
-
 
             #region Login Page Commands
             Login_SelectUser_Clicked = new Command(async () => await Login_SelectUser_Method());
@@ -261,15 +258,6 @@ namespace Skale_W_Praktyce.ViewModels
             }
         }
         #endregion
-        public void FirstRun()
-        {
-            if (Settings.FirstRun)
-            {
-                Application.Current.MainPage.DisplayAlert("Info", "Witaj w aplikacji Skale medyczne, jeśli potrzebujesz pomocy w poruszaniu się po aplikacji kliknij w opcję 'POMOC'. Znajdziesz tam również informacje jak korzystać ze skal.", "OK");
-                // Perform an action such as a "Pop-Up".
-                Settings.FirstRun = false;
-            }
-        }
         private async Task InitUsersAsync()
         {
             List<User> usersDB = await App.Database.GetUsersAsync();
