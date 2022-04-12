@@ -24,8 +24,8 @@ namespace Skale_W_Praktyce.ViewModels
                     new FlyoutPageFlyoutMenuItem { Id = 0, Title = "Strona Główna", TargetType = typeof(MainPage_Flyout)},
                     new FlyoutPageFlyoutMenuItem { Id = 1, Title = "Przeglądaj Skale", TargetType = typeof(ScalesListPage)},
                     new FlyoutPageFlyoutMenuItem { Id = 2, Title = "Kategorie", TargetType = typeof(ScalesCategories) },
-                    new FlyoutPageFlyoutMenuItem { Id = 3, Title = "Ulubione", TargetType = typeof(MainPage) },
-                    new FlyoutPageFlyoutMenuItem { Id = 4, Title = "Pomoc" , TargetType = typeof(MainPage)},
+                    new FlyoutPageFlyoutMenuItem { Id = 3, Title = "Ulubione", TargetType = typeof(FavoriteScalesPage) },
+                    new FlyoutPageFlyoutMenuItem { Id = 4, Title = "Pomoc" , TargetType = typeof(HelpPage)},
                     new FlyoutPageFlyoutMenuItem { Id = 5, Title = "Zmień użytkownika", TargetType = typeof(LogInPage)},
                 });
         }
