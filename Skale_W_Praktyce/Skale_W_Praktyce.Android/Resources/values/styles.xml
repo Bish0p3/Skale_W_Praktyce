@@ -19,7 +19,7 @@
     <item name="android:colorFocusedHighlight">@color/ListViewSelected</item>
     <item name="android:colorActivatedHighlight">@color/ListViewSelected</item>
     <item name="android:activatedBackgroundIndicator">@color/ListViewSelected</item>
-    <item name="android:windowBackground">@color/launcher_background</item>
+    <item name="android:colorBackground">#F07167</item>
 
   </style>
   <color name="ListViewSelected">@android:color/transparent</color>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.skale_w_praktyce" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="22" android:targetSdkVersion="30" />
-	<application android:label="Skale W Praktyce" android:theme="@style/MainTheme"></application>
+	<application android:label="Skale W Praktyce" android:theme="@style/MainTheme" android:icon="@mipmap/launcher_foreground"></application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

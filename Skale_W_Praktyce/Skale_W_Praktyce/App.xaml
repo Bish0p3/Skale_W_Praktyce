@@ -8,7 +8,9 @@
             <Setter Property="BarBackgroundColor" Value="#00AFB9"/>
             <Setter Property="BarTextColor" Value="White"/>
         </Style>
-
+        <Style TargetType="FlyoutPage">
+            <Setter Property="BackgroundColor" Value="Red"/>
+        </Style>
 
         <Color x:Key="Transparent">#50FBC1BC</Color>
         <!-- #region Colors -->
