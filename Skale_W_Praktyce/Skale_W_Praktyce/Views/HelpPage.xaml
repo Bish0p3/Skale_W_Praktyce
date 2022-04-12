@@ -19,10 +19,11 @@
                 <Label Text="1) PRZEGLĄDAJ SKALE - tu znajdziesz wszystkie skale które są zawarte w aplikacji."/>
                 <Label Text="2) KATEGORIE - tu możesz wybierać skale, szukając ich po kateroriach."/>
                 <Label Text="3) ULUBIONE - po wybraniu ulubionych skal, pojawią się one w tej zakładce."/>
-                <Label Text="4) POMOC - w tym momencie tu jesteś :)"/>
-                <Label Text="5) WYLOGUJ/ZMIANA UŻYTKOWNIKA - ten przycisk przeniesie cię spowrotem do wyboru użytkownika."/>
+                <Label Text="4) POMOC - w tym momencie tu jesteś :)."/>
+                <Label Text="5) ZMIANA UŻYTKOWNIKA - ten przycisk przeniesie cię spowrotem do wyboru użytkownika."/>
+                <Label Text="6) USUŃ UŻYTKOWNIKA - ta opcja pozwoli na usunięcie konta obecnego użytkownika, wymaga potwierdzenia."/>
                 <Frame BackgroundColor="Black">
-                    <Image Source="menu_help.jpg"/>
+                    <Image Source="menu_help2.jpg"/>
                 </Frame>
                 <Label Text="PODRĘCZNE MENU - W każdym momencie możesz użyć wysuwanego menu, wystarczy, że przesuniesz palcem od lewej krawędzi w prawą stronę."/>
                 <Frame BackgroundColor="Black">

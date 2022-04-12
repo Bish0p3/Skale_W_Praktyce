@@ -11779,7 +11779,7 @@ namespace Skale_W_Praktyce.Droid
 			public const int menu = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int menu_help = 2131165323;
+			public const int menu_help2 = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
 			public const int mtrl_dialog_background = 2131165324;

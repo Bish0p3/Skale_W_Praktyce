@@ -48,7 +48,7 @@ namespace Skale_W_Praktyce
         {
             if (Settings.FirstRun)
             {
-                await Application.Current.MainPage.DisplayAlert("Info", "Witaj w aplikacji Skale medyczne, aby korzystać z aplikacji, stwórz użytkownika, możesz to zrobić wybierając przycisk poniżej. Jeśli potrzebujesz pomocy w poruszaniu się po aplikacji kliknij w opcję 'POMOC' w menu głównym, dostępnym po wybraniu użytkownika.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Info", "Witaj w aplikacji Skale W Praktyce, aby korzystać z aplikacji, stwórz użytkownika, możesz to zrobić wybierając przycisk poniżej. Jeśli potrzebujesz pomocy w poruszaniu się po aplikacji kliknij w opcję 'POMOC' w menu głównym, dostępnym po wybraniu użytkownika.", "OK");
                 // Perform an action such as a "Pop-Up".
                 Settings.FirstRun = false;
             }
