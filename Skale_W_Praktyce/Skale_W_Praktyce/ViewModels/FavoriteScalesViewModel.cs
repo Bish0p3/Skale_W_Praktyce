@@ -18,7 +18,7 @@ namespace Skale_W_Praktyce.ViewModels
 
         private ObservableCollection<Scale> favoriteScalesList;
         private readonly INavigation navigation;
-
+        private bool noBookmarksVisibility = true;
         public ObservableCollection<Scale> FavoriteScalesList
         {
             get { return favoriteScalesList; }
@@ -31,6 +31,11 @@ namespace Skale_W_Praktyce.ViewModels
                 }
             }
         }
+        public bool NoBookmarksVisibility
+        {
+            get { return noBookmarksVisibility; }
+            set { noBookmarksVisibility = value; OnPropertyChanged("NoBookmarksVisibility"); }
+        }
 
         private async Task InitAsync()
         {
@@ -42,6 +47,14 @@ namespace Skale_W_Praktyce.ViewModels
                 if (bookmark.UserID == Settings.CurrentUserID)
                 {
                     userBookmarks.Add(bookmark);
+                }
+                if (userBookmarks.Count == 0)
+                {
+                    NoBookmarksVisibility = true;
+                }
+                else
+                {
+                    NoBookmarksVisibility = false;
                 }
             }
 

@@ -77,6 +77,7 @@ namespace Skale_W_Praktyce.ViewModels
         private User selectedUser;
         private bool forSureVisibility = false;
         private bool forSureVisibilityDeleteButton = true;
+        private bool noUsersVisibility;
         #region Register Page
         private string addUser_UsernameEntry;
         private string addUser_UserImage;
@@ -136,7 +137,15 @@ namespace Skale_W_Praktyce.ViewModels
                 OnPropertyChanged("ForSureVisibilityDeleteButton");
             }
         }
-
+        public bool NoUsersVisibility
+        {
+            get => noUsersVisibility;
+            set
+            {
+                noUsersVisibility = value;
+                OnPropertyChanged("NoUsersVisibility");
+            }
+        }
         // Navigation
         public INavigation Navigation { get; set; }
 
@@ -267,7 +276,11 @@ namespace Skale_W_Praktyce.ViewModels
             }
             if (usersDB.Count == 0)
             {
-                //pozniej dodaj napis brak uzyt
+                NoUsersVisibility = true;
+            }
+            else
+            {
+                NoUsersVisibility = false;
             }
         }
         private void AddUser_MaleIcon_Method()

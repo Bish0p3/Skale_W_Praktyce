@@ -44,9 +44,9 @@
                     <Label Text="Skale W Praktyce" Margin="0,-50,0,30" FontSize="Large" FontAttributes="Bold"  HorizontalOptions="Center"/>
 
                     <Label Text="Wybierz użytkownika:" TextColor="{StaticResource OnBackground}"/>
-                    <ContentView>
-
-
+                    <Label Text="Brak użytkowników" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="bold"
+                           TextColor="Black" Margin="0,20,0,-50" IsVisible="{Binding NoUsersVisibility}"/>
+                    <ContentView >
                         <ListView ItemsSource="{Binding Users}" HasUnevenRows="True" SelectedItem="{Binding SelectedUser}">
                             <ListView.Behaviors>
                                 <behaviors:EventToCommandBehavior

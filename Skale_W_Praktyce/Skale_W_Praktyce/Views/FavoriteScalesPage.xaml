@@ -12,6 +12,8 @@
 
     <!-- CONTENT -->
     <StackLayout BackgroundColor="{StaticResource Background}">
+        <Label Text="Brak ulubionych skal" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="bold"
+                           TextColor="Black" Margin="0,20,0,-50" IsVisible="{Binding NoBookmarksVisibility}"/>
         <!-- SCALES LIST -->
         <ListView   ItemsSource="{Binding FavoriteScalesList}"
                     ItemSelected="ListView_ItemSelected"
