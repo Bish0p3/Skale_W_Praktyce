@@ -246,9 +246,8 @@ namespace Skale_W_Praktyce.ViewModels
         {
             // POPUP
             await Application.Current.MainPage.DisplayAlert("Info",
-               "Skala Apgar to skala używana w medycynie w celu określenia stanu noworodka zaraz po porodzie: w 1., 5.i 15.minucie życia. \n" +
-               "Wprowadziła ją w 1953 Virginia Apgar, absolwentka Mount Holyoke College(Massachusetts, USA), akronim powstał zaś 10 lat później.Dziecko minimalnie może dostać 0, a maksymalnie 10 punktów." +
-                "\nŹródło:\nhttps://pl.wikipedia.org/wiki/Skala_Apgar", "OK");
+               "Skala Aldreta kwalifikuje chorego po zabiegu chirurgicznym do przeniesienia go z sali budzeń na oddział zabiegowy. Polega na ocenie 5 kryteriów wykonywanej co 30 minut. Jeżeli chory dwukrotnie, w odstępie nie dłuższym niż 30 minut został oceniony na co najmniej 9 punktów, nadaje się do wypisania z sali budzeń i przeniesienia na salę na oddziale zabiegowym. W tym czasie kończy się pooperacyjna opieka anestezjologiczna nad pacjentem. Link do artykułu: Aldrete JA, Kroulik D.A postanesthetic recovery score.Anesth Analg. 1970 Nov - Dec; 49(6):924 - 34. \n" +
+                "\nŹródło:\n https://pielegniarki.com.pl/calculator/aldrete", "OK");
         }
         private async Task SetBookmarkImage()
         {

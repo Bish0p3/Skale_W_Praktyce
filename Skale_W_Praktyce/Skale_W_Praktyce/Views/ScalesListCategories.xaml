@@ -4,11 +4,11 @@
              x:Class="Skale_W_Praktyce.Views.ScalesListCategories">
 
     <!-- TITLE -->
-    <NavigationPage.TitleView>
+    <!--<NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
-            <Label Text="ListView_ItemSelected" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
+            <Label Text="{Binding ListView_ItemSelected}" TextColor="White" FontSize="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center" FontAttributes="Bold"/>
         </StackLayout>
-    </NavigationPage.TitleView>
+    </NavigationPage.TitleView>-->
 
     <!-- CONTENT -->
     <StackLayout BackgroundColor="{StaticResource Background}">

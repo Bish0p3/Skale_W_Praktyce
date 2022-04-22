@@ -257,8 +257,8 @@ namespace Skale_W_Praktyce.ViewModels
         {
             // POPUP
             await Application.Current.MainPage.DisplayAlert("Info",
-                "5-punktowa skala służąca do charakterystyki sześciu domen funkcjonowania poznawczego i funkcjonalnego w odniesieniu do choroby Alzheimera i pokrewnych demencji" +
-                "\nŹródło:\nhttps://fizjoterapeuty.pl/testy-funkcjonalne/skala-tinetti.html", "OK");
+                "CDR jest globalną skalą oceny służącą do oceny stanu pacjentów, u których rozpoznano otępienie (Tabela 16.6). CDR ocenia poznawcze, behawioralne i funkcjonalne aspekty choroby Alzheimera i innych otępień. Zamiast badania stanu psychicznego lub inwentarza, oceniający po prostu dokonuje oceny w sześciu kategoriach na podstawie wszystkich dostępnych informacji. System punktacji w CDR jest nieco skomplikowany i w dużym stopniu zależy od punktacji pamięci, ale CDR charakteryzuje się dobrą wiarygodnością międzylaboratoryjną w ocenie stopnia otępienia. Narzędzie to jest powszechnie stosowane zarówno w ośrodkach zajmujących się chorobą Alzheimera, jak i w badaniach nad demencją." +
+                "\nŹródło:\nhttps://www.sciencedirect.com/topics/medicine-and-dentistry/clinical-dementia-rating", "OK");
         }
         private async Task SetBookmarkImage()
         {

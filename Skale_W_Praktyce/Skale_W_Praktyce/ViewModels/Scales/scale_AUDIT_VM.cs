@@ -308,7 +308,7 @@ namespace Skale_W_Praktyce.ViewModels
             // POPUP
             await Application.Current.MainPage.DisplayAlert("Info",
                 "Interpretacja wyników: ≥8 punktów – wskazane pogłębione badanie diagnostyczne u terapeuty uzależnień, podwyższone wyniki w trzech pierwszych pytaniach(przy niskich wynikach w pozostałych) – prawdopodobnie pijesz w sposób ryzykowny, dowiedz się więcej na ten temat, podwyższone wyniki w skalach 4–6 – prawdopodobnie jesteś uzależniony od alkoholu, konieczne jest leczenie odwykowe. (Test AUDIT został opracowany przez ekspertów Światowej Organizacji Zdrowia, a w Polsce propagowany jest przez Państwową Agencję Rozwiązywania Problemów Alkoholowych)." +
-                "\nŹródło:\nhttps://www.medonet.pl/zdrowie,skala-norton---czego-dotyczy-i-jak-oraz-kiedy-sie-ja-stosuje,artykul,1732049.html", "OK");
+                "\nŹródło:\n Babor T. F., de la Fuente R.J., Saunders J., Grant M.: Test rozpoznawania zaburzeń związanych z piciem alkoholu AUDIT, Publikacja Światowej Organizacji Zdrowia, Państwowa Agencja Rozwiązywania Problemów Alkoholowych, Warszawa 1996. ", "OK");
 
 
         }

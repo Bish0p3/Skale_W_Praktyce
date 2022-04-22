@@ -1,6 +1,7 @@
 ﻿using Skale_W_Praktyce.Models;
 using Skale_W_Praktyce.Views;
 using Skale_W_Praktyce.Views.Scales;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -130,27 +131,45 @@ namespace Skale_W_Praktyce.ViewModels
         #region ScalesCategories
         public async Task BasicCategoryTapMethod()
         {
-            await Navigation.PushAsync(new ScalesListCategories("Ogólne"));
+            var page = new ScalesListCategories("Ogólne");
+            page.Title = "Ogólne";
+            await Navigation.PushAsync(page);
+            //await Navigation.PushAsync(new ScalesListCategories("Ogólne"));
         }
         public async Task NerveSystemCategoryTapMethod()
         {
-            await Navigation.PushAsync(new ScalesListCategories("Układ nerwowy"));
+            var page = new ScalesListCategories("Układ nerwowy");
+            page.Title = "Układ nerwowy";
+            await Navigation.PushAsync(page);
+            //await Navigation.PushAsync(new ScalesListCategories("Układ nerwowy"));
         }
         public async Task CirculatorySystemCategoryTapMethod()
         {
-            await Navigation.PushAsync(new ScalesListCategories("Układ krążenia"));
+            var page = new ScalesListCategories("Układ krążenia");
+            page.Title = "Układ krążenia";
+            await Navigation.PushAsync(page);
+            //await Navigation.PushAsync(new ScalesListCategories("Układ krążenia"));
         }
         public async Task LungsSystemCategoryTapMethod()
         {
-            await Navigation.PushAsync(new ScalesListCategories("Układ oddechowy"));
+            var page = new ScalesListCategories("Układ oddechowy");
+            page.Title = "Układ oddechowy";
+            await Navigation.PushAsync(page);
+            //await Navigation.PushAsync(new ScalesListCategories("Układ oddechowy"));
         }
         public async Task GeriatryCategoryTapMethod()
         {
-            await Navigation.PushAsync(new ScalesListCategories("Geriatria"));
+            var page = new ScalesListCategories("Geriatria");
+            page.Title = "Geriatria";
+            await Navigation.PushAsync(page);
+            //await Navigation.PushAsync(new ScalesListCategories("Geriatria"));
         }
         public async Task PsychologyCategoryTapMethod()
         {
-            await Navigation.PushAsync(new ScalesListCategories("Psychologia"));
+            var page = new ScalesListCategories("Psychologia");
+            page.Title = "Psychologia";
+            await Navigation.PushAsync(page);
+            //await Navigation.PushAsync(new ScalesListCategories("Psychologia"));
         }
         #endregion
 
