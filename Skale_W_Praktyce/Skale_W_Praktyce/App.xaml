@@ -79,5 +79,9 @@
             <Setter Property="TextColor" Value="{StaticResource OnBackground}"/>
         </Style>
         <!--#endregion-->
+
+
+
+
     </Application.Resources>
 </Application>
